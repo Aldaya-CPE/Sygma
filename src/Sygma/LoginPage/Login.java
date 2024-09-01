@@ -2,101 +2,31 @@
 package Sygma.LoginPage;
 
 import Sygma.LoginPage.log;
-import com.raven.event.EventMenu;
 import Sygma.LoginPage.signUp;
-
-import Sygma.Controller.userController;
-import Sygma.main;
-import Sygma.Model.ModelUser;
-import com.formdev.flatlaf.FlatLightLaf;
-import com.mysql.cj.log.Log;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.UUID;
-import java.util.prefs.Preferences;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
+
 
 public class Login extends javax.swing.JFrame {
-    private log Log;
-    private signUp SignUp;
+  
     
      
     public Login() {
         initComponents();
         
-        Log = new log();
-        SignUp = new signUp();
-        
-        
+   
+         showForm(new log());
+
+    }
     
-        showForm(Log);
-         idtext();
-        JLabel7.setVisible(true);
-        initMoving(this);
-    }
-     private int x;
-     private int y;
-       public void idtext(){
-         SwingUtilities.invokeLater(() -> {
-         Log.loging.removeAll();
-         Log.loging.repaint();
-         Log.loging.revalidate();
-         Log.loging.setText(JLabel7.getText());         
-        });
-         SwingUtilities.invokeLater(() -> {
-         SignUp.genId.removeAll();
-         SignUp.genId.repaint();
-         SignUp.genId.revalidate();
-         SignUp.genId.setText(JLabel7.getText());         
-        }); 
-       }
-       
-         public void initMoving(JFrame frame){
-        jPanel1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                
-                x = e.getX();
-                y = e.getY();
-            }
-            
-        });
-        jPanel1.addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-             frame.setLocation(e.getXOnScreen()-x, e.getYOnScreen()-y);
-                
-                
-            }
-        });
-    }
- private void showForm(Component com){
+         private void showForm(Component com) {
         changeform.removeAll();
+        changeform.setLayout(new java.awt.BorderLayout());  // Ensuring a proper layout manager
         changeform.add(com);
-        repaint();
-        revalidate();
+        changeform.revalidate();
+        changeform.repaint();
     }
-//    private static String generateUID(){
-//        int userId = 6;
-//        Random random = new Random();
-//        StringBuilder userBuilder = new StringBuilder();
-//        for (int i = 0; i < userId; i++) {
-//            userBuilder.append(random.nextInt(10));
-//        }
-//        String uID = userBuilder.toString();
-//        return uID;
-//    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -109,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         changeform = new javax.swing.JPanel();
         gate = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -143,6 +74,8 @@ public class Login extends javax.swing.JFrame {
 
         gate.setText("jLabel1");
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout changeformLayout = new javax.swing.GroupLayout(changeform);
         changeform.setLayout(changeformLayout);
         changeformLayout.setHorizontalGroup(
@@ -150,14 +83,18 @@ public class Login extends javax.swing.JFrame {
             .addGroup(changeformLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(gate)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton1)
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         changeformLayout.setVerticalGroup(
             changeformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(changeformLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(gate)
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(changeformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gate)
+                    .addComponent(jButton1))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
 
         jPanel1.add(changeform, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 380, 460));
@@ -207,6 +144,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel7;
     private javax.swing.JPanel changeform;
     public javax.swing.JLabel gate;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
