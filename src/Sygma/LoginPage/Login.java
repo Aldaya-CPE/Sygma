@@ -3,30 +3,53 @@ package Sygma.LoginPage;
 
 import Sygma.LoginPage.log;
 import Sygma.LoginPage.signUp;
+import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
 import javax.swing.JFrame;
-
+import javax.swing.JPanel;
+import Sygma.Controller.userController;
+import Sygma.Model.ModelUser;
+import Sygma.main; 
+import java.util.Arrays;
+import java.util.prefs.Preferences;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-  
-    
-     
+
     public Login() {
         initComponents();
-        
-   
-         showForm(new log());
+          username.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
 
+        password.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
     }
-    
-         private void showForm(Component com) {
-        changeform.removeAll();
-        changeform.setLayout(new java.awt.BorderLayout());  // Ensuring a proper layout manager
-        changeform.add(com);
-        changeform.revalidate();
-        changeform.repaint();
+         
+  private static String generateUID(){
+        int userId = 6;
+        Random random = new Random();
+        StringBuilder userBuilder = new StringBuilder();
+        for (int i = 0; i < userId; i++) {
+            userBuilder.append(random.nextInt(10));
+        }
+        String uID = userBuilder.toString();
+        return uID;
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,6 +64,24 @@ public class Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         changeform = new javax.swing.JPanel();
+        login = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        loging = new javax.swing.JLabel();
+        p2 = new Sygma.Components.PanelBar();
+        password = new javax.swing.JPasswordField();
+        p1 = new Sygma.Components.PanelBar();
+        username = new javax.swing.JTextField();
+        panelBar3 = new Sygma.Components.PanelBar();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        signup = new javax.swing.JPanel();
+        genId = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        panelBar1 = new Sygma.Components.PanelBar();
+        panelBar2 = new Sygma.Components.PanelBar();
+        panelBar4 = new Sygma.Components.PanelBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -72,7 +113,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/w22.png"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 460));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 380, 470));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -105,17 +146,151 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 380, 40));
 
         changeform.setBackground(new java.awt.Color(255, 255, 255));
+        changeform.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout changeformLayout = new javax.swing.GroupLayout(changeform);
-        changeform.setLayout(changeformLayout);
-        changeformLayout.setHorizontalGroup(
-            changeformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+        login.setBackground(new java.awt.Color(255, 255, 255));
+        login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        login.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 373, -1, -1));
+
+        loging.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        loging.setText("lable");
+        login.add(loging, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 30));
+
+        p2.setBackground(new java.awt.Color(255, 255, 255));
+        p2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        password.setForeground(new java.awt.Color(153, 153, 153));
+        password.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        p2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 10));
+
+        login.add(p2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 200, 30));
+
+        p1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        username.setBackground(new java.awt.Color(242, 242, 242));
+        username.setForeground(new java.awt.Color(153, 153, 153));
+        username.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        p1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, -1));
+
+        login.add(p1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 200, 30));
+
+        panelBar3.setBackground(new java.awt.Color(110, 206, 209));
+
+        jButton3.setBackground(new java.awt.Color(110, 206, 209));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Sign-up");
+        jButton3.setBorder(null);
+        jButton3.setIconTextGap(5);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBar3Layout = new javax.swing.GroupLayout(panelBar3);
+        panelBar3.setLayout(panelBar3Layout);
+        panelBar3Layout.setHorizontalGroup(
+            panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBar3Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-        changeformLayout.setVerticalGroup(
-            changeformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+        panelBar3Layout.setVerticalGroup(
+            panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        login.add(panelBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 120, 30));
+
+        jLabel1.setForeground(new java.awt.Color(172, 172, 172));
+        jLabel1.setText("You don't have an account?");
+        login.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 160, 20));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-sensor-50.png"))); // NOI18N
+        login.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 50, 60));
+
+        jButton2.setBackground(new java.awt.Color(253, 253, 253));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        jButton2.setText("Login");
+        jButton2.setBorder(null);
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.setIconTextGap(5);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        login.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
+
+        changeform.add(login, "card2");
+
+        signup.setBackground(new java.awt.Color(255, 255, 255));
+        signup.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        genId.setText("jLabel1");
+        signup.add(genId, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 25, -1, -1));
+
+        jButton4.setText("jButton1");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        signup.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
+
+        panelBar1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
+        panelBar1.setLayout(panelBar1Layout);
+        panelBar1Layout.setHorizontalGroup(
+            panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        panelBar1Layout.setVerticalGroup(
+            panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        signup.add(panelBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+
+        javax.swing.GroupLayout panelBar2Layout = new javax.swing.GroupLayout(panelBar2);
+        panelBar2.setLayout(panelBar2Layout);
+        panelBar2Layout.setHorizontalGroup(
+            panelBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        panelBar2Layout.setVerticalGroup(
+            panelBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        signup.add(panelBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 200, -1));
+
+        panelBar4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panelBar4Layout = new javax.swing.GroupLayout(panelBar4);
+        panelBar4.setLayout(panelBar4Layout);
+        panelBar4Layout.setHorizontalGroup(
+            panelBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        panelBar4Layout.setVerticalGroup(
+            panelBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        signup.add(panelBar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
+
+        changeform.add(signup, "card3");
 
         jPanel1.add(changeform, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 380, 420));
 
@@ -128,6 +303,71 @@ public class Login extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       changeform.removeAll();
+        changeform.add(signup);
+        changeform.revalidate();
+        changeform.repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         changeform.removeAll();
+        changeform.add(signup);
+        changeform.revalidate();
+        changeform.repaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String adminUsername = "admin";
+        String adminPassword = "admin";
+
+        String enteredUsername = username.getText();
+        char[] enteredPassword = password.getPassword();
+        if (enteredUsername.equals(adminUsername) && Arrays.equals(enteredPassword, adminPassword.toCharArray())) {
+            Preferences prefs = Preferences.userNodeForPackage(Login.class);
+            prefs.putBoolean("isLoggedIn", true);
+            JOptionPane.showMessageDialog(this, "Admin login successful!");
+
+            main m = new main();
+            m.MainID.setText("Admin");
+            m.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            m.setVisible(true);
+            setVisible(false);
+        } else {
+
+            main m = new main();
+            userController controller = new userController();
+            ModelUser login = new ModelUser();
+
+            if (enteredUsername != null && enteredPassword != null) {
+                login.setUserName(enteredUsername);
+                login.setPassWord(enteredPassword);
+
+                ModelUser result = controller.Login(login);
+                if (result != null) {
+                    Preferences prefs = Preferences.userNodeForPackage(Login.class);
+                    prefs.putBoolean("isLoggedIn", true);
+
+                    m.MainID.setText(result.getUserId());
+                    m.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    m.setVisible(true);
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Incorrect Username or Password, please Try again!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Username or Password cannot be empty!");
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       changeform.removeAll();
+        changeform.add(login);
+        changeform.revalidate();
+        changeform.repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,12 +408,30 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel7;
     private javax.swing.JPanel changeform;
     public javax.swing.JLabel gate;
+    public javax.swing.JLabel genId;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel login;
+    public javax.swing.JLabel loging;
+    private Sygma.Components.PanelBar p1;
+    private Sygma.Components.PanelBar p2;
+    private Sygma.Components.PanelBar panelBar1;
+    private Sygma.Components.PanelBar panelBar2;
+    private Sygma.Components.PanelBar panelBar3;
+    private Sygma.Components.PanelBar panelBar4;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPanel signup;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
