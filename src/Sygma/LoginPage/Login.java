@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
 
         password.setForeground(new java.awt.Color(153, 153, 153));
         password.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        p2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 10));
+        p2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 10));
 
         login.add(p2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 200, 30));
 
@@ -174,13 +174,13 @@ public class Login extends javax.swing.JFrame {
         username.setBackground(new java.awt.Color(242, 242, 242));
         username.setForeground(new java.awt.Color(153, 153, 153));
         username.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        p1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, -1));
+        p1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, 180, 20));
 
         login.add(p1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 200, 30));
 
-        panelBar3.setBackground(new java.awt.Color(110, 206, 209));
+        panelBar3.setBackground(new java.awt.Color(150, 233, 198));
 
-        jButton3.setBackground(new java.awt.Color(110, 206, 209));
+        jButton3.setBackground(new java.awt.Color(150, 233, 198));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sign-up");
@@ -197,13 +197,13 @@ public class Login extends javax.swing.JFrame {
         panelBar3Layout.setHorizontalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBar3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         panelBar3Layout.setVerticalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         login.add(panelBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 120, 30));
@@ -342,27 +342,20 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         changeform.removeAll();
-        changeform.add(signup);
-        changeform.revalidate();
-        changeform.repaint();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String adminUsername = "admin";
-        String adminPassword = "admin";
+       String adminUsername = "admin";
+        String adminPassword = "admin"; 
 
         String enteredUsername = username.getText();
         char[] enteredPassword = password.getPassword();
         if (enteredUsername.equals(adminUsername) && Arrays.equals(enteredPassword, adminPassword.toCharArray())) {
-            Preferences prefs = Preferences.userNodeForPackage(Login.class);
+           Preferences prefs = Preferences.userNodeForPackage(Login.class);
             prefs.putBoolean("isLoggedIn", true);
             JOptionPane.showMessageDialog(this, "Admin login successful!");
 
             main m = new main();
-            m.MainID.setText("Admin");
-            m.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            m.MainID.setText("Admin"); 
+            m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             m.setVisible(true);
             setVisible(false);
         } else {
@@ -370,6 +363,7 @@ public class Login extends javax.swing.JFrame {
             main m = new main();
             userController controller = new userController();
             ModelUser login = new ModelUser();
+
 
             if (enteredUsername != null && enteredPassword != null) {
                 login.setUserName(enteredUsername);
@@ -379,9 +373,9 @@ public class Login extends javax.swing.JFrame {
                 if (result != null) {
                     Preferences prefs = Preferences.userNodeForPackage(Login.class);
                     prefs.putBoolean("isLoggedIn", true);
-
+                    
                     m.MainID.setText(result.getUserId());
-                    m.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                     m.setVisible(true);
                     setVisible(false);
                 } else {
@@ -403,6 +397,13 @@ public class Login extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        changeform.removeAll();
+        changeform.add(signup);
+        changeform.revalidate();
+        changeform.repaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
