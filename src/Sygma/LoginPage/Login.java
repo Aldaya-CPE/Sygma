@@ -13,14 +13,23 @@ import javax.swing.JPanel;
 import Sygma.Controller.userController;
 import Sygma.Model.ModelUser;
 import Sygma.main; 
+import com.sun.jdi.connect.spi.Connection;
 import java.util.Arrays;
 import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Login extends javax.swing.JFrame {
-
+    Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
+    private userController controller;
+    ModelUser userData;
+    
     public Login() {
         initComponents();
+        controller = new userController();
         gate.setVisible(false);
         genId.setVisible(false);
         loging.setVisible(false);
@@ -41,7 +50,36 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         });
+        
+        susername.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton6ActionPerformed(null);
+                }
+            }
+        });
+
+        spassword.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton6ActionPerformed(null);
+                }
+            }
+        });
+
+        genId.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton6ActionPerformed(null);
+                }
+            }
+        });
     }
+    
+    
          
   private static String generateUID(){
         int userId = 6;
@@ -81,8 +119,10 @@ public class Login extends javax.swing.JFrame {
         signup = new javax.swing.JPanel();
         genId = new javax.swing.JLabel();
         panelBar1 = new Sygma.Components.PanelBar();
+        spassword = new javax.swing.JPasswordField();
         panelBar2 = new Sygma.Components.PanelBar();
         panelBar4 = new Sygma.Components.PanelBar();
+        susername = new javax.swing.JTextField();
         panelRound02 = new Sygma.Components.PanelRound0();
         jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -239,15 +279,23 @@ public class Login extends javax.swing.JFrame {
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));
         panelBar1.setForeground(new java.awt.Color(153, 153, 153));
 
+        spassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
         panelBar1.setLayout(panelBar1Layout);
         panelBar1Layout.setHorizontalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spassword, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBar1Layout.setVerticalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         signup.add(panelBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
@@ -270,15 +318,23 @@ public class Login extends javax.swing.JFrame {
         panelBar4.setBackground(new java.awt.Color(255, 255, 255));
         panelBar4.setForeground(new java.awt.Color(153, 153, 153));
 
+        susername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         javax.swing.GroupLayout panelBar4Layout = new javax.swing.GroupLayout(panelBar4);
         panelBar4.setLayout(panelBar4Layout);
         panelBar4Layout.setHorizontalGroup(
             panelBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(susername, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBar4Layout.setVerticalGroup(
             panelBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(panelBar4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(susername, javax.swing.GroupLayout.PREFERRED_SIZE, 14, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         signup.add(panelBar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
@@ -395,7 +451,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+          try {
+        String userName = susername.getText();
+        char[] passWord = spassword.getPassword();
+        String gId = genId.getText();
+        
+        if (this.controller != null) {
+            boolean registered = controller.registerUser(new ModelUser(gId, userName, passWord));
+            
+            if (registered) {
+                JOptionPane.showMessageDialog(this, "Thank You!");
+                main m = new main();
+                m.MainID.setText(gId); 
+                m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                m.setVisible(true); 
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Controller is not initialized. Please try again later.");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -470,6 +546,8 @@ public class Login extends javax.swing.JFrame {
     private Sygma.Components.PanelRound0 panelRound02;
     private javax.swing.JPasswordField password;
     private javax.swing.JPanel signup;
+    private javax.swing.JPasswordField spassword;
+    private javax.swing.JTextField susername;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
