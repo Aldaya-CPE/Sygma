@@ -34,7 +34,7 @@
     <Container class="com.raven.swing.RoundPanel" name="roundPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="33" type="rgb"/>
+          <Color blue="64" green="4e" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -113,7 +113,7 @@
     <Container class="com.raven.swing.RoundPanel" name="roundPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="33" red="33" type="rgb"/>
+          <Color blue="64" green="4e" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -151,7 +151,7 @@
             <Container class="javax.swing.JPanel" name="panelMenu">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="33" red="33" type="rgb"/>
+                  <Color blue="64" green="4e" red="0" type="rgb"/>
                 </Property>
               </Properties>
 

@@ -14,8 +14,8 @@ public class LabelColor extends JLabel {
         int width = getWidth();
         int height = getHeight();
         int size = Math.min(width, height) - 4;
-        int x = (width - size) / 2;
-        int y = (height - size) / 2;
+        int x = (width - size) / 3;
+        int y = (height - size) / 3;
         g2.setColor(getBackground());
         g2.fillOval(x, y, size, size);
     }

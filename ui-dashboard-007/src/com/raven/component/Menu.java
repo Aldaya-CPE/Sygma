@@ -79,7 +79,7 @@ public class Menu extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         panelMenu = new javax.swing.JPanel();
 
-        roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel1.setBackground(new java.awt.Color(0, 78, 100));
 
         imageAvatar1.setForeground(new java.awt.Color(231, 231, 231));
         imageAvatar1.setBorderSize(2);
@@ -120,12 +120,12 @@ public class Menu extends javax.swing.JPanel {
                 .addGap(10, 10, 10))
         );
 
-        roundPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel2.setBackground(new java.awt.Color(0, 78, 100));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        panelMenu.setBackground(new java.awt.Color(51, 51, 51));
+        panelMenu.setBackground(new java.awt.Color(0, 78, 100));
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);

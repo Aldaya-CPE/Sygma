@@ -12,10 +12,10 @@ public class Form_1 extends javax.swing.JPanel {
     }
 
     private void init() {
-        chart.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        chart.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        chart.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
-        chart.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
+        chart.addLegend("Income", new Color(0, 102, 120), new Color(34, 124, 124));
+        chart.addLegend("Expense", new Color(90, 179, 220), new Color(135, 206, 250));
+        chart.addLegend("Profit", new Color(127,201,170), new Color(144, 228, 193));
+        chart.addLegend("Cost", new Color(183, 224, 166), new Color(206,252,186));
         chart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
         chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
         chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
@@ -23,10 +23,10 @@ public class Form_1 extends javax.swing.JPanel {
         chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
         chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
         chart.start();
-        lineChart.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        lineChart.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        lineChart.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
-        lineChart.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
+        lineChart.addLegend("Income", new Color(0, 102, 120), new Color(0, 102, 120));
+        lineChart.addLegend("Expense", new Color(90, 179, 220), new Color(90, 179, 220));
+        lineChart.addLegend("Profit", new Color(127,201,170), new Color(127,201,170));
+        lineChart.addLegend("Cost", new Color(183, 224, 166), new Color(183, 224, 166));
         lineChart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
         lineChart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
         lineChart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
@@ -59,16 +59,15 @@ public class Form_1 extends javax.swing.JPanel {
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
 
-        roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel1.setBackground(new java.awt.Color(238, 251, 242));
 
         jPanel1.setOpaque(false);
 
-        progress1.setBackground(new java.awt.Color(66, 246, 84));
-        progress1.setForeground(new java.awt.Color(19, 153, 32));
+        progress1.setBackground(new java.awt.Color(150, 215, 180));
+        progress1.setForeground(new java.awt.Color(150, 215, 180));
         progress1.setValue(60);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(220, 220, 220));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Total Income Sold");
 
@@ -94,18 +93,16 @@ public class Form_1 extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(220, 220, 220));
         jLabel2.setText("Report Monthly");
         jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
         jPanel2.setOpaque(false);
 
-        progress2.setBackground(new java.awt.Color(132, 66, 246));
-        progress2.setForeground(new java.awt.Color(64, 18, 153));
+        progress2.setBackground(new java.awt.Color(90, 179, 220));
+        progress2.setForeground(new java.awt.Color(90, 179, 220));
         progress2.setValue(70);
 
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(220, 220, 220));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Total Income Profit");
 
@@ -132,12 +129,12 @@ public class Form_1 extends javax.swing.JPanel {
 
         jPanel3.setOpaque(false);
 
-        progress3.setBackground(new java.awt.Color(66, 193, 246));
-        progress3.setForeground(new java.awt.Color(26, 132, 181));
+        progress3.setBackground(new java.awt.Color(0, 102, 120));
+        progress3.setForeground(new java.awt.Color(0, 102, 120));
         progress3.setValue(85);
+        progress3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(220, 220, 220));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Total Expense");
 
@@ -192,7 +189,7 @@ public class Form_1 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel2.setBackground(new java.awt.Color(238, 251, 242));
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -211,7 +208,9 @@ public class Form_1 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel3.setBackground(new java.awt.Color(238, 251, 242));
+
+        lineChart.setBackground(new java.awt.Color(204, 255, 204));
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);

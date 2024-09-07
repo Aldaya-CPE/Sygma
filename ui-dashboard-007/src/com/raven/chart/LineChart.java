@@ -173,6 +173,9 @@ public class LineChart extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        blankPlotChart.setForeground(new java.awt.Color(0, 0, 0));
+
+        panelLegend.setBackground(new java.awt.Color(204, 204, 255));
         panelLegend.setOpaque(false);
         panelLegend.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 

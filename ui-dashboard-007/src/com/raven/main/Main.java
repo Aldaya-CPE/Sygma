@@ -46,8 +46,14 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        roundPanel1.setBackground(new java.awt.Color(25, 25, 25));
+        roundPanel1.setBackground(new java.awt.Color(255, 252, 250));
 
+        header2.setBackground(new java.awt.Color(0, 78, 100));
+
+        menu1.setBackground(new java.awt.Color(255, 255, 255));
+
+        body.setBackground(new java.awt.Color(204, 255, 255));
+        body.setForeground(new java.awt.Color(204, 255, 204));
         body.setOpaque(false);
         body.setLayout(new java.awt.BorderLayout());
 
@@ -57,9 +63,9 @@ public class Main extends javax.swing.JFrame {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1371, Short.MAX_VALUE)
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(14, 14, 14)
                 .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );

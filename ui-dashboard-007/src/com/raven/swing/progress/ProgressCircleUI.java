@@ -76,8 +76,8 @@ public class ProgressCircleUI extends BasicProgressBarUI {
         int width = c.getWidth();
         int height = c.getHeight();
         int size = Math.min(width, height) - s;
-        int x = (width - size) / 2;
-        int y = (height - size) / 2;
+        int x = (width - size) / 3;
+        int y = (height - size) / 3;
         return new Arc2D.Double(x, y, size, size, start, angle, Arc2D.PIE);
     }
 
@@ -85,7 +85,7 @@ public class ProgressCircleUI extends BasicProgressBarUI {
         Insets b = progressBar.getInsets();
         int barRectWidth = progressBar.getWidth() - b.right - b.left;
         int barRectHeight = progressBar.getHeight() - b.top - b.bottom;
-        g.setColor(new Color(212, 212, 212));
+        g.setColor(new Color(01, 01, 01));
         paintString(g, b.left, b.top, barRectWidth, barRectHeight, 0, b);
     }
 }
