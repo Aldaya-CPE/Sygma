@@ -1,5 +1,6 @@
 package com.raven.main;
 
+import Sygma.Login.login;
 import com.raven.event.EventMenu;
 import com.raven.form.Form;
 import com.raven.form.Form_1;
@@ -17,7 +18,7 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     showForm(new Form_1());
                 } else if (index == 8) {
-                    System.out.println("Logout");
+                   logout();
                 } else {
                     showForm(new Form(index));
                 }
@@ -32,6 +33,11 @@ public class Main extends javax.swing.JFrame {
         body.add(com);
         body.revalidate();
         body.repaint();
+    }
+    private void logout() {
+        dispose(); 
+        login loginWindow = new login();
+        loginWindow.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
