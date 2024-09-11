@@ -42,6 +42,7 @@ public class Main extends javax.swing.JFrame {
         header2 = new com.raven.component.Header();
         menu1 = new com.raven.component.Menu();
         body = new javax.swing.JPanel();
+        MainID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -56,6 +57,9 @@ public class Main extends javax.swing.JFrame {
         body.setForeground(new java.awt.Color(204, 255, 204));
         body.setOpaque(false);
         body.setLayout(new java.awt.BorderLayout());
+
+        MainID.setText("jLabel1");
+        body.add(MainID, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -128,6 +132,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel MainID;
     private javax.swing.JPanel body;
     private com.raven.component.Header header2;
     private com.raven.component.Menu menu1;
