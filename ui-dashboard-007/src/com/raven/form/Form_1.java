@@ -83,7 +83,7 @@ public class Form_1 extends javax.swing.JPanel {
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
 
-        roundPanel1.setBackground(new java.awt.Color(238, 251, 242));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setOpaque(false);
 
@@ -232,7 +232,7 @@ public class Form_1 extends javax.swing.JPanel {
 
         roundPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 7, 1100, 400));
 
-        roundPanel3.setBackground(new java.awt.Color(238, 251, 242));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         lineChart.setBackground(new java.awt.Color(204, 255, 204));
 
