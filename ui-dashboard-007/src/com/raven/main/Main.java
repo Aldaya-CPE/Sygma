@@ -3,29 +3,51 @@ package com.raven.main;
 import Sygma.Login.login;
 import com.raven.event.EventMenu;
 import com.raven.form.Form;
+import com.raven.form.Form3;
+import com.raven.form.Form2;
+import com.raven.form.Form4;
 import com.raven.form.Form_1;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.EventListener;
 
 public class Main extends javax.swing.JFrame {
-
+    private CardLayout cardLayout;
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        EventMenu event = new EventMenu() {
+           EventMenu event = new EventMenu() {
             @Override
             public void selected(int index) {
-                if (index == 0) {
-                    showForm(new Form_1());
-                } else if (index == 8) {
-                   logout();
-                } else {
-                    showForm(new Form(index));
+                switch (index) {
+                    case 0:
+                        showForm(new Form_1());
+                        break;
+                    case 1:
+                        showForm(new Form2());
+                        break;
+                     case 2:
+                        showForm(new Form3());
+                        break;
+                     case 3:
+                        showForm(new Form4());
+                        break;
+                    case 4:
+                        logout();
+                        break;
+                    default:
+                        break;
                 }
+            }
+            public void onMenuSelected(EventListener listener) {
             }
         };
         menu1.initMenu(event);
-        showForm(new Form_1());
+        showForm(new Form_1()); 
+    }
+     private void switchToNextForm() {
+        cardLayout.next(body); 
     }
 
     private void showForm(Component com) {
@@ -62,10 +84,10 @@ public class Main extends javax.swing.JFrame {
         body.setBackground(new java.awt.Color(204, 255, 255));
         body.setForeground(new java.awt.Color(204, 255, 204));
         body.setOpaque(false);
-        body.setLayout(new java.awt.BorderLayout());
+        body.setLayout(new java.awt.CardLayout());
 
         MainID.setText("jLabel1");
-        body.add(MainID, java.awt.BorderLayout.CENTER);
+        body.add(MainID, "card2");
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);

@@ -2,27 +2,33 @@ package com.raven.form;
 
 import com.raven.chart.ModelChart;
 import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class Form_1 extends javax.swing.JPanel {
 
     public Form_1() {
         initComponents();
         setOpaque(false);
+        tableTextCenter();
         init();
     }
 
     private void init() {
-        chart.addLegend("Income", new Color(0, 102, 120), new Color(34, 124, 124));
-        chart.addLegend("Expense", new Color(90, 179, 220), new Color(135, 206, 250));
-        chart.addLegend("Profit", new Color(127,201,170), new Color(144, 228, 193));
-        chart.addLegend("Cost", new Color(183, 224, 166), new Color(206,252,186));
-        chart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-        chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-        chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-        chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
-        chart.start();
+//        chart.addLegend("Income", new Color(0, 102, 120), new Color(34, 124, 124));
+//        chart.addLegend("Expense", new Color(90, 179, 220), new Color(135, 206, 250));
+//        chart.addLegend("Profit", new Color(127,201,170), new Color(144, 228, 193));
+//        chart.addLegend("Cost", new Color(183, 224, 166), new Color(206,252,186));
+//        chart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
+//        chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
+//        chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
+//        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
+//        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
+//        chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
+//        chart.start();
         lineChart.addLegend("Income", new Color(0, 102, 120), new Color(0, 102, 120));
         lineChart.addLegend("Expense", new Color(90, 179, 220), new Color(90, 179, 220));
         lineChart.addLegend("Profit", new Color(127,201,170), new Color(127,201,170));
@@ -38,7 +44,24 @@ public class Form_1 extends javax.swing.JPanel {
         progress2.start();
         progress3.start();
     }
-
+ private void tableTextCenter() {
+    for (int i = 0; i < jTable1.getColumnCount(); i++) {
+        jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JLabel) rendererComponent).setHorizontalAlignment(SwingConstants.CENTER); 
+                if (isSelected) {
+                    rendererComponent.setForeground(Color.WHITE); 
+                } else {
+                    rendererComponent.setForeground(table.getForeground());
+                }
+                return rendererComponent;
+            }
+        });
+    }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,7 +78,8 @@ public class Form_1 extends javax.swing.JPanel {
         progress3 = new com.raven.swing.progress.Progress();
         jLabel4 = new javax.swing.JLabel();
         roundPanel2 = new com.raven.swing.RoundPanel();
-        chart = new com.raven.chart.Chart();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
 
@@ -190,23 +214,23 @@ public class Form_1 extends javax.swing.JPanel {
         );
 
         roundPanel2.setBackground(new java.awt.Color(238, 251, 242));
+        roundPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
-        roundPanel2.setLayout(roundPanel2Layout);
-        roundPanel2Layout.setHorizontalGroup(
-            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundPanel2Layout.setVerticalGroup(
-            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(chart, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTable1);
+
+        roundPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 7, 1100, 400));
 
         roundPanel3.setBackground(new java.awt.Color(238, 251, 242));
 
@@ -251,7 +275,6 @@ public class Form_1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.chart.Chart chart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -259,6 +282,8 @@ public class Form_1 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private com.raven.chart.LineChart lineChart;
     private com.raven.swing.progress.Progress progress1;
     private com.raven.swing.progress.Progress progress2;
