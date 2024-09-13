@@ -213,7 +213,7 @@ public class Form_1 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel2.setBackground(new java.awt.Color(238, 251, 242));
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
