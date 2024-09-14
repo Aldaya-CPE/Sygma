@@ -78,6 +78,7 @@ public class Main extends javax.swing.JFrame {
         roundPanel1.setBackground(new java.awt.Color(255, 252, 250));
 
         header2.setBackground(new java.awt.Color(0, 78, 100));
+        header2.setOpaque(true);
 
         menu1.setBackground(new java.awt.Color(255, 255, 255));
 

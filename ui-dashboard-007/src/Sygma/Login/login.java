@@ -94,7 +94,7 @@ private static String generateUID(){
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
+        imageAvatar2 = new com.raven.swing.ImageAvatar();
         changeform = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,15 +150,11 @@ private static String generateUID(){
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton7.setBackground(new java.awt.Color(253, 253, 253));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/close.png"))); // NOI18N
-        jButton7.setBorder(null);
-        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton7.setIconTextGap(5);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+        imageAvatar2.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/close.png"))); // NOI18N
+        imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar2MouseClicked(evt);
             }
         });
 
@@ -167,14 +163,14 @@ private static String generateUID(){
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 362, Short.MAX_VALUE)
-                .addComponent(jButton7))
+                .addGap(0, 364, Short.MAX_VALUE)
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton7)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 390, 40));
@@ -433,10 +429,6 @@ private static String generateUID(){
     }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-     System.exit(0);          
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
      String adminUsername = "admin";
         String adminPassword = "admin"; 
@@ -482,6 +474,10 @@ private static String generateUID(){
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
+         System.exit(0);
+    }//GEN-LAST:event_imageAvatar2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -523,10 +519,10 @@ private static String generateUID(){
     private Sygma.Component.PanelBar f;
     public javax.swing.JLabel gate;
     public javax.swing.JLabel genId;
+    private com.raven.swing.ImageAvatar imageAvatar2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -14,6 +14,8 @@ public class Header extends javax.swing.JPanel {
         initComponents();
         setOpaque(false);
         setBackground(new Color(51, 51, 51));
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -22,6 +24,9 @@ public class Header extends javax.swing.JPanel {
 
         jButton10 = new javax.swing.JButton();
         imageAvatar1 = new com.raven.swing.ImageAvatar();
+        imageAvatar2 = new com.raven.swing.ImageAvatar();
+        imageAvatar3 = new com.raven.swing.ImageAvatar();
+        imageAvatar4 = new com.raven.swing.ImageAvatar();
 
         jButton10.setBackground(new java.awt.Color(253, 253, 253));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
@@ -37,6 +42,15 @@ public class Header extends javax.swing.JPanel {
 
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/image-removebg-preview (2).png"))); // NOI18N
 
+        imageAvatar2.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-close-28.png"))); // NOI18N
+
+        imageAvatar3.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/mini.png"))); // NOI18N
+
+        imageAvatar4.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/tore.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -44,14 +58,25 @@ public class Header extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(545, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
+                .addComponent(imageAvatar4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imageAvatar3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imageAvatar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imageAvatar3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(imageAvatar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -59,21 +84,13 @@ public class Header extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    @Override
-    public void paint(Graphics grphcs) {
-        Graphics2D g2 = (Graphics2D) grphcs.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(getBackground());
-        Area area = new Area(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
-        area.add(new Area(new Rectangle2D.Double(0, 20, getWidth(), getHeight())));
-        g2.fill(area);
-        g2.dispose();
-        super.paint(grphcs);
-    }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.ImageAvatar imageAvatar1;
+    private com.raven.swing.ImageAvatar imageAvatar2;
+    private com.raven.swing.ImageAvatar imageAvatar3;
+    private com.raven.swing.ImageAvatar imageAvatar4;
     private javax.swing.JButton jButton10;
     // End of variables declaration//GEN-END:variables
 }

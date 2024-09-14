@@ -1,126 +1,63 @@
 package Sygma.Component;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class PanelRound extends JPanel {
 
-    private int roundTopLeft = 50;
-    private int roundTopRight = 50;
-    private int roundBottomLeft = 50;
-    private int roundBottomRight = 50;
+    private int cornerRadius = 50; // Radius for rounded corners
 
     public PanelRound() {
-        setOpaque(false); // Still set opaque to false if you want to see rounded corners only.
-    }
-
-    // Getters and setters for the corner radii
-    public int getRoundTopLeft() {
-        return roundTopLeft;
-    }
-
-    public void setRoundTopLeft(int roundTopLeft) {
-        this.roundTopLeft = roundTopLeft;
-        repaint();
-    }
-
-    public int getRoundTopRight() {
-        return roundTopRight;
-    }
-
-    public void setRoundTopRight(int roundTopRight) {
-        this.roundTopRight = roundTopRight;
-        repaint();
-    }
-
-    public int getRoundBottomLeft() {
-        return roundBottomLeft;
-    }
-
-    public void setRoundBottomLeft(int roundBottomLeft) {
-        this.roundBottomLeft = roundBottomLeft;
-        repaint();
-    }
-
-    public int getRoundBottomRight() {
-        return roundBottomRight;
-    }
-
-    public void setRoundBottomRight(int roundBottomRight) {
-        this.roundBottomRight = roundBottomRight;
-        repaint();
+        super();
+        setOpaque(false); // Makes the background transparent to apply custom painting
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Enable anti-aliasing for smoother corners
+
+        // Set the background color
+        g2.setColor(getBackground());
+
+        // Draw rounded rectangle
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
+
+        g2.dispose();
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Solid white color
-        Color solidWhite = new Color(255, 255, 255); 
-        g2.setColor(solidWhite);
+        // Optional: Draw a border for the panel
+        g2.setColor(Color.GRAY);
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, cornerRadius, cornerRadius);
 
-        // Create rounded shape
-        Area area = new Area(createRoundTopLeft());
-        area.intersect(new Area(createRoundTopRight()));
-        area.intersect(new Area(createRoundBottomLeft()));
-        area.intersect(new Area(createRoundBottomRight()));
-
-        // Fill the rounded shape with the solid white color
-        g2.fill(area);
         g2.dispose();
-
-        super.paintComponent(g);
     }
 
-    private Shape createRoundTopLeft() {
-        int width = getWidth();
-        int height = getHeight();
-        int roundX = Math.min(width, getRoundTopLeft());
-        int roundY = Math.min(height, getRoundTopLeft());
-        Area area = new Area(new RoundRectangle2D.Double(0, 0, width, height, roundX, roundY));
-        area.add(new Area(new Rectangle2D.Double(roundX / 2, 0, width - roundX / 2, height)));
-        area.add(new Area(new Rectangle2D.Double(0, roundY / 2, width, height - roundY / 2)));
-        return area;
+    // Getter and setter for corner radius (optional)
+    public int getCornerRadius() {
+        return cornerRadius;
     }
 
-    private Shape createRoundTopRight() {
-        int width = getWidth();
-        int height = getHeight();
-        int roundX = Math.min(width, getRoundTopRight());
-        int roundY = Math.min(height, getRoundTopRight());
-        Area area = new Area(new RoundRectangle2D.Double(0, 0, width, height, roundX, roundY));
-        area.add(new Area(new Rectangle2D.Double(0, 0, width - roundX / 2, height)));
-        area.add(new Area(new Rectangle2D.Double(0, roundY / 2, width, height - roundY / 2)));
-        return area;
+    public void setCornerRadius(int cornerRadius) {
+        this.cornerRadius = cornerRadius;
+        repaint();
     }
 
-    private Shape createRoundBottomLeft() {
-        int width = getWidth();
-        int height = getHeight();
-        int roundX = Math.min(width, getRoundBottomLeft());
-        int roundY = Math.min(height, getRoundBottomLeft());
-        Area area = new Area(new RoundRectangle2D.Double(0, 0, width, height, roundX, roundY));
-        area.add(new Area(new Rectangle2D.Double(roundX / 2, 0, width - roundX / 2, height)));
-        area.add(new Area(new Rectangle2D.Double(0, 0, width, height - roundY / 2)));
-        return area;
-    }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
 
-    private Shape createRoundBottomRight() {
-        int width = getWidth();
-        int height = getHeight();
-        int roundX = Math.min(width, getRoundBottomRight());
-        int roundY = Math.min(height, getRoundBottomRight());
-        Area area = new Area(new RoundRectangle2D.Double(0, 0, width, height, roundX, roundY));
-        area.add(new Area(new Rectangle2D.Double(0, 0, width - roundX / 2, height)));
-        area.add(new Area(new Rectangle2D.Double(0, 0, width, height - roundY / 2)));
-        return area;
+        PanelRound roundedPanel = new PanelRound();
+        roundedPanel.setBackground(Color.LIGHT_GRAY); // Set background color for the panel
+        frame.add(roundedPanel);
+
+        frame.setVisible(true);
     }
 }
