@@ -8,14 +8,14 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JPanel;
 
-public class Round extends JPanel {
+public class Panel extends JPanel {
 
     private int roundTopLeft = 0;
     private int roundTopRight = 0;
     private int roundBottomLeft = 0;
     private int roundBottomRight = 0;
 
-    public Round() {
+    public Panel() {
         setOpaque(false);  // Ensures transparency for rounded corners
     }
 
