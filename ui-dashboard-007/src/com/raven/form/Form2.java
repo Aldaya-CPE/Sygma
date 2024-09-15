@@ -54,8 +54,9 @@ public class Form2 extends javax.swing.JPanel {
         centerRenderer = new DefaultTableCellRenderer();
         tableTextCenter();
          populateTable();
-//         displayCategory();
-//          populateCategory();
+          loadBalance();
+          saveBalance();
+          
          
        
         timer = new Timer(3000, (e) -> {
@@ -110,49 +111,84 @@ public class Form2 extends javax.swing.JPanel {
     }
     }
       
-//    private List<String> displayCategory() {
-//    List<String> categories = new ArrayList<>();
-//    try {
-//        ResultSet rs = Database.getInstance().getConnection().createStatement().executeQuery("SELECT DISTINCT category FROM expenses");
-//        while (rs.next()) {
-//            categories.add(rs.getString("category"));
-//        }
-//    } catch (SQLException ex) {
-//        JOptionPane.showMessageDialog(this, "Error loading categories: " + ex.getMessage());
-//    }
-//    return categories;
-//}private void populateCategory() {
-//        List<String> categories = displayCategory();
-//        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-//        for (String category : categories) {
-//            model.addElement(category);
-//        }
-//        category.setModel(model);
-//    }
+      private void saveBalance() {
+    try {
+        String sql = "UPDATE expenses SET balance = ? WHERE addid = ?";
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setDouble(1, totalBalance);
+        ps.setString(2, ex.getText());  // Assuming 'ex' holds the addid
+        ps.execute();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error saving balance: " + e.getMessage());
+    }
+}
+
+private void loadBalance() {
+    try {
+        String sql = "SELECT balance FROM expenses WHERE addid = ?";
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, ex.getText());  // Assuming 'ex' holds the addid
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            totalBalance = rs.getDouble("balance");
+            balance.setText("Balance: " + totalBalance);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error loading balance: " + e.getMessage());
+    }
+}
     
    
+//    private void populateTable() {
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//    model.setRowCount(0); 
+//
+//    try {
+//        String sql = "SELECT category, amount, date, type FROM expenses WHERE addid = ?";
+//        ps = Database.getInstance().getConnection().prepareStatement(sql);
+//        ps.setString(1, ex.getText());  
+//        rs = ps.executeQuery();
+//
+//        while (rs.next()) {
+//            String category = rs.getString("category");
+//            double amount = rs.getDouble("amount");
+//            Date date = rs.getDate("date");
+//            String type = rs.getString("type");
+//
+//            model.addRow(new Object[]{category, amount, date, type});
+//        }
+//
+//    } catch (SQLException e) {
+//        JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
+//    }
+//}
+
     private void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
-
+    totalBalance = 0.0;  
     try {
         String sql = "SELECT category, amount, date, type FROM expenses WHERE addid = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setString(1, ex.getText());  
         rs = ps.executeQuery();
-
         while (rs.next()) {
             String category = rs.getString("category");
             double amount = rs.getDouble("amount");
             Date date = rs.getDate("date");
             String type = rs.getString("type");
-
+            if (type.equalsIgnoreCase("income")) {
+                totalBalance += amount;
+            } else if (type.equalsIgnoreCase("expense")) {
+                totalBalance -= amount;
+            }
             model.addRow(new Object[]{category, amount, date, type});
         }
-
+        balance.setText("Balance: " + totalBalance);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
     }
+    saveBalance();
 }
     
        
@@ -190,14 +226,15 @@ public class Form2 extends javax.swing.JPanel {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
                 "Category", "Amount", "Date", "Type"
             }
         ));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionForeground(new java.awt.Color(117, 118, 116));
         jTable1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jTable1ComponentShown(evt);
@@ -586,7 +623,7 @@ public class Form2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private Sygma.Component.PanelRound panelRound1;
     private Sygma.Component.PanelRound panelRound2;
     private com.raven.swing.search txtSearch;
