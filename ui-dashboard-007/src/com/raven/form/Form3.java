@@ -1,23 +1,66 @@
 
 package com.raven.form;
 
+import Sygma.Database.Database;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 
 public class Form3 extends javax.swing.JPanel {
-
+    Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
     private DefaultTableCellRenderer centerRenderer;;
+    private String userId = "yourUserId";
+
     public Form3() {
         initComponents();
-          tableTextCenter();   // Center the table text
+         try {
+            Database.getInstance().ConnectToDatabase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+          tableTextCenter(); 
+          cat.setText(userId);
+           populateTable();
     }
-    
+            
+      public void populateTable() {
+        try {
+            String sql = "SELECT * FROM expenses WHERE userId = ?";
+            ps = Database.getInstance().getConnection().prepareStatement(sql); 
+            ps.setString(1,cat.getText());
+            
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String category = rs.getString("category");
+                model.addRow(new Object[]{id, category});
+            }
+
+            jTable1.setModel(model);
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
      
 
     private void tableTextCenter() {
@@ -50,6 +93,7 @@ public class Form3 extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        cat = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -61,7 +105,7 @@ public class Form3 extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Serial No.", "Category"
+                "id", "category"
             }
         ));
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
@@ -97,6 +141,8 @@ public class Form3 extends javax.swing.JPanel {
             }
         });
 
+        cat.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,15 +162,24 @@ public class Form3 extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(159, 159, 159)
+                                .addComponent(cat)))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cat)
+                        .addGap(25, 25, 25)))
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -150,11 +205,12 @@ public class Form3 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel cat;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

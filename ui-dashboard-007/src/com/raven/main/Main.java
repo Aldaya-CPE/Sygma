@@ -11,11 +11,18 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.EventListener;
+import javax.swing.SwingUtilities;
 
 public class Main extends javax.swing.JFrame {
     private CardLayout cardLayout;
+    private Form2 form2;
+        private Form3 form3;
+
     public Main() {
         initComponents();
+        
+         String userId = MainID.getText(); 
+   
         setBackground(new Color(0, 0, 0, 0));
            EventMenu event = new EventMenu() {
             @Override
@@ -25,10 +32,18 @@ public class Main extends javax.swing.JFrame {
                         showForm(new Form_1());
                         break;
                     case 1:
-                        showForm(new Form2());
+                         if (form2 == null) { 
+                            form2 = new Form2(); 
+                        }
+                        showForm(form2);
+                        idtext(); 
                         break;
                      case 2:
-                        showForm(new Form3());
+                       if (form3 == null) { 
+                            form3 = new Form3(); 
+                        }
+                        showForm(form3);
+                        idtext(); 
                         break;
                      case 3:
                         showForm(new Form4());
@@ -46,6 +61,29 @@ public class Main extends javax.swing.JFrame {
         menu1.initMenu(event);
         showForm(new Form_1()); 
     }
+    
+    public void idtext() {
+        String userId = MainID.getText(); 
+
+        SwingUtilities.invokeLater(() -> {
+            if (form2 != null) {
+                form2.ex.setText(userId); 
+            }
+        });
+        SwingUtilities.invokeLater(() -> {
+            if (form3 != null) {
+                form3.cat.setText(userId); 
+            }
+        });
+    }
+    
+//    public void idtext() {
+////    String userId = MainID.getText(); 
+//
+////    SwingUtilities.invokeLater(() -> {
+////        form2.ex.setText(MainID.getText());
+////    });
+////}
      private void switchToNextForm() {
         cardLayout.next(body); 
     }
@@ -88,7 +126,6 @@ public class Main extends javax.swing.JFrame {
         body.setLayout(new java.awt.CardLayout());
 
         MainID.setText("jLabel1");
-        body.add(MainID, "card2");
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -98,9 +135,15 @@ public class Main extends javax.swing.JFrame {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(MainID)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,8 +151,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
-                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addComponent(MainID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 

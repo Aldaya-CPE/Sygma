@@ -13,6 +13,7 @@ import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import Sygma.Model.UserSession;
 
 public class login extends javax.swing.JFrame {
 
@@ -20,10 +21,14 @@ public class login extends javax.swing.JFrame {
     PreparedStatement ps;
     ResultSet rs;
     private userController controller;
+    private String userId;
     ModelUser userData;
     public login() {
         initComponents();
+         userData = new ModelUser();
         controller = new userController();
+        String userId = "yourUserId"; 
+        gate.setText(userId);
         gate.setVisible(false);
         genId.setVisible(false);
         
@@ -72,6 +77,7 @@ public class login extends javax.swing.JFrame {
             }
         });
     }
+    
 private static String generateUID(){
         int userId = 6;
         Random random = new Random();
@@ -88,7 +94,6 @@ private static String generateUID(){
 
         jPanel1 = new javax.swing.JPanel();
         pc = new javax.swing.JLabel();
-        gate = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -106,6 +111,7 @@ private static String generateUID(){
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
+        gate = new javax.swing.JLabel();
         signup = new javax.swing.JPanel();
         s = new javax.swing.JLabel();
         f = new Sygma.Component.PanelBar();
@@ -126,9 +132,6 @@ private static String generateUID(){
 
         pc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/picwall2.png"))); // NOI18N
         jPanel1.add(pc, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-
-        gate.setText("jLabel7");
-        jPanel1.add(gate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -281,6 +284,9 @@ private static String generateUID(){
         });
         login.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
+        gate.setText("jLabel7");
+        login.add(gate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+
         changeform.add(login, "card2");
 
         signup.setBackground(new java.awt.Color(255, 255, 255));
@@ -409,17 +415,20 @@ private static String generateUID(){
         try {
         String userName = susername.getText();
         char[] passWord = spassword.getPassword();
-        String gId = genId.getText();
-        
+        String gId = generateUID(); // generate a random user ID
+
         if (this.controller != null) {
-            boolean registered = controller.registerUser(new ModelUser(gId, userName, passWord));
-            
+             ModelUser newUser = new ModelUser(gId, userName, passWord);
+            boolean registered = controller.registerUser(newUser);
             if (registered) {
                 JOptionPane.showMessageDialog(this, "Thank You!");
                 Main m = new Main();
+                UserSession.setCurrentUser(newUser); // Set the current user in UserSession
                 m.MainID.setText(gId); 
                 m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                 m.setVisible(true); 
+
+                gate.setText(gId); 
             }
         } else {
             JOptionPane.showMessageDialog(this, "Controller is not initialized. Please try again later.");

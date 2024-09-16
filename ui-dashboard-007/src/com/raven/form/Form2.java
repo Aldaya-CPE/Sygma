@@ -30,25 +30,37 @@ import com.raven.swing.Search_Item;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SwingUtilities;
+import com.raven.main.Main;
+import Sygma.Model.UserSession;
 
 
 public class Form2 extends javax.swing.JPanel {
-    private String userId = "yourUserId";
+    Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
     private DefaultTableCellRenderer centerRenderer;;
     private Timer timer;
     private userController controller;
     private double totalBalance = 0.0;
     private JPopupMenu menu;
     private PanelSearch search;
-    Connection MyCon;
-    PreparedStatement ps;
-    ResultSet rs;
-    
+   private String userId = "yourUserId";
+
+  
     
     public Form2() {
         initComponents();
+        try {
+            Database.getInstance().ConnectToDatabase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         setOpaque(false);
-    
+         
+       ex.setText(userId);
         ex.setVisible(false);
         panelRound2.setVisible(false);
         centerRenderer = new DefaultTableCellRenderer();
@@ -56,6 +68,7 @@ public class Form2 extends javax.swing.JPanel {
          populateTable();
           loadBalance();
           saveBalance();
+          
           
          
        
@@ -92,6 +105,7 @@ public class Form2 extends javax.swing.JPanel {
         });
              
     }
+  
    
       private void tableTextCenter() {
     for (int i = 0; i < jTable1.getColumnCount(); i++) {
@@ -113,11 +127,12 @@ public class Form2 extends javax.swing.JPanel {
       
       private void saveBalance() {
     try {
-        String sql = "UPDATE expenses SET balance = ? WHERE addid = ?";
+        String sql = "UPDATE expenses SET balance = ? WHERE userId = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setDouble(1, totalBalance);
-        ps.setString(2, ex.getText());  // Assuming 'ex' holds the addid
-        ps.execute();
+        ps.setString(2, ex.getText());
+
+ps.execute();
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error saving balance: " + e.getMessage());
     }
@@ -125,9 +140,9 @@ public class Form2 extends javax.swing.JPanel {
 
 private void loadBalance() {
     try {
-        String sql = "SELECT balance FROM expenses WHERE addid = ?";
+        String sql = "SELECT balance FROM expenses WHERE userId = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
-        ps.setString(1, ex.getText());  // Assuming 'ex' holds the addid
+        ps.setString(1, ex.getText());
         rs = ps.executeQuery();
         if (rs.next()) {
             totalBalance = rs.getDouble("balance");
@@ -139,38 +154,16 @@ private void loadBalance() {
 }
     
    
-//    private void populateTable() {
-//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//    model.setRowCount(0); 
-//
-//    try {
-//        String sql = "SELECT category, amount, date, type FROM expenses WHERE addid = ?";
-//        ps = Database.getInstance().getConnection().prepareStatement(sql);
-//        ps.setString(1, ex.getText());  
-//        rs = ps.executeQuery();
-//
-//        while (rs.next()) {
-//            String category = rs.getString("category");
-//            double amount = rs.getDouble("amount");
-//            Date date = rs.getDate("date");
-//            String type = rs.getString("type");
-//
-//            model.addRow(new Object[]{category, amount, date, type});
-//        }
-//
-//    } catch (SQLException e) {
-//        JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
-//    }
-//}
+
 
     private void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
     totalBalance = 0.0;  
     try {
-        String sql = "SELECT category, amount, date, type FROM expenses WHERE addid = ?";
+        String sql = "SELECT category, amount, date, type FROM expenses WHERE userId = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
-        ps.setString(1, ex.getText());  
+        ps.setString(1, ex.getText());
         rs = ps.executeQuery();
         while (rs.next()) {
             String category = rs.getString("category");
@@ -190,10 +183,7 @@ private void loadBalance() {
     }
     saveBalance();
 }
-    
-       
-    
-    
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -500,7 +490,7 @@ private void loadBalance() {
             totalBalance -= amountValue;  
         }
         balance.setText("Balance: " + totalBalance);
-        String sql = "INSERT INTO expenses (addid, category, date, amount, Type, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO expenses (userId, category, date, amount, Type, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setString(1, ex.getText());
         ps.setString(2, txtSearch.getText());
@@ -572,9 +562,9 @@ private void loadBalance() {
        private List<DataSearch> search(String search) {
     List<DataSearch> list = new ArrayList<>();
     try {
-       String sql = "SELECT DISTINCT category FROM expenses WHERE addid = ? AND category LIKE ? ORDER BY category LIMIT 7";
+       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
         ps = Database.getInstance().getConnection().prepareStatement(sql); 
-        ps.setString(1, ex.getText());  
+        ps.setString(1, ex.getText());
         ps.setString(2, "%" + search + "%");
         
         ResultSet r = ps.executeQuery(); 
