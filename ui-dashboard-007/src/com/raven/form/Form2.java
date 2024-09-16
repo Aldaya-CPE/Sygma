@@ -59,12 +59,12 @@ public class Form2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         setOpaque(false);
-         
-       ex.setText(userId);
-        ex.setVisible(false);
+        ex.setVisible(false); 
+        ex.setText(userId);
+        
         panelRound2.setVisible(false);
         centerRenderer = new DefaultTableCellRenderer();
-        tableTextCenter();
+//        tableTextCenter();
          populateTable();
           loadBalance();
           saveBalance();
@@ -72,7 +72,7 @@ public class Form2 extends javax.swing.JPanel {
           
          
        
-        timer = new Timer(3000, (e) -> {
+        timer = new Timer(1000, (e) -> {
             populateTable();
             
         });
@@ -107,23 +107,23 @@ public class Form2 extends javax.swing.JPanel {
     }
   
    
-      private void tableTextCenter() {
-    for (int i = 0; i < jTable1.getColumnCount(); i++) {
-        jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                ((JLabel) rendererComponent).setHorizontalAlignment(SwingConstants.CENTER); 
-                if (isSelected) {
-                    rendererComponent.setForeground(Color.WHITE); 
-                } else {
-                    rendererComponent.setForeground(table.getForeground());
-                }
-                return rendererComponent;
-            }
-        });
-    }
-    }
+//      private void tableTextCenter() {
+//    for (int i = 0; i < jTable1.getColumnCount(); i++) {
+//        jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+//            @Override
+//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//                Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//                ((JLabel) rendererComponent).setHorizontalAlignment(SwingConstants.CENTER); 
+//                if (isSelected) {
+//                    rendererComponent.setForeground(Color.WHITE); 
+//                } else {
+//                    rendererComponent.setForeground(table.getForeground());
+//                }
+//                return rendererComponent;
+//            }
+//        });
+//    }
+//    }
       
       private void saveBalance() {
     try {
@@ -170,7 +170,7 @@ private void loadBalance() {
             double amount = rs.getDouble("amount");
             Date date = rs.getDate("date");
             String type = rs.getString("type");
-            if (type.equalsIgnoreCase("income")) {
+            if (type.equalsIgnoreCase("Badget")) {
                 totalBalance += amount;
             } else if (type.equalsIgnoreCase("expense")) {
                 totalBalance -= amount;
@@ -315,7 +315,7 @@ private void loadBalance() {
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Type");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Expense", "Income" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Expense", "Badget" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -484,7 +484,7 @@ private void loadBalance() {
         String selectedType = type.getSelectedItem().toString();
         double amountValue = Double.parseDouble(amount.getText());
 
-        if (selectedType.equals("Income")) {
+        if (selectedType.equals("Badget")) {
             totalBalance += amountValue; 
         } else if (selectedType.equals("Expense")) {
             totalBalance -= amountValue;  

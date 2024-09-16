@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -23,6 +24,8 @@ public class Form3 extends javax.swing.JPanel {
     ResultSet rs;
     private DefaultTableCellRenderer centerRenderer;;
     private String userId = "yourUserId";
+        private Timer timer;
+
 
     public Form3() {
         initComponents();
@@ -33,9 +36,15 @@ public class Form3 extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-          tableTextCenter(); 
+//          tableTextCenter(); 
           cat.setText(userId);
+          cat.setVisible(false);
            populateTable();
+            timer = new Timer(3000, (e) -> {
+            populateTable();
+            
+        });
+        timer.start();
     }
             
       public void populateTable() {
@@ -63,24 +72,24 @@ public class Form3 extends javax.swing.JPanel {
     }
      
 
-    private void tableTextCenter() {
-        for (int i = 0; i < jTable1.getColumnCount(); i++) {
-            jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-                @Override
-                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    JLabel rendererComponent = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                    rendererComponent.setHorizontalAlignment(SwingConstants.CENTER); // Center the cell text
-                    rendererComponent.setBackground(Color.WHITE); // Set the cell background to white
-                    if (isSelected) {
-                        rendererComponent.setForeground(Color.WHITE); // Set text color to white when selected
-                    } else {
-                        rendererComponent.setForeground(Color.BLACK); // Set default text color to black
-                    }
-                    return rendererComponent;
-                }
-            });
-        }
-    }
+//    private void tableTextCenter() {
+//        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+//            jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+//                @Override
+//                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//                    JLabel rendererComponent = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//                    rendererComponent.setHorizontalAlignment(SwingConstants.CENTER); // Center the cell text
+//                    rendererComponent.setBackground(Color.WHITE); // Set the cell background to white
+//                    if (isSelected) {
+//                        rendererComponent.setForeground(Color.WHITE); // Set text color to white when selected
+//                    } else {
+//                        rendererComponent.setForeground(Color.BLACK); // Set default text color to black
+//                    }
+//                    return rendererComponent;
+//                }
+//            });
+//        }
+//    }
 
     
     @SuppressWarnings("unchecked")
@@ -108,7 +117,6 @@ public class Form3 extends javax.swing.JPanel {
                 "id", "category"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-category-100.png"))); // NOI18N
@@ -211,6 +219,6 @@ public class Form3 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

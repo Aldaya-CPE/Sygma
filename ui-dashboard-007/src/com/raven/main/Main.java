@@ -20,7 +20,7 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-        
+       MainID.setVisible(false);
          String userId = MainID.getText(); 
    
         setBackground(new Color(0, 0, 0, 0));
