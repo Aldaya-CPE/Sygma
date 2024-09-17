@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.EventListener;
 import javax.swing.SwingUtilities;
+import raven.glasspanepopup.GlassPanePopup;
 
 public class Main extends javax.swing.JFrame {
     private CardLayout cardLayout;
@@ -22,6 +23,8 @@ public class Main extends javax.swing.JFrame {
         initComponents();
        MainID.setVisible(false);
          String userId = MainID.getText(); 
+          GlassPanePopup.install(this);
+
    
         setBackground(new Color(0, 0, 0, 0));
            EventMenu event = new EventMenu() {

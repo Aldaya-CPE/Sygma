@@ -33,6 +33,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import com.raven.main.Main;
 import Sygma.Model.UserSession;
+import raven.glasspanepopup.GlassPanePopup;
 
 
 public class Form2 extends javax.swing.JPanel {
@@ -46,6 +47,8 @@ public class Form2 extends javax.swing.JPanel {
     private JPopupMenu menu;
     private PanelSearch search;
    private String userId = "yourUserId";
+       private Add add;
+
 
   
     
@@ -61,7 +64,7 @@ public class Form2 extends javax.swing.JPanel {
         setOpaque(false);
         ex.setVisible(false); 
         ex.setText(userId);
-        
+         add = new Add();
         panelRound2.setVisible(false);
         centerRenderer = new DefaultTableCellRenderer();
 //        tableTextCenter();
@@ -458,21 +461,23 @@ private void loadBalance() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-        private long lastClickTime = 0; 
-        private final int doubleClickInterval = 500; 
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent e) {
-            long currentClickTime = System.currentTimeMillis();
-            long timeDifference = currentClickTime - lastClickTime;
-            if (timeDifference < doubleClickInterval && e.getClickCount() == 2) {
-                panelRound2.setVisible(false);
-            } else if (e.getClickCount() == 1) {
-                panelRound2.setVisible(!panelRound2.isVisible());
-            }
-            lastClickTime = currentClickTime; 
-        }
-    });
+//         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+//        private long lastClickTime = 0; 
+//        private final int doubleClickInterval = 500; 
+//        @Override
+//        public void mouseClicked(java.awt.event.MouseEvent e) {
+//            long currentClickTime = System.currentTimeMillis();
+//            long timeDifference = currentClickTime - lastClickTime;
+//            if (timeDifference < doubleClickInterval && e.getClickCount() == 2) {
+//                panelRound2.setVisible(false);
+//            } else if (e.getClickCount() == 1) {
+//                panelRound2.setVisible(!panelRound2.isVisible());
+//            }
+//            lastClickTime = currentClickTime; 
+//        }
+//    });
+            GlassPanePopup.showPopup(add);
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
