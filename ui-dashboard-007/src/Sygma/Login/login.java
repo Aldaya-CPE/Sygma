@@ -103,15 +103,13 @@ private static String generateUID(){
         changeform = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        q = new Sygma.Component.PanelBar();
-        username = new javax.swing.JTextField();
-        p = new Sygma.Component.PanelBar();
-        password = new javax.swing.JPasswordField();
         panelBar3 = new Sygma.Component.PanelBar();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         gate = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         signup = new javax.swing.JPanel();
         s = new javax.swing.JLabel();
         f = new Sygma.Component.PanelBar();
@@ -185,52 +183,7 @@ private static String generateUID(){
         login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-sensor-50.png"))); // NOI18N
-        login.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
-
-        username.setBackground(new java.awt.Color(242, 242, 242));
-        username.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        javax.swing.GroupLayout qLayout = new javax.swing.GroupLayout(q);
-        q.setLayout(qLayout);
-        qLayout.setHorizontalGroup(
-            qLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, qLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        qLayout.setVerticalGroup(
-            qLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(qLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(username)
-                .addContainerGap())
-        );
-
-        login.add(q, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 230, 30));
-
-        p.setBackground(new java.awt.Color(255, 255, 255));
-
-        password.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        javax.swing.GroupLayout pLayout = new javax.swing.GroupLayout(p);
-        p.setLayout(pLayout);
-        pLayout.setHorizontalGroup(
-            pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        pLayout.setVerticalGroup(
-            pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
-
-        login.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 230, 30));
+        login.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
         panelBar3.setBackground(new java.awt.Color(150, 233, 198));
 
@@ -253,9 +206,9 @@ private static String generateUID(){
         panelBar3Layout.setHorizontalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBar3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(14, 14, 14)
                 .addComponent(jButton3)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         panelBar3Layout.setVerticalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,11 +218,11 @@ private static String generateUID(){
                 .addContainerGap())
         );
 
-        login.add(panelBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 90, 40));
+        login.add(panelBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 80, 40));
 
         jLabel3.setForeground(new java.awt.Color(172, 172, 172));
         jLabel3.setText("You don't have an account?");
-        login.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 160, 20));
+        login.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 160, 20));
 
         jButton8.setBackground(new java.awt.Color(253, 253, 253));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
@@ -282,10 +235,23 @@ private static String generateUID(){
                 jButton8ActionPerformed(evt);
             }
         });
-        login.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
+        login.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
         gate.setText("jLabel7");
-        login.add(gate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+        login.add(gate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        username.setPreferredSize(new java.awt.Dimension(64, 19));
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+        login.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 218, 18));
+
+        password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        password.setPreferredSize(new java.awt.Dimension(64, 20));
+        login.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 220, 18));
 
         changeform.add(login, "card2");
 
@@ -487,6 +453,10 @@ private static String generateUID(){
          System.exit(0);
     }//GEN-LAST:event_imageAvatar2MouseClicked
 
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -542,12 +512,10 @@ private static String generateUID(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel login;
-    private Sygma.Component.PanelBar p;
     private Sygma.Component.PanelBar panelBar3;
     private Sygma.Component.PanelBar panelBar5;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel pc;
-    private Sygma.Component.PanelBar q;
     private javax.swing.JLabel s;
     private javax.swing.JPanel signup;
     private javax.swing.JPasswordField spassword;

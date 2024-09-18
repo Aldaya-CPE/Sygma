@@ -1,20 +1,49 @@
 package com.raven.form;
 
+import Sygma.Database.Database;
 import com.raven.chart.ModelChart;
+import com.raven.swing.PanelSearch;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class Form_1 extends javax.swing.JPanel {
-
+     Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
+     private PanelSearch search;
+       private Timer timer;
+   private String userId = "yourUserId";
     public Form_1() {
         initComponents();
+         try {
+            Database.getInstance().ConnectToDatabase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         setOpaque(false);
+         pn.setText(userId);
         tableTextCenter();
         init();
+        
+         timer = new Timer(1000, (e) -> {
+            populateTable();
+            
+        });
+        timer.start();
     }
 
     private void init() {
@@ -61,6 +90,30 @@ public class Form_1 extends javax.swing.JPanel {
         });
     }
     }
+ private void populateTable() {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); 
+    try {
+        String sql = "SELECT category, date, amount, type FROM expenses WHERE userId = ?";
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, pn.getText());
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            String category = rs.getString("category");
+            Date date = rs.getDate("date");
+            double amount = rs.getDouble("amount");
+            String type = rs.getString("type");
+           
+            model.addRow(new Object[]{category, date, amount, type});
+        }
+       
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
+    }
+
+}
+ 
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -77,6 +130,7 @@ public class Form_1 extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         progress3 = new com.raven.swing.progress.Progress();
         jLabel4 = new javax.swing.JLabel();
+        pn = new javax.swing.JLabel();
         roundPanel2 = new com.raven.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -183,6 +237,8 @@ public class Form_1 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        pn.setText("jLabel5");
+
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
@@ -197,14 +253,19 @@ public class Form_1 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addComponent(pn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pn))
                 .addGap(20, 20, 20)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,6 +346,7 @@ public class Form_1 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private com.raven.chart.LineChart lineChart;
+    public javax.swing.JLabel pn;
     private com.raven.swing.progress.Progress progress1;
     private com.raven.swing.progress.Progress progress2;
     private com.raven.swing.progress.Progress progress3;

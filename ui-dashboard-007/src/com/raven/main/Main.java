@@ -18,6 +18,8 @@ import raven.glasspanepopup.GlassPanePopup;
 public class Main extends javax.swing.JFrame {
     private CardLayout cardLayout;
     private Form2 form2;
+        private Form_1 form_1;
+
         private Form3 form3;
                 private Add add;
 
@@ -35,7 +37,11 @@ public class Main extends javax.swing.JFrame {
             public void selected(int index) {
                 switch (index) {
                     case 0:
-                        showForm(new Form_1());
+                         if (form_1 == null) { 
+                            form_1 = new Form_1(); 
+                        }
+                        showForm(form_1);
+                        idtext(); 
                         break;
                     case 1:
                          if (form2 == null) { 
@@ -91,7 +97,11 @@ public class Main extends javax.swing.JFrame {
              add.updateUserId(userId); 
              }
         });
-         
+         SwingUtilities.invokeLater(() -> {
+            if (form_1 != null) {
+                form_1.pn.setText(userId); 
+            }
+        });
         
     }
     
