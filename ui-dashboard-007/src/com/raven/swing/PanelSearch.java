@@ -4,10 +4,12 @@
  */
 package com.raven.swing;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JLayeredPane;
 import net.miginfocom.swing.MigLayout;
 public class PanelSearch extends javax.swing.JPanel {
 private EventClick event;
@@ -15,9 +17,10 @@ private EventClick event;
      public void addEventClick(EventClick event) {
         this.event = event;
     }
-
+ private JLayeredPane layeredPane;
     public PanelSearch() {
         initComponents();
+          setLayout(new BorderLayout());
                 setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
 
     }
@@ -101,16 +104,7 @@ public void setData(List<DataSearch> data) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 22, Short.MAX_VALUE)
-        );
+        setLayout(new java.awt.GridBagLayout());
     }// </editor-fold>//GEN-END:initComponents
 
 
