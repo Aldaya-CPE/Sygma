@@ -7,6 +7,7 @@ import com.raven.form.Form3;
 import com.raven.form.Form2;
 import com.raven.form.Form4;
 import com.raven.form.Form_1;
+import com.raven.form.Add;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +19,8 @@ public class Main extends javax.swing.JFrame {
     private CardLayout cardLayout;
     private Form2 form2;
         private Form3 form3;
+                private Add add;
+
 
     public Main() {
         initComponents();
@@ -70,7 +73,8 @@ public class Main extends javax.swing.JFrame {
 
         SwingUtilities.invokeLater(() -> {
             if (form2 != null) {
-                form2.ex.setText(userId); 
+                form2.ex.setText(userId);
+                form2.ad.setText(userId); 
             }
         });
         SwingUtilities.invokeLater(() -> {
@@ -78,6 +82,17 @@ public class Main extends javax.swing.JFrame {
                 form3.cat.setText(userId); 
             }
         });
+        SwingUtilities.invokeLater(() -> {
+        if (add == null) {
+        add = new Add(userId);
+       
+       } else {
+//        add.se.setText(userId);
+             add.updateUserId(userId); 
+             }
+        });
+         
+        
     }
     
 //    public void idtext() {
