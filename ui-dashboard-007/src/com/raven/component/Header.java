@@ -7,6 +7,8 @@ import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class Header extends javax.swing.JPanel {
 
@@ -44,12 +46,27 @@ public class Header extends javax.swing.JPanel {
 
         imageAvatar2.setBackground(new java.awt.Color(0, 78, 100));
         imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-close-28.png"))); // NOI18N
+        imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar2MouseClicked(evt);
+            }
+        });
 
         imageAvatar3.setBackground(new java.awt.Color(0, 78, 100));
         imageAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/mini.png"))); // NOI18N
+        imageAvatar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar3MouseClicked(evt);
+            }
+        });
 
         imageAvatar4.setBackground(new java.awt.Color(0, 78, 100));
         imageAvatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/tore.png"))); // NOI18N
+        imageAvatar4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageAvatar4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,6 +100,24 @@ public class Header extends javax.swing.JPanel {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
+      System.exit(0);
+    }//GEN-LAST:event_imageAvatar2MouseClicked
+
+    private void imageAvatar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar4MouseClicked
+    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+    if (frame.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+        frame.setExtendedState(JFrame.NORMAL);
+    } else {
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    }//GEN-LAST:event_imageAvatar4MouseClicked
+
+    private void imageAvatar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar3MouseClicked
+    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+    frame.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_imageAvatar3MouseClicked
 
     
 

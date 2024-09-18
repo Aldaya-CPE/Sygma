@@ -707,10 +707,7 @@ private void loadBalance() {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtSearch1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearch1MouseClicked
-        //        if (search.getItemSize() > 0) {
-            //            menu.show(txtSearch, 0, txtSearch.getHeight());
-            //            search.clearSelected();
-            //        }
+      
         if (search.getItemSize() > 0) {
             menu.show(txtSearch1, 0, txtSearch1.getHeight());
             search.clearSelected();
@@ -732,23 +729,7 @@ private void loadBalance() {
     }//GEN-LAST:event_txtSearch1KeyPressed
 
     private void txtSearch1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch1KeyReleased
-//        if (evt.getKeyCode() != KeyEvent.VK_UP && evt.getKeyCode() != KeyEvent.VK_DOWN && evt.getKeyCode() != KeyEvent.VK_ENTER) {
-//        String text = txtSearch1.getText().trim().toLowerCase();
-//        search.setData(search(text));
-//        if (search.getItemSize() > 0) {
-//            SwingUtilities.invokeLater(() -> {
-//                if (txtSearch1.isVisible() && txtSearch1.isEnabled() && txtSearch1.getParent() != null) {
-//                    //  * 2 top and bot border
-//                    menu.show(txtSearch1.getParent(), txtSearch1.getX(), txtSearch1.getY() + txtSearch1.getHeight());
-//                    menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
-//                } else {
-//                    System.out.println("txtSearch is not visible, enabled, or has no parent");
-//                }
-//            });
-//        } else {
-//            menu.setVisible(false);
-//        }
-//    }
+
          if (evt.getKeyCode() != KeyEvent.VK_UP && evt.getKeyCode() != KeyEvent.VK_DOWN && evt.getKeyCode() != KeyEvent.VK_ENTER) {
         String text = txtSearch1.getText().trim().toLowerCase();
         search.setData(search(text));
@@ -774,37 +755,7 @@ private void loadBalance() {
     }//GEN-LAST:event_type1ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-//                try {
-//                        String selectedType = type.getSelectedItem().toString();
-//                        double amountValue = Double.parseDouble(amount.getText());
-//            
-//                        if (selectedType.equals("Badget")) {
-//                                totalBalance += amountValue;
-//                            } else if (selectedType.equals("Expense")) {
-//                                totalBalance -= amountValue;
-//                            }
-//                        balance.setText("Balance: " + totalBalance);
-//                        String sql = "INSERT INTO expenses (userId, category, date, amount, Type, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
-//                        ps = Database.getInstance().getConnection().prepareStatement(sql);
-//                        ps.setString(1, ex.getText());
-//                        ps.setString(2, txtSearch1.getText());
-//                        Date selectedDate = date.getDate();
-//                        if (selectedDate != null) {
-//                                ps.setDate(3, new java.sql.Date(selectedDate.getTime()));
-//                            } else {
-//                                ps.setNull(3, java.sql.Types.DATE);
-//                            }
-//                        ps.setDouble(4, amountValue);
-//                        ps.setString(5, selectedType);
-//                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//                        ps.setTimestamp(6, timestamp);
-//                        ps.execute();
-//                        populateTable();
-//                    } catch (SQLException e) {
-//                        JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
-//                    } catch (NumberFormatException e) {
-//                        JOptionPane.showMessageDialog(this, "Invalid amount entered. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    }
+
                      try {
         String selectedType = type.getSelectedItem().toString();
         double amountValue = Double.parseDouble(amount1.getText());
