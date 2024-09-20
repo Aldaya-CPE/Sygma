@@ -18,10 +18,10 @@ import raven.glasspanepopup.GlassPanePopup;
 public class Main extends javax.swing.JFrame {
     private CardLayout cardLayout;
     private Form2 form2;
-        private Form_1 form_1;
-
-        private Form3 form3;
-                private Add add;
+    private Form_1 form_1;
+    private Form4 form4;
+    private Form3 form3;
+    private Add add;
 
 
     public Main() {
@@ -32,6 +32,7 @@ public class Main extends javax.swing.JFrame {
 
    
         setBackground(new Color(0, 0, 0, 0));
+        
            EventMenu event = new EventMenu() {
             @Override
             public void selected(int index) {
@@ -58,7 +59,11 @@ public class Main extends javax.swing.JFrame {
                         idtext(); 
                         break;
                      case 3:
-                        showForm(new Form4());
+                        if (form4 == null) { 
+                            form4 = new Form4(); 
+                        }
+                        showForm(form4);
+                        idtext(); 
                         break;
                     case 4:
                         logout();
@@ -72,38 +77,29 @@ public class Main extends javax.swing.JFrame {
         };
         menu1.initMenu(event);
         showForm(new Form_1()); 
+        idtext(); 
+
     }
     
-    public void idtext() {
-        String userId = MainID.getText(); 
-
-        SwingUtilities.invokeLater(() -> {
-            if (form2 != null) {
-                form2.ex.setText(userId);
-                form2.ad.setText(userId); 
-            }
-        });
-        SwingUtilities.invokeLater(() -> {
-            if (form3 != null) {
-                form3.cat.setText(userId); 
-            }
-        });
-        SwingUtilities.invokeLater(() -> {
-        if (add == null) {
-        add = new Add(userId);
-       
-       } else {
-//        add.se.setText(userId);
-             add.updateUserId(userId); 
-             }
-        });
-         SwingUtilities.invokeLater(() -> {
-            if (form_1 != null) {
-                form_1.pn.setText(userId); 
-            }
-        });
-        
-    }
+   public void idtext() {
+    String userId = MainID.getText(); 
+    SwingUtilities.invokeLater(() -> {
+        if (form_1 != null) {
+            form_1.pn.setText(userId); 
+        }
+        if (form2 != null) {
+            form2.ex.setText(userId);
+            form2.ad.setText(userId); 
+        }
+        if (form3 != null) {
+            form3.cat.setText(userId); 
+        }
+         if (form4 != null) {
+            form4.ed.setText(userId); 
+        }
+      
+    });
+}
     
 //    public void idtext() {
 ////    String userId = MainID.getText(); 

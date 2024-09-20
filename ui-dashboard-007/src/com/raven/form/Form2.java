@@ -84,12 +84,15 @@ public class Form2 extends javax.swing.JPanel {
           
           
          
-       
-        timer = new Timer(1000, (e) -> {
-            populateTable();
-            
-        });
-        timer.start();
+
+            Timer timer = new Timer(500, new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             populateTable();
+         }
+     });
+     timer.setRepeats(false);
+     timer.start();
         
         menu = new JPopupMenu();
         search = new PanelSearch();

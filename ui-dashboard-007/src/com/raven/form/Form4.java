@@ -1,14 +1,74 @@
 
 package com.raven.form;
 
+import Sygma.Database.Database;
+import search.DataSearch;
+//import com.raven.swing.EventClick;
+import search.EventClick1;
+import search.PanelSearch1;
+import com.sun.jdi.connect.spi.Connection;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+
 
 public class Form4 extends javax.swing.JPanel {
+    Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
+    private JPopupMenu menu;
+    private PanelSearch1 search;
+    private String userId = "yourUserId";
 
     
     public Form4() {
         initComponents();
-    }
+        try {
+            Database.getInstance().ConnectToDatabase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        ed.setText(userId);
+        
+        
+        menu = new JPopupMenu();
+        search = new PanelSearch1();
+        menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
+        menu.add(search);
+        menu.setFocusable(false);
+        search.addEventClick1(new EventClick1() {
+            @Override
+            public void itemClick(DataSearch data) {
+                menu.setVisible(false);
+                txtSearch.setText(data.getText());
+                addStory(data.getText());
+                System.out.println("Click Item : " + data.getText());
+            }
 
+            @Override
+            public void itemRemove(Component com, DataSearch data) {
+                search.remove(com);
+                removeHistory(data.getText());
+                menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
+                if (search.getItemSize() == 0) {
+                    menu.setVisible(false);
+                }
+                System.out.println("Remove Item : " + data.getText());
+            }
+        });
+
+    }
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -16,14 +76,17 @@ public class Form4 extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         panelBar1 = new Sygma.Component.PanelBar();
-        panelBar2 = new Sygma.Component.PanelBar();
+        jButton1 = new javax.swing.JButton();
+        txtSearch = new com.raven.swing.search();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        panelRound1 = new Sygma.Component.PanelRound();
+        jLabel7 = new javax.swing.JLabel();
+        ed = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -38,99 +101,166 @@ public class Form4 extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Date", "category", "Amount"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 960, 300));
 
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search_1.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSearchMouseClicked(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
         panelBar1.setLayout(panelBar1Layout);
         panelBar1Layout.setHorizontalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGroup(panelBar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBar1Layout.setVerticalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(panelBar1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelBar2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelBar2Layout = new javax.swing.GroupLayout(panelBar2);
-        panelBar2.setLayout(panelBar2Layout);
-        panelBar2Layout.setHorizontalGroup(
-            panelBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
-        panelBar2Layout.setVerticalGroup(
-            panelBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
+        add(panelBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 960, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-settings-100.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 38, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Account Settings");
+        jLabel2.setText("View Expense Date");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(panelBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+        panelRound1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setText("Avaible Balance");
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
+        panelRound1.setLayout(panelRound1Layout);
+        panelRound1Layout.setHorizontalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        panelRound1Layout.setVerticalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel7)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
+
+        add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 200, 120));
+
+        ed.setText("jLabel3");
+        add(ed, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            search.keyUp();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            search.keyDown();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String text = search.getSelectedText();
+            txtSearch.setText(text);
+            menu.setVisible(false);
+        }
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        if (evt.getKeyCode() != KeyEvent.VK_UP && evt.getKeyCode() != KeyEvent.VK_DOWN && evt.getKeyCode() != KeyEvent.VK_ENTER) {
+            String text = txtSearch.getText().trim().toLowerCase();
+            search.setData(search(text));
+            if (search.getItemSize() > 0) {
+                menu.show(txtSearch, 0, txtSearch.getHeight());
+                menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
+            } else {
+                menu.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
+         if (search.getItemSize() > 0) {
+            menu.show(txtSearch, 0, txtSearch.getHeight());
+            search.clearSelected();
+        }
+    }//GEN-LAST:event_txtSearchMouseClicked
+      private List<DataSearch> search(String search) {
+    List<DataSearch> list = new ArrayList<>();
+    try {
+       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
+        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+        ps.setString(1, ed.getText());
+        ps.setString(2, "%" + search + "%");
+        
+        ResultSet r = ps.executeQuery(); 
+        while (r.next()) {
+            String text = r.getString(1);
+            boolean story = false;
+            list.add(new DataSearch(text, story));
+        }
+        r.close();
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+    
+    
+        private void removeHistory(String text) {
+    try {
+       String sql ="DELETE FROM expenses WHERE category = ? LIMIT 1";
+        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+        ps.setString(1, text);
+        ps.execute();
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+   
+    private void addStory(String text) {
+   
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel ed;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private Sygma.Component.PanelBar panelBar1;
-    private Sygma.Component.PanelBar panelBar2;
+    private Sygma.Component.PanelRound panelRound1;
+    private com.raven.swing.search txtSearch;
     // End of variables declaration//GEN-END:variables
 }

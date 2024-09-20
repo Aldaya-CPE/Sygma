@@ -5,6 +5,8 @@ import Sygma.Database.Database;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,11 +42,16 @@ public class Form3 extends javax.swing.JPanel {
           cat.setText(userId);
           cat.setVisible(false);
            populateTable();
-            timer = new Timer(3000, (e) -> {
-            populateTable();
-            
-        });
-        timer.start();
+           
+            Timer timer = new Timer(500, new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             populateTable();
+         }
+     });
+     timer.setRepeats(false);
+     timer.start();
+        
     }
             
       public void populateTable() {
