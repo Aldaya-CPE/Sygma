@@ -7,12 +7,14 @@ import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+
 public class Search_Item extends javax.swing.JPanel {
 
  
     public Search_Item(DataSearch data) {
         initComponents();
-                setData(data);
+        setData(data);
 
     }
     private void setData(DataSearch data) {
@@ -65,27 +67,45 @@ public class Search_Item extends javax.swing.JPanel {
         lbRemove = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridBagLayout());
-
         lbText.setText("jLabel1");
         lbText.setMaximumSize(new java.awt.Dimension(200, 16));
         lbText.setMinimumSize(new java.awt.Dimension(200, 16));
         lbText.setPreferredSize(new java.awt.Dimension(200, 16));
-        add(lbText, new java.awt.GridBagConstraints());
+        lbText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbTextMouseClicked(evt);
+            }
+        });
 
         lbRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbRemoveMouseClicked(evt);
             }
         });
-        add(lbRemove, new java.awt.GridBagConstraints());
 
         lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbIconMouseClicked(evt);
             }
         });
-        add(lbIcon, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbText, javax.swing.GroupLayout.PREFERRED_SIZE, 174, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRemoveMouseClicked
@@ -97,6 +117,10 @@ if (!lbRemove.getText().trim().equals("")) {
     private void lbIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbIconMouseClicked
      eventClick.actionPerformed(null);
     }//GEN-LAST:event_lbIconMouseClicked
+
+    private void lbTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTextMouseClicked
+      eventClick.actionPerformed(null);
+    }//GEN-LAST:event_lbTextMouseClicked
      public String getText() {
         return lbText.getText();
     }

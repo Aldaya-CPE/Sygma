@@ -21,7 +21,7 @@
                   <Component id="lbRemove" min="-2" max="-2" attributes="0"/>
                   <Component id="lbIcon" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="915" max="32767" attributes="0"/>
+              <EmptySpace pref="353" max="32767" attributes="0"/>
           </Group>
           <Component id="lbText" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -54,6 +54,9 @@
           <Dimension value="[200, 16]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbTextMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbRemove">
       <Events>

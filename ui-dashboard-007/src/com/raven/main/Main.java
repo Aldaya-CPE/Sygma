@@ -1,25 +1,45 @@
 package com.raven.main;
 
+import Sygma.Database.Database;
 import Sygma.Login.login;
 import com.raven.event.EventMenu;
-import com.raven.form.Form;
+import com.raven.form.Form5;
 import com.raven.form.Form3;
 import com.raven.form.Form2;
 import com.raven.form.Form4;
 import com.raven.form.Form_1;
 import com.raven.form.Add;
+import com.raven.swing.DataSearch;
+import com.raven.swing.EventClick;
+import com.raven.swing.PanelSearch;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
 
 public class Main extends javax.swing.JFrame {
+      private JPopupMenu menu;
+    private PanelSearch search;
+     Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
     private CardLayout cardLayout;
     private Form2 form2;
     private Form_1 form_1;
     private Form4 form4;
+    private Form5 form5;
     private Form3 form3;
     private Add add;
 
@@ -29,8 +49,9 @@ public class Main extends javax.swing.JFrame {
        MainID.setVisible(false);
          String userId = MainID.getText(); 
           GlassPanePopup.install(this);
+         
 
-   
+    
         setBackground(new Color(0, 0, 0, 0));
         
            EventMenu event = new EventMenu() {
@@ -65,7 +86,14 @@ public class Main extends javax.swing.JFrame {
                         showForm(form4);
                         idtext(); 
                         break;
-                    case 4:
+                     case 4:
+                        if (form5 == null) { 
+                            form5 = new Form5(); 
+                        }
+                        showForm(form5);
+                        idtext(); 
+                        break;
+                    case 5:
                         logout();
                         break;
                     default:
@@ -96,6 +124,9 @@ public class Main extends javax.swing.JFrame {
         }
          if (form4 != null) {
             form4.ed.setText(userId); 
+        }
+          if (form5 != null) {
+            form5.ec.setText(userId); 
         }
       
     });
@@ -155,32 +186,28 @@ public class Main extends javax.swing.JFrame {
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1371, Short.MAX_VALUE)
+            .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, 1371, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(MainID)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(4, 4, 4)
+                        .addComponent(MainID))
+                    .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(3, 3, 3)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(MainID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                        .addGap(20, 20, 20)
+                        .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,7 +224,46 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+      
+    private List<search.DataSearch1> search(String search) {
+    List<search.DataSearch1> list = new ArrayList<>();
+    try {
+       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
+        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+        ps.setString(1, MainID.getText());
+        ps.setString(2, "%" + search + "%");
+        
+        ResultSet r = ps.executeQuery(); 
+        while (r.next()) {
+            String text = r.getString(1);
+            boolean story = false;
+            list.add(new search.DataSearch1(text, story));
+        }
+        r.close();
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+    
 
+    private void removeHistory(String text) {
+    try {
+       String sql ="DELETE FROM expenses WHERE category = ? LIMIT 1";
+        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+        ps.setString(1, text);
+        ps.execute();
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+     private void addStory(String text) {
+   
+}
+     
+     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

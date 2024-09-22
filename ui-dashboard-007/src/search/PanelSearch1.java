@@ -1,32 +1,28 @@
 
 package search;
 
-import com.raven.swing.*;
-import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JLayeredPane;
 import net.miginfocom.swing.MigLayout;
+
 public class PanelSearch1 extends javax.swing.JPanel {
-private EventClick1 event;
+ private EventClick1 event;
     private int selectedIndex = -1;
-     public void addEventClick1(EventClick1 event) {
+
+    public void addEventClick1(EventClick1 event) {
         this.event = event;
     }
- private JLayeredPane layeredPane;
-    public PanelSearch1() {
+     public PanelSearch1() {
         initComponents();
-        setLayout(new BorderLayout());
-                setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
-
-        
+        setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
     }
-    public void setData(List<DataSearch> data) {
+   public void setData(List<DataSearch1> data) {
         selectedIndex = -1; //  -1 is not selected
         this.removeAll();
-        for (DataSearch d : data) {
+        for (DataSearch1 d : data) {
             Search_Item1 item = new Search_Item1(d);
             //  add event
             item.addEvent(new ActionListener() {
@@ -82,7 +78,7 @@ private EventClick1 event;
 
     public String getSelectedText() {
         if (selectedIndex != -1 && selectedIndex < getComponentCount()) {
-            return ((Search_Item) getComponent(selectedIndex)).getText();
+            return ((Search_Item1) getComponent(selectedIndex)).getText();
         }
         return "";
     }
@@ -95,7 +91,7 @@ private EventClick1 event;
     private void showSelected() {
         Component com[] = getComponents();
         for (int i = 0; i < com.length; i++) {
-            ((Search_Item) com[i]).setSelected(i == selectedIndex);
+            ((Search_Item1) com[i]).setSelected(i == selectedIndex);
         }
     }
  
@@ -113,11 +109,11 @@ private EventClick1 event;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 915, Short.MAX_VALUE)
+            .addGap(0, 353, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
+            .addGap(0, 24, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

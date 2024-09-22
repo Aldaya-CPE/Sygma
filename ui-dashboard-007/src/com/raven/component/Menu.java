@@ -31,12 +31,12 @@ public class Menu extends javax.swing.JPanel {
         addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/2.png")), "Add Expense", 1);
         addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/3.png")), "View Category", 2);
         addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/4.png")), "Account Settings", 3);
-//        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/5.png")), "Category", 4);
+        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/5.png")), "Category", 4);
 //        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/6.png")), "Export", 5);
 //        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/7.png")), "Import", 6);
 //        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/8.png")), "Setting", 7);
         addEmpty();
-        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/logout.png")), "Logout", 4);
+        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/logout.png")), "Logout", 5);
     }
 
     private void addEmpty() {

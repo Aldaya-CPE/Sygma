@@ -2,7 +2,8 @@
 package com.raven.form;
 
 import Sygma.Database.Database;
-import search.DataSearch;
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import search.DataSearch1;
 //import com.raven.swing.EventClick;
 import search.EventClick1;
 import search.PanelSearch1;
@@ -15,9 +16,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.lang.model.util.Types;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Form4 extends javax.swing.JPanel {
@@ -48,7 +51,7 @@ public class Form4 extends javax.swing.JPanel {
         menu.setFocusable(false);
         search.addEventClick1(new EventClick1() {
             @Override
-            public void itemClick(DataSearch data) {
+            public void itemClick(DataSearch1 data) {
                 menu.setVisible(false);
                 txtSearch.setText(data.getText());
                 addStory(data.getText());
@@ -56,7 +59,7 @@ public class Form4 extends javax.swing.JPanel {
             }
 
             @Override
-            public void itemRemove(Component com, DataSearch data) {
+            public void itemRemove(Component com, DataSearch1 data) {
                 search.remove(com);
                 removeHistory(data.getText());
                 menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
@@ -79,6 +82,10 @@ public class Form4 extends javax.swing.JPanel {
         panelBar1 = new Sygma.Component.PanelBar();
         jButton1 = new javax.swing.JButton();
         txtSearch = new com.raven.swing.search();
+        jLabel8 = new javax.swing.JLabel();
+        from = new com.github.lgooddatepicker.components.DatePicker();
+        to = new com.github.lgooddatepicker.components.DatePicker();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         panelRound1 = new Sygma.Component.PanelRound();
@@ -86,7 +93,6 @@ public class Form4 extends javax.swing.JPanel {
         ed = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,12 +107,16 @@ public class Form4 extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 960, 300));
-
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));
+        panelBar1.setPreferredSize(new java.awt.Dimension(960, 39));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search_1.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,41 +132,56 @@ public class Form4 extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("From:");
+
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("To:");
+
         javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
         panelBar1.setLayout(panelBar1Layout);
         panelBar1Layout.setHorizontalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBar1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+                .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
         panelBar1Layout.setVerticalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBar1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
+                        .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
+                .addContainerGap())
         );
 
-        add(panelBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 960, 40));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-settings-100.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 38, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("View Expense Date");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setText("Avaible Balance");
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("Avaible Balance");
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -175,10 +200,48 @@ public class Form4 extends javax.swing.JPanel {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 200, 120));
-
         ed.setText("jLabel3");
-        add(ed, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel2)))
+                        .addGap(20, 20, 20)
+                        .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(ed))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(ed)))
+                .addGap(33, 33, 33)
+                .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
@@ -212,8 +275,58 @@ public class Form4 extends javax.swing.JPanel {
             search.clearSelected();
         }
     }//GEN-LAST:event_txtSearchMouseClicked
-      private List<DataSearch> search(String search) {
-    List<DataSearch> list = new ArrayList<>();
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   java.sql.Date fromDate = java.sql.Date.valueOf(from.getDate());
+    java.sql.Date toDate = java.sql.Date.valueOf(to.getDate());
+
+    String sql = "SELECT date, amount FROM expenses WHERE userId = ? AND date BETWEEN ? AND ?";
+
+    try {
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, ed.getText());
+        ps.setDate(2, fromDate);
+        ps.setDate(3, toDate);
+
+        ResultSet rs = ps.executeQuery();
+
+        jTable1.setModel(buildTableModel(rs));
+        System.out.println(jTable1.getRowCount()); // Add this line
+        jTable1.repaint(); // Add this line
+
+        rs.close();
+        ps.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+      private DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
+    ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData(); 
+    int columnCount = metaData.getColumnCount();
+    String[] columnNames = new String[columnCount];
+
+    for (int i = 1; i <= columnCount; i++) {
+        columnNames[i - 1] = metaData.getColumnName(i);
+    }
+
+    DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+    while (rs.next()) {
+        Object[] row = new Object[columnCount];
+
+        for (int i = 1; i <= columnCount; i++) {
+            row[i - 1] = rs.getObject(i);
+            System.out.println(rs.getObject(i)); // Add this line
+        }
+
+        tableModel.addRow(row);
+    }
+
+    return tableModel;
+}
+    
+    private List<DataSearch1> search(String search) {
+    List<DataSearch1> list = new ArrayList<>();
     try {
        String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
         ps = Database.getInstance().getConnection().prepareStatement(sql); 
@@ -224,7 +337,7 @@ public class Form4 extends javax.swing.JPanel {
         while (r.next()) {
             String text = r.getString(1);
             boolean story = false;
-            list.add(new DataSearch(text, story));
+            list.add(new DataSearch1(text, story));
         }
         r.close();
         ps.close();
@@ -253,14 +366,18 @@ public class Form4 extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel ed;
+    private com.github.lgooddatepicker.components.DatePicker from;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private Sygma.Component.PanelBar panelBar1;
     private Sygma.Component.PanelRound panelRound1;
+    private com.github.lgooddatepicker.components.DatePicker to;
     private com.raven.swing.search txtSearch;
     // End of variables declaration//GEN-END:variables
 }

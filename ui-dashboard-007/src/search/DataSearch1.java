@@ -2,7 +2,7 @@ package search;
 
 import com.raven.swing.*;
 
-public class DataSearch {
+public class DataSearch1 {
 
     public String getText() {
         return text;
@@ -20,12 +20,12 @@ public class DataSearch {
         this.story = story;
     }
 
-    public DataSearch(String text, boolean story) {
+    public DataSearch1(String text, boolean story) {
         this.text = text;
         this.story = story;
     }
 
-    public DataSearch() {
+    public DataSearch1() {
     }
 
     private String text;
