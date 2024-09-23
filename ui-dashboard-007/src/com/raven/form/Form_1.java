@@ -39,6 +39,8 @@ public class Form_1 extends javax.swing.JPanel {
         }
         setOpaque(false);
          pn.setText(userId);
+         pn.setVisible(false); 
+
         tableTextCenter();
 //        populateTable();
         init();

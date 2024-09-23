@@ -42,7 +42,7 @@ public class Form4 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         ed.setText(userId);
-        
+        ed.setVisible(false); 
         
         menu = new JPopupMenu();
         search = new PanelSearch1();
@@ -172,7 +172,7 @@ public class Form4 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-settings-100.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-calendar-100.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));

@@ -46,7 +46,8 @@ public class Form5 extends javax.swing.JPanel {
         }
           
         ec.setText(userId);
-        
+        ec.setVisible(false); 
+
          menu = new JPopupMenu();
         search = new PanelSearch();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -111,7 +112,7 @@ public class Form5 extends javax.swing.JPanel {
         jTable1.setPreferredSize(new java.awt.Dimension(225, 80));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-settings-100.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-category-100 (2).png"))); // NOI18N
 
         jLabel2.setText("View Expense Category");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -252,17 +253,11 @@ public class Form5 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  // Get the current month
     Calendar calendar = Calendar.getInstance();
     int month = calendar.get(Calendar.MONTH) + 1;
     int year = calendar.get(Calendar.YEAR);
-
-    // Get the category name from the txtSearch field
     String category = txtSearch.getText();
-
-    // Create a SQL query to retrieve the expenses for the current month and category
     String sql = "SELECT category, date, amount FROM expenses WHERE userId = ? AND category = ? AND MONTH(date) = ? AND YEAR(date) = ?";
-
     try {
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setString(1, ec.getText());
@@ -271,18 +266,12 @@ public class Form5 extends javax.swing.JPanel {
         ps.setInt(4, year);
 
         ResultSet rs = ps.executeQuery();
-
-        // Create a table model to display the expenses
         jTable1.setModel(buildTableModel(rs));
-
-        // Get the total amount from the table model
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         double totalAmount = 0;
         for (int i = 0; i < model.getRowCount(); i++) {
             totalAmount += (double) (int) model.getValueAt(i, 2);
         }
-
-        // Update the balance label
         balance.setText(String.format("%.2f", totalAmount));
 
         rs.close();

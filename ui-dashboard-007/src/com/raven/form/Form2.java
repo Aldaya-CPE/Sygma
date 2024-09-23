@@ -67,7 +67,7 @@ public class Form2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         setOpaque(false);
-//        ex.setVisible(false); 
+        ex.setVisible(false); 
     jButton2.setVisible(false);
         jButton9.setVisible(false);
 
