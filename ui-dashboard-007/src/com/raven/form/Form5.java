@@ -86,6 +86,7 @@ public class Form5 extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         panelRound1 = new Sygma.Component.PanelRound();
         jLabel7 = new javax.swing.JLabel();
+        balance = new javax.swing.JLabel();
         panelBar1 = new Sygma.Component.PanelBar();
         jButton1 = new javax.swing.JButton();
         from = new com.github.lgooddatepicker.components.DatePicker();
@@ -121,21 +122,28 @@ public class Form5 extends javax.swing.JPanel {
         jLabel7.setText("Avaible Balance");
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
 
+        balance.setText("jLabel8");
+        balance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel7)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(balance)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -184,19 +192,19 @@ public class Form5 extends javax.swing.JPanel {
         );
         panelBar1Layout.setVerticalGroup(
             panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
             .addGroup(panelBar1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)
+                                .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         ec.setText("jLabel3");
@@ -244,7 +252,7 @@ public class Form5 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// Get the current month
+  // Get the current month
     Calendar calendar = Calendar.getInstance();
     int month = calendar.get(Calendar.MONTH) + 1;
     int year = calendar.get(Calendar.YEAR);
@@ -253,7 +261,7 @@ public class Form5 extends javax.swing.JPanel {
     String category = txtSearch.getText();
 
     // Create a SQL query to retrieve the expenses for the current month and category
-    String sql = "SELECT date, amount FROM expenses WHERE userId = ? AND category = ? AND MONTH(date) = ? AND YEAR(date) = ?";
+    String sql = "SELECT category, date, amount FROM expenses WHERE userId = ? AND category = ? AND MONTH(date) = ? AND YEAR(date) = ?";
 
     try {
         ps = Database.getInstance().getConnection().prepareStatement(sql);
@@ -266,6 +274,16 @@ public class Form5 extends javax.swing.JPanel {
 
         // Create a table model to display the expenses
         jTable1.setModel(buildTableModel(rs));
+
+        // Get the total amount from the table model
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        double totalAmount = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            totalAmount += (double) (int) model.getValueAt(i, 2);
+        }
+
+        // Update the balance label
+        balance.setText(String.format("%.2f", totalAmount));
 
         rs.close();
         ps.close();
@@ -346,7 +364,7 @@ public class Form5 extends javax.swing.JPanel {
     private void addStory(String text) {
    
 }
-  private DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
+ private DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
     ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData(); 
     int columnCount = metaData.getColumnCount();
     String[] columnNames = new String[columnCount];
@@ -371,6 +389,7 @@ public class Form5 extends javax.swing.JPanel {
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel balance;
     public javax.swing.JLabel ec;
     private com.github.lgooddatepicker.components.DatePicker from;
     private javax.swing.JButton jButton1;
