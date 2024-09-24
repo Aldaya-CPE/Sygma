@@ -96,19 +96,20 @@ public class Form4 extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Date", "Category", "Amount"
+                "Date", "Amount"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));
         panelBar1.setPreferredSize(new java.awt.Dimension(960, 39));
+        panelBar1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search_1.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -117,6 +118,7 @@ public class Form4 extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        panelBar1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(927, 6, -1, -1));
 
         txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -131,57 +133,28 @@ public class Form4 extends javax.swing.JPanel {
                 txtSearchKeyReleased(evt);
             }
         });
+        panelBar1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 6, 353, 24));
 
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("From:");
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        panelBar1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 42, -1));
+        panelBar1.add(from, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 188, -1));
+        panelBar1.add(to, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 184, -1));
 
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("To:");
-
-        javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
-        panelBar1.setLayout(panelBar1Layout);
-        panelBar1Layout.setHorizontalGroup(
-            panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBar1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-        panelBar1Layout.setVerticalGroup(
-            panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)))
-                .addContainerGap())
-        );
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        panelBar1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-calendar-100.png"))); // NOI18N
 
+        jLabel2.setText("View Expense Date");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("View Expense Date");
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Avaible Balance");
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -238,8 +211,8 @@ public class Form4 extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(ed)))
                 .addGap(33, 33, 33)
-                .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -280,7 +253,7 @@ public class Form4 extends javax.swing.JPanel {
    java.sql.Date fromDate = java.sql.Date.valueOf(from.getDate());
     java.sql.Date toDate = java.sql.Date.valueOf(to.getDate());
 
-    String sql = "SELECT date, amount FROM expenses WHERE userId = ? AND date BETWEEN ? AND ?";
+    String sql = "SELECT Date, Amount FROM expenses WHERE userId = ? AND date BETWEEN ? AND ?";
 
     try {
         ps = Database.getInstance().getConnection().prepareStatement(sql);
