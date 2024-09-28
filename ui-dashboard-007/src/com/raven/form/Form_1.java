@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,9 +25,11 @@ public class Form_1 extends javax.swing.JPanel {
      Connection MyCon;
     PreparedStatement ps;
     ResultSet rs;
-     private PanelSearch search;
-       private Timer timer;
-   private String userId = "yourUserId";
+    private DefaultTableCellRenderer centerRenderer;;
+    private PanelSearch search;
+    private Timer timer;
+    private String userId = "yourUserId";
+    private boolean isPopulatingTable = false;
    
     public Form_1() {
         initComponents();
@@ -40,9 +43,9 @@ public class Form_1 extends javax.swing.JPanel {
         setOpaque(false);
          pn.setText(userId);
          pn.setVisible(false); 
-
-        tableTextCenter();
-//        populateTable();
+        centerRenderer = new DefaultTableCellRenderer();
+//        tableTextCenter();
+        populateTable();
         init();
         
           Timer timer = new Timer(500, new ActionListener() {
@@ -53,7 +56,6 @@ public class Form_1 extends javax.swing.JPanel {
      });
      timer.setRepeats(false);
      timer.start();
-        
        
     }
 
@@ -71,59 +73,124 @@ public class Form_1 extends javax.swing.JPanel {
 //        chart.start();
         lineChart.addLegend("Income", new Color(0, 102, 120), new Color(0, 102, 120));
         lineChart.addLegend("Expense", new Color(90, 179, 220), new Color(90, 179, 220));
-        lineChart.addLegend("Profit", new Color(127,201,170), new Color(127,201,170));
-        lineChart.addLegend("Cost", new Color(183, 224, 166), new Color(183, 224, 166));
-        lineChart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-        lineChart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-        lineChart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-        lineChart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-        lineChart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-        lineChart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
-        lineChart.start();
+        lineChart.addLegend("Balance", new Color(127,201,170), new Color(127,201,170));
+//        lineChart.addLegend("Cost", new Color(183, 224, 166), new Color(183, 224, 166));
+//        lineChart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
+//        
+//        lineChart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
+//        lineChart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
+//        lineChart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
+//        lineChart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
+//        lineChart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
+//        lineChart.start();
         progress1.start();
         progress2.start();
         progress3.start();
     }
     
- private void tableTextCenter() {
-    for (int i = 0; i < jTable1.getColumnCount(); i++) {
-        jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                ((JLabel) rendererComponent).setHorizontalAlignment(SwingConstants.CENTER); 
-                if (isSelected) {
-                    rendererComponent.setForeground(Color.WHITE); 
-                } else {
-                    rendererComponent.setForeground(table.getForeground());
-                }
-                return rendererComponent;
-            }
-        });
+    private void tableTextCenter() {
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
-    }
- private void populateTable() {
+    private void populateTable() {
+     if (isPopulatingTable) {
+            return;
+        }
+
+        isPopulatingTable = true;
+     
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
+    double totalIncome = 0;
+    double totalExpenses = 0;
+    double maxAmount = 10000; 
     try {
         String sql = "SELECT category, date, amount, type FROM expenses WHERE userId = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setString(1, pn.getText());
         rs = ps.executeQuery();
+        double[] incomeValues = new double[5]; 
+        double[] expenseValues = new double[5]; 
+        double[] balanceValues = new double[5]; 
+        String[] months = {"January", "August", "September", "October", "November"};
         while (rs.next()) {
             String category = rs.getString("category");
             Date date = rs.getDate("date");
             double amount = rs.getDouble("amount");
             String type = rs.getString("type");
-           
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            int month = calendar.get(Calendar.MONTH);
+            String monthName;
+            if (month == Calendar.JANUARY) {
+                monthName = "January";
+            } else if (month == Calendar.AUGUST) {
+                monthName = "August";
+            } else if (month == Calendar.SEPTEMBER) {
+                monthName = "September";
+            } else if (month == Calendar.OCTOBER) {
+                monthName = "October";
+            } else if (month == Calendar.NOVEMBER) {
+                monthName = "November";
+            } else {
+                continue; // skip other months
+            }
+            int monthIndex = -1;
+            for (int i = 0; i < months.length; i++) {
+                if (months[i].equals(monthName)) {
+                    monthIndex = i;
+                    break;
+                }
+            }
+            if (monthIndex != -1) {
+                if (type.equals("Income")) {
+                    totalIncome += amount;
+                    incomeValues[monthIndex] += amount;
+                } else {
+                    totalExpenses += amount;
+                    expenseValues[monthIndex] += amount;
+                }
+            }
             model.addRow(new Object[]{category, date, amount, type});
         }
-       
+        double totalBalance = totalIncome - totalExpenses;
+        double incomePercentage = (totalIncome / maxAmount) * 100;
+        double expensesPercentage = (totalExpenses / maxAmount) * 100;
+        double balancePercentage = (totalBalance / maxAmount) * 100;
+        progress1.setValue((int) incomePercentage);
+        progress2.setValue((int) expensesPercentage);
+        progress3.setValue((int) balancePercentage);
+        jLabel1.setText("Total Income: " + totalIncome);
+        jLabel3.setText("Total Expenses: " + totalExpenses);
+        jLabel4.setText("Total Balance: " + totalBalance);
+        
+        for (int i = 0; i < 5; i++) {
+            balanceValues[i] = incomeValues[i] - expenseValues[i];
+        }
+        
+        double[][] incomeValues2D = new double[5][1];
+        double[][] expenseValues2D = new double[5][1];
+        double[][] balanceValues2D = new double[5][1];
+
+        for (int i = 0; i < 5; i++) {
+            incomeValues2D[i][0] = incomeValues[i];
+            expenseValues2D[i][0] = expenseValues[i];
+            balanceValues2D[i][0] = balanceValues[i];
+        }
+        lineChart.clear();
+        for (int i = 0; i < 5; i++) {
+            lineChart.addData(new ModelChart(months[i], new double[]{incomeValues2D[i][0], expenseValues2D[i][0], balanceValues2D[i][0]}));
+        }
+        
+        lineChart.start();
+        isPopulatingTable = false;
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
     }
-
 }
+
  
     
     
@@ -148,6 +215,8 @@ public class Form_1 extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
+
+        setForeground(new java.awt.Color(255, 255, 255));
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

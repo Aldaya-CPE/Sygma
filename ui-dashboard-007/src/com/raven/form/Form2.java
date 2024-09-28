@@ -74,6 +74,7 @@ public class Form2 extends javax.swing.JPanel {
        ad.setText(userId);
         ex.setText(userId);
          add = new Add(userId);
+         add.setVisible(false);
        this.add(add);
         panelRound2.setVisible(false);
         centerRenderer = new DefaultTableCellRenderer();
@@ -83,8 +84,6 @@ public class Form2 extends javax.swing.JPanel {
           saveBalance();
           
           
-         
-
             Timer timer = new Timer(500, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -649,7 +648,6 @@ private void loadBalance() {
         }
     });
         
-//         add.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -714,7 +712,7 @@ private void loadBalance() {
         if (search.getItemSize() > 0) {
             menu.show(txtSearch1, 0, txtSearch1.getHeight());
             search.clearSelected();
-            txtSearch1.getParent().setComponentZOrder(txtSearch1, 0); // Bring the search panel to the front
+            txtSearch1.getParent().setComponentZOrder(txtSearch1, 0); 
             txtSearch1.repaint();
         }
     }//GEN-LAST:event_txtSearch1MouseClicked
@@ -739,10 +737,9 @@ private void loadBalance() {
         if (search.getItemSize() > 0) {
             SwingUtilities.invokeLater(() -> {
                 if (txtSearch1.isVisible() && txtSearch1.isEnabled() && txtSearch1.getParent() != null) {
-                    //  * 2 top and bot border
                     menu.show(txtSearch1.getParent(), txtSearch1.getX(), txtSearch1.getY() + txtSearch1.getHeight());
                     menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
-                    menu.repaint(); // Repaint the menu to ensure it's visible
+                    menu.repaint(); 
                 } else {
                     System.out.println("txtSearch is not visible, enabled, or has no parent");
                 }

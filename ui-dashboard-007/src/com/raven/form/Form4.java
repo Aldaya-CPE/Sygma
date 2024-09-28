@@ -281,7 +281,6 @@ public class Form4 extends javax.swing.JPanel {
     for (int i = 1; i <= columnCount; i++) {
         columnNames[i - 1] = metaData.getColumnName(i);
     }
-
     DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
     while (rs.next()) {
@@ -289,7 +288,7 @@ public class Form4 extends javax.swing.JPanel {
 
         for (int i = 1; i <= columnCount; i++) {
             row[i - 1] = rs.getObject(i);
-            System.out.println(rs.getObject(i)); // Add this line
+            System.out.println(rs.getObject(i)); 
         }
 
         tableModel.addRow(row);

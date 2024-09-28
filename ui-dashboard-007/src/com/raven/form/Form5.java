@@ -23,10 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import com.raven.swing.DataSearch;
 import com.raven.swing.EventClick;
 import com.raven.swing.PanelSearch;
-/**
- *
- * @author Vea
- */
+
 public class Form5 extends javax.swing.JPanel {
     private JPopupMenu menu;
     private PanelSearch search;
@@ -331,7 +328,6 @@ public class Form5 extends javax.swing.JPanel {
             String text = txtSearch.getText().trim().toLowerCase();
             search.setData(search(text));
             if (search.getItemSize() > 0) {
-                //  * 2 top and bot border
                 menu.show(txtSearch, 0, txtSearch.getHeight());
                 menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
             } else {

@@ -23,6 +23,10 @@ public class ModelChart {
         this.values = values;
     }
 
+    public ModelChart(double[] values) {
+        this(null, values);
+    }
+
     public ModelChart() {
     }
 
@@ -30,10 +34,13 @@ public class ModelChart {
     private double values[];
 
     public double getMaxValues() {
-        double max = 0;
-        for (double v : values) {
-            if (v > max) {
-                max = v;
+        if (values == null || values.length == 0) {
+            return 0;
+        }
+        double max = values[0];
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] > max) {
+                max = values[i];
             }
         }
         return max;
