@@ -381,7 +381,7 @@ private static String generateUID(){
         try {
         String userName = susername.getText();
         char[] passWord = spassword.getPassword();
-        String gId = generateUID(); // generate a random user ID
+        String gId = generateUID(); 
 
         if (this.controller != null) {
              ModelUser newUser = new ModelUser(gId, userName, passWord);
@@ -389,7 +389,7 @@ private static String generateUID(){
             if (registered) {
                 JOptionPane.showMessageDialog(this, "Thank You!");
                 Main m = new Main();
-                UserSession.setCurrentUser(newUser); // Set the current user in UserSession
+                UserSession.setCurrentUser(newUser); 
                 m.MainID.setText(gId); 
                 m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                 m.setVisible(true); 
@@ -418,6 +418,7 @@ private static String generateUID(){
             Main m = new Main();
             m.MainID.setText("Admin"); 
             m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            m.idtext();
             m.setVisible(true);
             setVisible(false);
         } else {

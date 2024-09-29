@@ -68,14 +68,15 @@ public class Form2 extends javax.swing.JPanel {
         }
         setOpaque(false);
         ex.setVisible(false); 
+          ad.setVisible(false);
     jButton2.setVisible(false);
         jButton9.setVisible(false);
 
        ad.setText(userId);
         ex.setText(userId);
-         add = new Add(userId);
-         add.setVisible(false);
-       this.add(add);
+//         add = new Add(userId);
+//         add.setVisible(false);
+//       this.add(add);
         panelRound2.setVisible(false);
         centerRenderer = new DefaultTableCellRenderer();
 //        tableTextCenter();
@@ -378,7 +379,7 @@ private void loadBalance() {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-properties-100.png"))); // NOI18N
 
-        jLabel6.setText("Add Amount");
+        jLabel6.setText("Add Expense");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
 

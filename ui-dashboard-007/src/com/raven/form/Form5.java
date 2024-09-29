@@ -108,7 +108,6 @@ public class Form5 extends javax.swing.JPanel {
                 "Category", "Date ", "Amount"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(225, 80));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-category-100 (2).png"))); // NOI18N
@@ -122,7 +121,6 @@ public class Form5 extends javax.swing.JPanel {
         jLabel7.setText("Avaible Balance");
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
 
-        balance.setText("jLabel8");
         balance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
@@ -141,9 +139,9 @@ public class Form5 extends javax.swing.JPanel {
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(balance)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         panelBar1.setBackground(new java.awt.Color(255, 255, 255));

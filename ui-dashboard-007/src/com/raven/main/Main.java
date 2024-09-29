@@ -13,7 +13,7 @@ import com.raven.swing.DataSearch;
 import com.raven.swing.EventClick;
 import com.raven.swing.PanelSearch;
 import com.sun.jdi.connect.spi.Connection;
-import java.awt.CardLayout;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -35,7 +35,6 @@ public class Main extends javax.swing.JFrame {
      Connection MyCon;
     PreparedStatement ps;
     ResultSet rs;
-    private CardLayout cardLayout;
     private Form2 form2;
     private Form_1 form_1;
     private Form4 form4;
@@ -46,13 +45,15 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-       MainID.setVisible(false);
-         String userId = MainID.getText(); 
-          GlassPanePopup.install(this);
-                
-
-
-    
+//       MainID.setVisible(false);
+//         String userId = MainID.getText();
+         
+        String userId = "your_user_id";
+        MainID.setText(userId);   
+        showForm(new Form_1()); 
+        GlassPanePopup.install(this);
+   
+        
         setBackground(new Color(0, 0, 0, 0));
         
            EventMenu event = new EventMenu() {
@@ -60,39 +61,34 @@ public class Main extends javax.swing.JFrame {
             public void selected(int index) {
                 switch (index) {
                     case 0:
-                         if (form_1 == null) { 
-                            form_1 = new Form_1(); 
-                        }
+                        if (form_1 == null) { 
+                         form_1 = new Form_1(); 
+                         }
                         showForm(form_1);
-                        idtext(); 
-                        break;
+                         break;
                     case 1:
                          if (form2 == null) { 
                             form2 = new Form2(); 
                         }
                         showForm(form2);
-                        idtext(); 
                         break;
                      case 2:
                        if (form3 == null) { 
                             form3 = new Form3(); 
                         }
                         showForm(form3);
-                        idtext(); 
                         break;
                      case 3:
                         if (form4 == null) { 
                             form4 = new Form4(); 
                         }
                         showForm(form4);
-                        idtext(); 
                         break;
                      case 4:
                         if (form5 == null) { 
                             form5 = new Form5(); 
                         }
                         showForm(form5);
-                        idtext(); 
                         break;
                     case 5:
                         logout();
@@ -100,13 +96,15 @@ public class Main extends javax.swing.JFrame {
                     default:
                         break;
                 }
+                 idtext();
+
             }
-            public void onMenuSelected(EventListener listener) {
+            
+            public void onMenuSelected(EventListener listener) 
+            {
             }
         };
-        menu1.initMenu(event);
-        showForm(new Form_1()); 
-        idtext(); 
+         menu1.initMenu(event);
 
     }
     
@@ -133,20 +131,14 @@ public class Main extends javax.swing.JFrame {
     });
 }
     
-//    public void idtext() {
-////    String userId = MainID.getText(); 
-//
-////    SwingUtilities.invokeLater(() -> {
-////        form2.ex.setText(MainID.getText());
-////    });
-////}
-     private void switchToNextForm() {
-        cardLayout.next(body); 
-    }
+
+//     private void switchToNextForm() {
+//        cardLayout.next(body); 
+//    }
 
     private void showForm(Component com) {
-        body.removeAll();
-        body.add(com);
+       body.removeAll();
+        body.add(com, BorderLayout.CENTER);
         body.revalidate();
         body.repaint();
     }
@@ -155,16 +147,20 @@ public class Main extends javax.swing.JFrame {
         login loginWindow = new login();
         loginWindow.setVisible(true);
     }
-
+//    public void refreshComponents() {
+//    idtext();
+//}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        MainID = new javax.swing.JLabel();
         roundPanel1 = new com.raven.swing.RoundPanel();
         header2 = new com.raven.component.Header();
         menu1 = new com.raven.component.Menu();
         body = new javax.swing.JPanel();
-        MainID = new javax.swing.JLabel();
+
+        MainID.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -179,10 +175,7 @@ public class Main extends javax.swing.JFrame {
         body.setBackground(new java.awt.Color(204, 255, 255));
         body.setForeground(new java.awt.Color(204, 255, 204));
         body.setOpaque(false);
-        body.setLayout(new java.awt.CardLayout());
-
-        MainID.setText("jLabel1");
-        body.add(MainID, "card2");
+        body.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -199,13 +192,10 @@ public class Main extends javax.swing.JFrame {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
