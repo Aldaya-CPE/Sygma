@@ -135,7 +135,7 @@ public class Form_1 extends javax.swing.JPanel {
             } else if (month == Calendar.NOVEMBER) {
                 monthName = "November";
             } else {
-                continue; // skip other months
+                continue; 
             }
             int monthIndex = -1;
             for (int i = 0; i < months.length; i++) {

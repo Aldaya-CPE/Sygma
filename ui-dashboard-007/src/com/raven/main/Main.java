@@ -45,9 +45,6 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-//       MainID.setVisible(false);
-//         String userId = MainID.getText();
-         
         String userId = "your_user_id";
         MainID.setText(userId);   
         showForm(new Form_1()); 
@@ -132,24 +129,21 @@ public class Main extends javax.swing.JFrame {
 }
     
 
-//     private void switchToNextForm() {
-//        cardLayout.next(body); 
-//    }
+
 
     private void showForm(Component com) {
        body.removeAll();
-        body.add(com, BorderLayout.CENTER);
-        body.revalidate();
-        body.repaint();
+       body.add(com);
+       repaint();
+       revalidate();
+     
     }
     private void logout() {
         dispose(); 
         login loginWindow = new login();
         loginWindow.setVisible(true);
     }
-//    public void refreshComponents() {
-//    idtext();
-//}
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -214,43 +208,43 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
       
-    private List<search.DataSearch1> search(String search) {
-    List<search.DataSearch1> list = new ArrayList<>();
-    try {
-       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
-        ps = Database.getInstance().getConnection().prepareStatement(sql); 
-        ps.setString(1, MainID.getText());
-        ps.setString(2, "%" + search + "%");
-        
-        ResultSet r = ps.executeQuery(); 
-        while (r.next()) {
-            String text = r.getString(1);
-            boolean story = false;
-            list.add(new search.DataSearch1(text, story));
-        }
-        r.close();
-        ps.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return list;
-}
-    
+//    private List<search.DataSearch1> search(String search) {
+//    List<search.DataSearch1> list = new ArrayList<>();
+//    try {
+//       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
+//        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+//        ps.setString(1, MainID.getText());
+//        ps.setString(2, "%" + search + "%");
+//        
+//        ResultSet r = ps.executeQuery(); 
+//        while (r.next()) {
+//            String text = r.getString(1);
+//            boolean story = false;
+//            list.add(new search.DataSearch1(text, story));
+//        }
+//        r.close();
+//        ps.close();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//    return list;
+//}
+//    
 
-    private void removeHistory(String text) {
-    try {
-       String sql ="DELETE FROM expenses WHERE category = ? LIMIT 1";
-        ps = Database.getInstance().getConnection().prepareStatement(sql); 
-        ps.setString(1, text);
-        ps.execute();
-        ps.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-     private void addStory(String text) {
-   
-}
+//    private void removeHistory(String text) {
+//    try {
+//       String sql ="DELETE FROM expenses WHERE category = ? LIMIT 1";
+//        ps = Database.getInstance().getConnection().prepareStatement(sql); 
+//        ps.setString(1, text);
+//        ps.execute();
+//        ps.close();
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//}
+//     private void addStory(String text) {
+//   
+//}
      
      
     public static void main(String args[]) {
