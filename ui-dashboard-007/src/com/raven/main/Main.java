@@ -47,7 +47,12 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         String userId = "your_user_id";
         MainID.setText(userId);   
-        showForm(new Form_1()); 
+         form_1 = new Form_1();
+         form2 = new Form2();
+         form3 = new Form3();
+         form4 = new Form4();
+         form5 = new Form5();
+         
         GlassPanePopup.install(this);
    
         
@@ -58,33 +63,18 @@ public class Main extends javax.swing.JFrame {
             public void selected(int index) {
                 switch (index) {
                     case 0:
-                        if (form_1 == null) { 
-                         form_1 = new Form_1(); 
-                         }
                         showForm(form_1);
                          break;
                     case 1:
-                         if (form2 == null) { 
-                            form2 = new Form2(); 
-                        }
                         showForm(form2);
                         break;
                      case 2:
-                       if (form3 == null) { 
-                            form3 = new Form3(); 
-                        }
                         showForm(form3);
                         break;
                      case 3:
-                        if (form4 == null) { 
-                            form4 = new Form4(); 
-                        }
                         showForm(form4);
                         break;
                      case 4:
-                        if (form5 == null) { 
-                            form5 = new Form5(); 
-                        }
                         showForm(form5);
                         break;
                     case 5:
@@ -101,31 +91,49 @@ public class Main extends javax.swing.JFrame {
             {
             }
         };
+            showForm(form_1); 
+         idtext();
          menu1.initMenu(event);
-
+         
     }
     
    public void idtext() {
     String userId = MainID.getText(); 
-    SwingUtilities.invokeLater(() -> {
-        if (form_1 != null) {
-            form_1.pn.setText(userId); 
-        }
-        if (form2 != null) {
-            form2.ex.setText(userId);
-            form2.ad.setText(userId); 
-        }
-        if (form3 != null) {
-            form3.cat.setText(userId); 
-        }
-         if (form4 != null) {
-            form4.ed.setText(userId); 
-        }
-          if (form5 != null) {
-            form5.ec.setText(userId); 
-        }
-      
-    });
+SwingUtilities.invokeLater(() -> {
+         form_1.pn.removeAll();
+         form_1.pn.repaint();
+         form_1.pn.revalidate();
+         form_1.pn.setText(MainID.getText());         
+        });
+SwingUtilities.invokeLater(() -> {
+         form2.ex.removeAll();
+         form2.ex.repaint();
+         form2.ex.revalidate();
+         form2.ex.setText(MainID.getText());     
+         
+         form2.ad.removeAll();
+         form2.ad.repaint();
+         form2.ad.revalidate();
+         form2.ad.setText(MainID.getText());
+        });
+SwingUtilities.invokeLater(() -> {
+         form3.cat.removeAll();
+         form3.cat.repaint();
+         form3.cat.revalidate();
+         form3.cat.setText(MainID.getText());         
+        });
+SwingUtilities.invokeLater(() -> {
+         form4.ed.removeAll();
+         form4.ed.repaint();
+         form4.ed.revalidate();
+         form4.ed.setText(MainID.getText());         
+        });
+SwingUtilities.invokeLater(() -> {
+         form5.ec.removeAll();
+         form5.ec.repaint();
+         form5.ec.revalidate();
+         form5.ec.setText(MainID.getText());         
+        });
 }
     
 
