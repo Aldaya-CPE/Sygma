@@ -122,25 +122,7 @@ public class Form2 extends javax.swing.JPanel {
              
     }
   
-   
-//      private void tableTextCenter() {
-//    for (int i = 0; i < jTable1.getColumnCount(); i++) {
-//        jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-//            @Override
-//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//                Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//                ((JLabel) rendererComponent).setHorizontalAlignment(SwingConstants.CENTER); 
-//                if (isSelected) {
-//                    rendererComponent.setForeground(Color.WHITE); 
-//                } else {
-//                    rendererComponent.setForeground(table.getForeground());
-//                }
-//                return rendererComponent;
-//            }
-//        });
-//    }
-//    }
-      
+  
       private void saveBalance() {
     try {
         String sql = "UPDATE expenses SET balance = ? WHERE userId = ?";
@@ -199,6 +181,8 @@ private void loadBalance() {
     }
     saveBalance();
 }
+    
+    
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -652,7 +636,26 @@ private void loadBalance() {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+       int selectedRow = jTable1.getSelectedRow();
+        String Category = jTable1.getValueAt(selectedRow, 0).toString();
+
+        try {
+              String sql = "DELETE FROM expenses WHERE category = ?";
+             ps = Database.getInstance().getInstance().getConnection().prepareStatement(sql);
+             ps.setString(1, Category);
+             int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.removeRow(selectedRow);
+                jTable1.setModel(model);
+                JOptionPane.showMessageDialog(this, "Success");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

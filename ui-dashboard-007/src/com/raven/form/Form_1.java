@@ -29,8 +29,10 @@ public class Form_1 extends javax.swing.JPanel {
     private PanelSearch search;
     private Timer timer;
     private String userId = "yourUserId";
-    private boolean isPopulatingTable = false;
    
+    private double[][] oldIncomeValues;
+    private double[][] oldExpenseValues;
+    private double[][] oldBalanceValues;
     public Form_1() {
         initComponents();
          try {
@@ -45,44 +47,20 @@ public class Form_1 extends javax.swing.JPanel {
          pn.setVisible(false); 
         centerRenderer = new DefaultTableCellRenderer();
 //        tableTextCenter();
-        populateTable();
         init();
-        
-          Timer timer = new Timer(500, new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             populateTable();
-         }
-     });
-     timer.setRepeats(false);
-     timer.start();
+         timer = new Timer(3000, (e) -> {
+            populateTable();
+        });
+        timer.start();
+
        
     }
 
     private void init() {
-//        chart.addLegend("Income", new Color(0, 102, 120), new Color(34, 124, 124));
-//        chart.addLegend("Expense", new Color(90, 179, 220), new Color(135, 206, 250));
-//        chart.addLegend("Profit", new Color(127,201,170), new Color(144, 228, 193));
-//        chart.addLegend("Cost", new Color(183, 224, 166), new Color(206,252,186));
-//        chart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-//        chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-//        chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-//        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-//        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-//        chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
-//        chart.start();
         lineChart.addLegend("Income", new Color(0, 102, 120), new Color(0, 102, 120));
         lineChart.addLegend("Expense", new Color(90, 179, 220), new Color(90, 179, 220));
         lineChart.addLegend("Balance", new Color(127,201,170), new Color(127,201,170));
-//        lineChart.addLegend("Cost", new Color(183, 224, 166), new Color(183, 224, 166));
-//        lineChart.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-//        
-//        lineChart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-//        lineChart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-//        lineChart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-//        lineChart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-//        lineChart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
-//        lineChart.start();
+
         progress1.start();
         progress2.start();
         progress3.start();
@@ -95,12 +73,6 @@ public class Form_1 extends javax.swing.JPanel {
         }
     }
     private void populateTable() {
-     if (isPopulatingTable) {
-            return;
-        }
-
-        isPopulatingTable = true;
-     
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
     double totalIncome = 0;
@@ -179,20 +151,38 @@ public class Form_1 extends javax.swing.JPanel {
             expenseValues2D[i][0] = expenseValues[i];
             balanceValues2D[i][0] = balanceValues[i];
         }
+       if (hasDataChanged(incomeValues2D, expenseValues2D, balanceValues2D)) {
         lineChart.clear();
         for (int i = 0; i < 5; i++) {
             lineChart.addData(new ModelChart(months[i], new double[]{incomeValues2D[i][0], expenseValues2D[i][0], balanceValues2D[i][0]}));
         }
-        
         lineChart.start();
-        isPopulatingTable = false;
+    }
+       oldIncomeValues = incomeValues2D;
+    oldExpenseValues = expenseValues2D;
+    oldBalanceValues = balanceValues2D;
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
     }
 }
-
+    private boolean hasDataChanged(double[][] newIncomeValues, double[][] newExpenseValues, double[][] newBalanceValues) {
+    if (oldIncomeValues == null || oldExpenseValues == null || oldBalanceValues == null) {
+        oldIncomeValues = newIncomeValues;
+        oldExpenseValues = newExpenseValues;
+        oldBalanceValues = newBalanceValues;
+        return true;
+    }
+    for (int i = 0; i < 5; i++) {
+        if (newIncomeValues[i][0] != oldIncomeValues[i][0] ||
+            newExpenseValues[i][0] != oldExpenseValues[i][0] ||
+            newBalanceValues[i][0] != oldBalanceValues[i][0]) {
+            return true; 
+        }
+    }
+    return false; 
+}
  
-    
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

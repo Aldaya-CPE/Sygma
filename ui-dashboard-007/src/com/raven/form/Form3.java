@@ -38,7 +38,6 @@ public class Form3 extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-//          tableTextCenter(); 
           cat.setText(userId);
           cat.setVisible(false);
            populateTable();
@@ -79,26 +78,6 @@ public class Form3 extends javax.swing.JPanel {
     }
      
 
-//    private void tableTextCenter() {
-//        for (int i = 0; i < jTable1.getColumnCount(); i++) {
-//            jTable1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
-//                @Override
-//                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//                    JLabel rendererComponent = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//                    rendererComponent.setHorizontalAlignment(SwingConstants.CENTER); // Center the cell text
-//                    rendererComponent.setBackground(Color.WHITE); // Set the cell background to white
-//                    if (isSelected) {
-//                        rendererComponent.setForeground(Color.WHITE); // Set text color to white when selected
-//                    } else {
-//                        rendererComponent.setForeground(Color.BLACK); // Set default text color to black
-//                    }
-//                    return rendererComponent;
-//                }
-//            });
-//        }
-//    }
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -212,7 +191,26 @@ public class Form3 extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+     int selectedRow = jTable1.getSelectedRow();
+        String Category = jTable1.getValueAt(selectedRow, 0).toString();
+
+        try {
+              String sql = "DELETE FROM expenses WHERE category = ?";
+             ps = Database.getInstance().getInstance().getConnection().prepareStatement(sql);
+             ps.setString(1, Category);
+             int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.removeRow(selectedRow);
+                jTable1.setModel(model);
+                JOptionPane.showMessageDialog(this, "Success");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
     }//GEN-LAST:event_jButton10ActionPerformed
 
 
