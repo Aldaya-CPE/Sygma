@@ -42,14 +42,10 @@ public class Form3 extends javax.swing.JPanel {
           cat.setVisible(false);
            populateTable();
            
-            Timer timer = new Timer(500, new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             populateTable();
-         }
-     });
-     timer.setRepeats(false);
-     timer.start();
+            timer = new Timer(3000, (e) -> {
+            populateTable();
+        });
+        timer.start();
         
     }
             

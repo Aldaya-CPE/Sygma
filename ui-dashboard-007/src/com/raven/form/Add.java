@@ -96,11 +96,12 @@ public class Add extends javax.swing.JPanel {
         jButton11 = new javax.swing.JButton();
         se = new javax.swing.JLabel();
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Category");
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
 
         txtSearch.setBackground(new java.awt.Color(239, 239, 239));
         txtSearch.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -118,21 +119,21 @@ public class Add extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Amount");
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
 
         amount.setBackground(new java.awt.Color(239, 239, 239));
         amount.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jLabel1.setText("Date");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Date");
 
         date.setBackground(new java.awt.Color(239, 239, 239));
 
+        jLabel4.setText("Type");
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Type");
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Expense", "Badget" }));
         type.addActionListener(new java.awt.event.ActionListener() {
@@ -141,10 +142,10 @@ public class Add extends javax.swing.JPanel {
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(253, 253, 253));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/add1 (2).png"))); // NOI18N
+        jButton11.setBackground(new java.awt.Color(253, 253, 253));
         jButton11.setBorder(null);
+        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton11.setIconTextGap(5);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +153,8 @@ public class Add extends javax.swing.JPanel {
                 jButton11ActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("extra");
 
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -164,6 +167,7 @@ public class Add extends javax.swing.JPanel {
         jLayeredPane1.setLayer(jButton11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(se, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(datePicker1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -194,13 +198,19 @@ public class Add extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(se)
                         .addGap(34, 34, 34))))
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabel5)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(se)
-                .addGap(93, 93, 93)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,30 +249,43 @@ public class Add extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
-//        if (search.getItemSize() > 0) {
-//            menu.show(txtSearch, 0, txtSearch.getHeight());
-//            search.clearSelected();
-//        }
-      if (search.getItemSize() > 0) {
-        menu.show(txtSearch, 0, txtSearch.getHeight());
-        search.clearSelected();
-        txtSearch.getParent().setComponentZOrder(txtSearch, 0); // Bring the search panel to the front
-        txtSearch.repaint();
-    }
-    }//GEN-LAST:event_txtSearchMouseClicked
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        //        try {
+            //            String selectedType = type.getSelectedItem().toString();
+            //            double amountValue = Double.parseDouble(amount.getText());
+            //
+            //            if (selectedType.equals("Badget")) {
+                //                totalBalance += amountValue;
+                //            } else if (selectedType.equals("Expense")) {
+                //                totalBalance -= amountValue;
+                //            }
+            //            balance.setText("Balance: " + totalBalance);
+            //            String sql = "INSERT INTO expenses (userId, category, date, amount, Type, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+            //            ps = Database.getInstance().getConnection().prepareStatement(sql);
+            //            ps.setString(1, ex.getText());
+            //            ps.setString(2, txtSearch.getText());
+            //            Date selectedDate = date.getDate();
+            //            if (selectedDate != null) {
+                //                ps.setDate(3, new java.sql.Date(selectedDate.getTime()));
+                //            } else {
+                //                ps.setNull(3, java.sql.Types.DATE);
+                //            }
+            //            ps.setDouble(4, amountValue);
+            //            ps.setString(5, selectedType);
+            //            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            //            ps.setTimestamp(6, timestamp);
+            //            ps.execute();
+            //            populateTable();
+            //        } catch (SQLException e) {
+            //            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+            //        } catch (NumberFormatException e) {
+            //            JOptionPane.showMessageDialog(this, "Invalid amount entered. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            //        }
+    }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            search.keyUp();
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            search.keyDown();
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String text = search.getSelectedText();
-            txtSearch.setText(text);
-            menu.setVisible(false);
-        }
-    }//GEN-LAST:event_txtSearchKeyPressed
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         if (evt.getKeyCode() != KeyEvent.VK_UP && evt.getKeyCode() != KeyEvent.VK_DOWN && evt.getKeyCode() != KeyEvent.VK_ENTER) {
@@ -278,43 +301,30 @@ public class Add extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeActionPerformed
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            search.keyUp();
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            search.keyDown();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String text = search.getSelectedText();
+            txtSearch.setText(text);
+            menu.setVisible(false);
+        }
+    }//GEN-LAST:event_txtSearchKeyPressed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-//        try {
-//            String selectedType = type.getSelectedItem().toString();
-//            double amountValue = Double.parseDouble(amount.getText());
-//
-//            if (selectedType.equals("Badget")) {
-//                totalBalance += amountValue;
-//            } else if (selectedType.equals("Expense")) {
-//                totalBalance -= amountValue;
-//            }
-//            balance.setText("Balance: " + totalBalance);
-//            String sql = "INSERT INTO expenses (userId, category, date, amount, Type, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
-//            ps = Database.getInstance().getConnection().prepareStatement(sql);
-//            ps.setString(1, ex.getText());
-//            ps.setString(2, txtSearch.getText());
-//            Date selectedDate = date.getDate();
-//            if (selectedDate != null) {
-//                ps.setDate(3, new java.sql.Date(selectedDate.getTime()));
-//            } else {
-//                ps.setNull(3, java.sql.Types.DATE);
-//            }
-//            ps.setDouble(4, amountValue);
-//            ps.setString(5, selectedType);
-//            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-//            ps.setTimestamp(6, timestamp);
-//            ps.execute();
-//            populateTable();
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Invalid amount entered. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
+        //        if (search.getItemSize() > 0) {
+            //            menu.show(txtSearch, 0, txtSearch.getHeight());
+            //            search.clearSelected();
+            //        }
+        if (search.getItemSize() > 0) {
+            menu.show(txtSearch, 0, txtSearch.getHeight());
+            search.clearSelected();
+            txtSearch.getParent().setComponentZOrder(txtSearch, 0); // Bring the search panel to the front
+            txtSearch.repaint();
+        }
+    }//GEN-LAST:event_txtSearchMouseClicked
  private List<DataSearch> search(String search) {
     List<DataSearch> list = new ArrayList<>();
     try {
@@ -364,6 +374,7 @@ public class Add extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     public javax.swing.JLabel se;
     private com.raven.swing.search txtSearch;

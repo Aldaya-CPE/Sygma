@@ -434,6 +434,7 @@ private static String generateUID(){
 
                 ModelUser result = controller.Login(login);
                 if (result != null) {
+                    UserSession.setCurrentUser(result);
                     Preferences prefs = Preferences.userNodeForPackage(login.class);
                     prefs.putBoolean("isLoggedIn", true);
                     

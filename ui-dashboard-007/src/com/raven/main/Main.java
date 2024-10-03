@@ -8,6 +8,7 @@ import com.raven.form.Form3;
 import com.raven.form.Form2;
 import com.raven.form.Form4;
 import com.raven.form.Form_1;
+import com.raven.form.adding;
 import com.raven.form.Add;
 import com.raven.swing.DataSearch;
 import com.raven.swing.EventClick;
@@ -30,7 +31,7 @@ import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
 
 public class Main extends javax.swing.JFrame {
-      private JPopupMenu menu;
+    private JPopupMenu menu;
     private PanelSearch search;
      Connection MyCon;
     PreparedStatement ps;
@@ -40,7 +41,7 @@ public class Main extends javax.swing.JFrame {
     private Form4 form4;
     private Form5 form5;
     private Form3 form3;
-    private Add add;
+    private adding Adding;
 
 
     public Main() {
@@ -52,7 +53,7 @@ public class Main extends javax.swing.JFrame {
          form3 = new Form3();
          form4 = new Form4();
          form5 = new Form5();
-         
+        Adding = new adding();         
         GlassPanePopup.install(this);
    
         
@@ -105,6 +106,7 @@ SwingUtilities.invokeLater(() -> {
          form_1.pn.revalidate();
          form_1.pn.setText(MainID.getText());         
         });
+
 SwingUtilities.invokeLater(() -> {
          form2.ex.removeAll();
          form2.ex.repaint();
@@ -115,6 +117,14 @@ SwingUtilities.invokeLater(() -> {
          form2.ad.repaint();
          form2.ad.revalidate();
          form2.ad.setText(MainID.getText());
+        });
+SwingUtilities.invokeLater(() -> {
+         form2.ad.setText(MainID.getText());
+         Adding.userId = MainID.getText();
+         Adding.der.removeAll();
+         Adding.der.repaint();
+         Adding.der.revalidate();
+         Adding.der.setText(MainID.getText());         
         });
 SwingUtilities.invokeLater(() -> {
          form3.cat.removeAll();
@@ -134,6 +144,7 @@ SwingUtilities.invokeLater(() -> {
          form5.ec.revalidate();
          form5.ec.setText(MainID.getText());         
         });
+
 }
     
 
@@ -215,44 +226,7 @@ SwingUtilities.invokeLater(() -> {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-      
-//    private List<search.DataSearch1> search(String search) {
-//    List<search.DataSearch1> list = new ArrayList<>();
-//    try {
-//       String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
-//        ps = Database.getInstance().getConnection().prepareStatement(sql); 
-//        ps.setString(1, MainID.getText());
-//        ps.setString(2, "%" + search + "%");
-//        
-//        ResultSet r = ps.executeQuery(); 
-//        while (r.next()) {
-//            String text = r.getString(1);
-//            boolean story = false;
-//            list.add(new search.DataSearch1(text, story));
-//        }
-//        r.close();
-//        ps.close();
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    }
-//    return list;
-//}
-//    
 
-//    private void removeHistory(String text) {
-//    try {
-//       String sql ="DELETE FROM expenses WHERE category = ? LIMIT 1";
-//        ps = Database.getInstance().getConnection().prepareStatement(sql); 
-//        ps.setString(1, text);
-//        ps.execute();
-//        ps.close();
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    }
-//}
-//     private void addStory(String text) {
-//   
-//}
      
      
     public static void main(String args[]) {

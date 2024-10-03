@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Sygma.Database.Database;
+import Sygma.Model.ModelUser;
 import com.raven.swing.DataSearch;
 import com.raven.swing.EventClick;
 import com.raven.swing.PanelSearch;
@@ -37,6 +38,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import raven.glasspanepopup.GlassPanePopup;
+import com.raven.form.adding;
+import com.raven.form.Add;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 
 public class Form2 extends javax.swing.JPanel {
@@ -48,12 +54,13 @@ public class Form2 extends javax.swing.JPanel {
     private userController controller;
     private double totalBalance = 0.0;
     private JPopupMenu menu;
+    
     private PanelSearch search;
     private String userId = "yourUserId";
-    private Add add;
+    public Add add;
     private GlassPanePopup glassPanePopup;
-
-
+     private adding ding;
+     private ArrayList<String> ids = new ArrayList<>();
 
   
     
@@ -84,16 +91,12 @@ public class Form2 extends javax.swing.JPanel {
           loadBalance();
           saveBalance();
           
-          
-            Timer timer = new Timer(500, new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent e) {
-             populateTable();
-         }
-     });
-     timer.setRepeats(false);
-     timer.start();
-        
+           timer = new Timer(5000, (e) -> {
+            populateTable();
+        });
+        timer.start();
+ 
+    
         menu = new JPopupMenu();
         search = new PanelSearch();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -121,6 +124,7 @@ public class Form2 extends javax.swing.JPanel {
         });
              
     }
+    
   
   
       private void saveBalance() {
@@ -154,20 +158,23 @@ private void loadBalance() {
    
 
 
-    private void populateTable() {
+  private void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
     totalBalance = 0.0;  
+    ids.clear();
     try {
-        String sql = "SELECT category, amount, date, type FROM expenses WHERE userId = ?";
+        String sql = "SELECT id, category, amount, date, type FROM expenses WHERE userId = ?";
         ps = Database.getInstance().getConnection().prepareStatement(sql);
         ps.setString(1, ad.getText());
         rs = ps.executeQuery();
         while (rs.next()) {
+            String id = rs.getString("id");
             String category = rs.getString("category");
             double amount = rs.getDouble("amount");
             Date date = rs.getDate("date");
             String type = rs.getString("type");
+            ids.add(id);
             if (type.equalsIgnoreCase("Badget")) {
                 totalBalance += amount;
             } else if (type.equalsIgnoreCase("expense")) {
@@ -199,6 +206,7 @@ private void loadBalance() {
         date1 = new com.github.lgooddatepicker.components.DatePicker();
         jButton12 = new javax.swing.JButton();
         ex = new javax.swing.JLabel();
+        combo = new com.raven.swing.MyTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -225,8 +233,7 @@ private void loadBalance() {
         pop.setBackground(new java.awt.Color(255, 255, 255));
         pop.setInheritsPopupMenu(true);
 
-        txtSearch1.setBackground(new java.awt.Color(239, 239, 239));
-        txtSearch1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtSearch1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         txtSearch1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtSearch1MouseClicked(evt);
@@ -252,8 +259,7 @@ private void loadBalance() {
         jLabel9.setText("Amount");
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
 
-        amount1.setBackground(new java.awt.Color(239, 239, 239));
-        amount1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        amount1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel10.setText("Date");
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -284,31 +290,35 @@ private void loadBalance() {
 
         ex.setText("jLabel12");
 
+        combo.setText("myTextField1");
+
         javax.swing.GroupLayout popLayout = new javax.swing.GroupLayout(pop);
         pop.setLayout(popLayout);
         popLayout.setHorizontalGroup(
             popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(popLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(amount1)
-                    .addComponent(txtSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addGroup(popLayout.createSequentialGroup()
-                        .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(type1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ex)
                 .addGap(79, 79, 79))
+            .addGroup(popLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(amount1)
+                        .addComponent(txtSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel8)
+                        .addGroup(popLayout.createSequentialGroup()
+                            .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel11)
+                                .addComponent(type1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         popLayout.setVerticalGroup(
             popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +343,9 @@ private void loadBalance() {
                     .addGroup(popLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(type1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(75, 75, 75)
+                .addGap(42, 42, 42)
+                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addComponent(jButton12)
                 .addGap(106, 106, 106))
         );
@@ -636,26 +648,28 @@ private void loadBalance() {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-       int selectedRow = jTable1.getSelectedRow();
-        String Category = jTable1.getValueAt(selectedRow, 0).toString();
+        int selectedRow = jTable1.getSelectedRow();
+    String id = ids.get(selectedRow);
 
-        try {
-              String sql = "DELETE FROM expenses WHERE category = ?";
-             ps = Database.getInstance().getInstance().getConnection().prepareStatement(sql);
-             ps.setString(1, Category);
-             int rowsAffected = ps.executeUpdate();
+    try {
+        String sql = "DELETE FROM expenses WHERE id = ?";
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, id);
+        int rowsAffected = ps.executeUpdate();
 
-            if (rowsAffected > 0) {
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.removeRow(selectedRow);
-                jTable1.setModel(model);
-                JOptionPane.showMessageDialog(this, "Success");
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        if (rowsAffected > 0) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.removeRow(selectedRow);
+            jTable1.setModel(model);
+            ids.remove(selectedRow);
+            populateTable();
+            JOptionPane.showMessageDialog(this, "Success");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -707,7 +721,8 @@ private void loadBalance() {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
-        GlassPanePopup.showPopup(pop);
+//        GlassPanePopup.showPopup(pop);
+//            pop.setVisible(true);
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -794,7 +809,13 @@ private void loadBalance() {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-       GlassPanePopup.showPopup(pop);
+//       GlassPanePopup.showPopup(pop);
+//        adding ad = new adding();
+//        ad.setVisible(true);
+             if (ding == null) {
+        ding = new adding(); 
+    }
+    ding.setVisible(true); 
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void txtSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch1ActionPerformed
@@ -876,6 +897,7 @@ private void loadBalance() {
     private javax.swing.JTextField amount;
     private javax.swing.JTextField amount1;
     private javax.swing.JLabel balance;
+    private com.raven.swing.MyTextField combo;
     private com.toedter.calendar.JDateChooser date;
     private com.github.lgooddatepicker.components.DatePicker date1;
     public javax.swing.JLabel ex;

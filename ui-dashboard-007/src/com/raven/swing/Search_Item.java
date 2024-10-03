@@ -67,6 +67,8 @@ public class Search_Item extends javax.swing.JPanel {
         lbRemove = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
 
+        setLayout(new java.awt.BorderLayout());
+
         lbText.setText("jLabel1");
         lbText.setMaximumSize(new java.awt.Dimension(200, 16));
         lbText.setMinimumSize(new java.awt.Dimension(200, 16));
@@ -76,31 +78,21 @@ public class Search_Item extends javax.swing.JPanel {
                 lbTextMouseClicked(evt);
             }
         });
+        add(lbText, java.awt.BorderLayout.CENTER);
 
         lbRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbRemoveMouseClicked(evt);
             }
         });
+        add(lbRemove, java.awt.BorderLayout.PAGE_START);
 
         lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbIconMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbText, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbText, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lbRemove)
-        );
+        add(lbIcon, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRemoveMouseClicked

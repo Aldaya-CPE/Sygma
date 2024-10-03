@@ -48,7 +48,7 @@ public class Form_1 extends javax.swing.JPanel {
         centerRenderer = new DefaultTableCellRenderer();
 //        tableTextCenter();
         init();
-         timer = new Timer(3000, (e) -> {
+         timer = new Timer(500, (e) -> {
             populateTable();
         });
         timer.start();
@@ -57,7 +57,7 @@ public class Form_1 extends javax.swing.JPanel {
     }
 
     private void init() {
-        lineChart.addLegend("Income", new Color(0, 102, 120), new Color(0, 102, 120));
+        lineChart.addLegend("Badget", new Color(0, 102, 120), new Color(0, 102, 120));
         lineChart.addLegend("Expense", new Color(90, 179, 220), new Color(90, 179, 220));
         lineChart.addLegend("Balance", new Color(127,201,170), new Color(127,201,170));
 
@@ -117,7 +117,7 @@ public class Form_1 extends javax.swing.JPanel {
                 }
             }
             if (monthIndex != -1) {
-                if (type.equals("Income")) {
+                if (type.equals("Badget")) {
                     totalIncome += amount;
                     incomeValues[monthIndex] += amount;
                 } else {
@@ -134,7 +134,7 @@ public class Form_1 extends javax.swing.JPanel {
         progress1.setValue((int) incomePercentage);
         progress2.setValue((int) expensesPercentage);
         progress3.setValue((int) balancePercentage);
-        jLabel1.setText("Total Income: " + totalIncome);
+        jLabel1.setText("Total Badget: " + totalIncome);
         jLabel3.setText("Total Expenses: " + totalExpenses);
         jLabel4.setText("Total Balance: " + totalBalance);
         
@@ -147,6 +147,7 @@ public class Form_1 extends javax.swing.JPanel {
         double[][] balanceValues2D = new double[5][1];
 
         for (int i = 0; i < 5; i++) {
+            
             incomeValues2D[i][0] = incomeValues[i];
             expenseValues2D[i][0] = expenseValues[i];
             balanceValues2D[i][0] = balanceValues[i];
@@ -154,17 +155,21 @@ public class Form_1 extends javax.swing.JPanel {
        if (hasDataChanged(incomeValues2D, expenseValues2D, balanceValues2D)) {
         lineChart.clear();
         for (int i = 0; i < 5; i++) {
+            double incomeValue = incomeValues2D[i][0] < 0 ? 0 : incomeValues2D[i][0];
+            double expenseValue = expenseValues2D[i][0] < 0 ? 0 : expenseValues2D[i][0];
+            double balanceValue = balanceValues2D[i][0] < 0 ? 0 : balanceValues2D[i][0];
             lineChart.addData(new ModelChart(months[i], new double[]{incomeValues2D[i][0], expenseValues2D[i][0], balanceValues2D[i][0]}));
         }
         lineChart.start();
     }
-       oldIncomeValues = incomeValues2D;
-    oldExpenseValues = expenseValues2D;
-    oldBalanceValues = balanceValues2D;
+        oldIncomeValues = incomeValues2D;
+        oldExpenseValues = expenseValues2D;
+        oldBalanceValues = balanceValues2D;
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
     }
 }
+    
     private boolean hasDataChanged(double[][] newIncomeValues, double[][] newExpenseValues, double[][] newBalanceValues) {
     if (oldIncomeValues == null || oldExpenseValues == null || oldBalanceValues == null) {
         oldIncomeValues = newIncomeValues;

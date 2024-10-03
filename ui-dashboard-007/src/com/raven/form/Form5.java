@@ -172,11 +172,11 @@ public class Form5 extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setText("To:");
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("From:");
 
+        jLabel10.setText("Catefory:");
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("From:");
 
         javax.swing.GroupLayout panelBar1Layout = new javax.swing.GroupLayout(panelBar1);
         panelBar1.setLayout(panelBar1Layout);
@@ -191,8 +191,8 @@ public class Form5 extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel10)
                 .addGap(3, 3, 3)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
