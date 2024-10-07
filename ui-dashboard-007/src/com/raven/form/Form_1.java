@@ -17,7 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
+import java.util.TimerTask;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +38,7 @@ public class Form_1 extends javax.swing.JPanel {
     private double[][] oldBalanceValues;
     public Form_1() {
         initComponents();
+        
          try {
             Database.getInstance().ConnectToDatabase();
         } catch (SQLException ex) {
@@ -52,8 +56,7 @@ public class Form_1 extends javax.swing.JPanel {
             populateTable();
         });
         timer.start();
-
-       
+      
     }
 
     private void init() {
@@ -65,6 +68,8 @@ public class Form_1 extends javax.swing.JPanel {
         progress2.start();
         progress3.start();
     }
+    
+    
     
     private void tableTextCenter() {
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -165,6 +170,7 @@ public class Form_1 extends javax.swing.JPanel {
         oldIncomeValues = incomeValues2D;
         oldExpenseValues = expenseValues2D;
         oldBalanceValues = balanceValues2D;
+      
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage());
     }

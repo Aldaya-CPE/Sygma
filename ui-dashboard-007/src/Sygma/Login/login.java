@@ -102,7 +102,6 @@ private static String generateUID(){
         imageAvatar2 = new com.raven.swing.ImageAvatar();
         changeform = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         panelBar3 = new Sygma.Component.PanelBar();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -110,16 +109,19 @@ private static String generateUID(){
         gate = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        imageAvatar3 = new com.raven.swing.ImageAvatar();
+        jLabel2 = new javax.swing.JLabel();
+        imageAvatar5 = new com.raven.swing.ImageAvatar();
+        imageAvatar6 = new com.raven.swing.ImageAvatar();
         signup = new javax.swing.JPanel();
         s = new javax.swing.JLabel();
-        f = new Sygma.Component.PanelBar();
-        susername = new javax.swing.JTextField();
-        panelBar5 = new Sygma.Component.PanelBar();
-        d = new Sygma.Component.PanelBar();
-        spassword = new javax.swing.JPasswordField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         genId = new javax.swing.JLabel();
+        spassword = new javax.swing.JPasswordField();
+        susername = new javax.swing.JTextField();
+        imageAvatar1 = new com.raven.swing.ImageAvatar();
+        imageAvatar4 = new com.raven.swing.ImageAvatar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -146,7 +148,7 @@ private static String generateUID(){
         jLabel6.setText("Made by TEAM");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 120, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/w2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/blue.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 460));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -182,9 +184,6 @@ private static String generateUID(){
         login.setBackground(new java.awt.Color(255, 255, 255));
         login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-sensor-50.png"))); // NOI18N
-        login.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
-
         panelBar3.setBackground(new java.awt.Color(150, 233, 198));
 
         jButton3.setBackground(new java.awt.Color(150, 233, 198));
@@ -192,7 +191,6 @@ private static String generateUID(){
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sign-up");
         jButton3.setBorder(null);
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setIconTextGap(5);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -206,9 +204,9 @@ private static String generateUID(){
         panelBar3Layout.setHorizontalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBar3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton3)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBar3Layout.setVerticalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,11 +245,23 @@ private static String generateUID(){
                 usernameActionPerformed(evt);
             }
         });
-        login.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 218, 18));
+        login.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 190, 210, 18));
 
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
         password.setPreferredSize(new java.awt.Dimension(64, 20));
-        login.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 220, 18));
+        login.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 18));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/sym2.png"))); // NOI18N
+        imageAvatar3.add(jLabel2);
+        jLabel2.setBounds(40, 40, 40, 50);
+
+        login.add(imageAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 110, 100));
+
+        imageAvatar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-user-30.png"))); // NOI18N
+        login.add(imageAvatar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 20, 20));
+
+        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-lock-30.png"))); // NOI18N
+        login.add(imageAvatar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 20, 20));
 
         changeform.add(login, "card2");
 
@@ -261,66 +271,7 @@ private static String generateUID(){
         s.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         s.setForeground(new java.awt.Color(65, 176, 110));
         s.setText("Sign up");
-        signup.add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 120, 40));
-
-        f.setBackground(new java.awt.Color(255, 255, 255));
-
-        susername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        javax.swing.GroupLayout fLayout = new javax.swing.GroupLayout(f);
-        f.setLayout(fLayout);
-        fLayout.setHorizontalGroup(
-            fLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(susername, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        fLayout.setVerticalGroup(
-            fLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(susername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        signup.add(f, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 220, 30));
-
-        javax.swing.GroupLayout panelBar5Layout = new javax.swing.GroupLayout(panelBar5);
-        panelBar5.setLayout(panelBar5Layout);
-        panelBar5Layout.setHorizontalGroup(
-            panelBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        panelBar5Layout.setVerticalGroup(
-            panelBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        signup.add(panelBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 220, 30));
-
-        d.setBackground(new java.awt.Color(255, 255, 255));
-
-        spassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        javax.swing.GroupLayout dLayout = new javax.swing.GroupLayout(d);
-        d.setLayout(dLayout);
-        dLayout.setHorizontalGroup(
-            dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spassword, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        dLayout.setVerticalGroup(
-            dLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spassword)
-                .addContainerGap())
-        );
-
-        signup.add(d, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 220, 30));
+        signup.add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, 40));
 
         jButton4.setBackground(new java.awt.Color(253, 253, 253));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -352,6 +303,28 @@ private static String generateUID(){
 
         genId.setText("jLabel7");
         signup.add(genId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+
+        spassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        spassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spasswordActionPerformed(evt);
+            }
+        });
+        signup.add(spassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 210, 200, -1));
+
+        susername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        susername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                susernameActionPerformed(evt);
+            }
+        });
+        signup.add(susername, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 170, 200, -1));
+
+        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-lock-30.png"))); // NOI18N
+        signup.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 20, 20));
+
+        imageAvatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-user-30.png"))); // NOI18N
+        signup.add(imageAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 20, 20));
 
         changeform.add(signup, "card3");
 
@@ -459,6 +432,14 @@ private static String generateUID(){
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
 
+    private void spasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spasswordActionPerformed
+
+    private void susernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_susernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_susernameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -496,11 +477,14 @@ private static String generateUID(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel changeform;
-    private Sygma.Component.PanelBar d;
-    private Sygma.Component.PanelBar f;
     public javax.swing.JLabel gate;
     public javax.swing.JLabel genId;
+    private com.raven.swing.ImageAvatar imageAvatar1;
     private com.raven.swing.ImageAvatar imageAvatar2;
+    private com.raven.swing.ImageAvatar imageAvatar3;
+    private com.raven.swing.ImageAvatar imageAvatar4;
+    private com.raven.swing.ImageAvatar imageAvatar5;
+    private com.raven.swing.ImageAvatar imageAvatar6;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -515,7 +499,6 @@ private static String generateUID(){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel login;
     private Sygma.Component.PanelBar panelBar3;
-    private Sygma.Component.PanelBar panelBar5;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel pc;
     private javax.swing.JLabel s;

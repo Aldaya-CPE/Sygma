@@ -40,7 +40,6 @@ public class Form3 extends javax.swing.JPanel {
         }
           cat.setText(userId);
           cat.setVisible(false);
-           populateTable();
            
             timer = new Timer(3000, (e) -> {
             populateTable();
@@ -48,8 +47,14 @@ public class Form3 extends javax.swing.JPanel {
         timer.start();
         
     }
+    
+        public JTable getjTable1() {
+        return jTable1;
+    }
+        
+       
             
-      public void populateTable() {
+      public  void populateTable() {
         try {
             String sql = "SELECT * FROM expenses WHERE userId = ?";
             ps = Database.getInstance().getConnection().prepareStatement(sql); 
