@@ -2,6 +2,8 @@
 package com.raven.form;
 
 import Sygma.Database.Database;
+import Sygma.Model.ModelUser;
+import Sygma.Model.UserSession;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
@@ -10,10 +12,12 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -40,28 +44,26 @@ public class Form3 extends javax.swing.JPanel {
         }
           cat.setText(userId);
           cat.setVisible(false);
-           
-            timer = new Timer(3000, (e) -> {
-            populateTable();
-        });
-        timer.start();
-        
+          
+     
+          populateTable();
+//            getEntries();
+//            timer = new Timer(500, (e) -> {
+//            populateTable();
+//        });
+//        timer.start();
+//        
     }
     
-        public JTable getjTable1() {
-        return jTable1;
-    }
-        
-       
-            
+
+
       public  void populateTable() {
         try {
-            String sql = "SELECT * FROM expenses WHERE userId = ?";
+            String sql = "SELECT * FROM category WHERE userId = ?";
             ps = Database.getInstance().getConnection().prepareStatement(sql); 
             ps.setString(1,cat.getText());
             
             ResultSet rs = ps.executeQuery();
-
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
 
@@ -188,7 +190,20 @@ public class Form3 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-
+             String category = JOptionPane.showInputDialog(this, "Enter category name:");
+    if (category != null && !category.isEmpty()) {
+        try {
+            String sql = "INSERT INTO category (userId, category) VALUES (?, ?)";
+            ps = Database.getInstance().getConnection().prepareStatement(sql);
+            ps.setString(1, cat.getText());
+            ps.setString(2, category);
+            ps.executeUpdate();
+//             getEntries();
+            populateTable();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error adding category: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

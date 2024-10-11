@@ -11,6 +11,7 @@ public class Database {
     
          private static Database instance;
     private Connection connection;
+    public static Statement st;
     public static Database getInstance(){
         if (instance==null) {
             instance = new Database();
@@ -37,13 +38,11 @@ public class Database {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = (Connection) java.sql.DriverManager.getConnection("jdbc:mysql://"+server+":"+port+"/"+database,user,password);
-    }
+          st=connection.createStatement();
+     }
     public Connection getConnection() {
         return connection;
     }
-    
-    
- 
 }
 
 

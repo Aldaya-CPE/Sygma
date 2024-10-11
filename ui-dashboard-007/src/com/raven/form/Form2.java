@@ -90,11 +90,11 @@ public class Form2 extends javax.swing.JPanel {
          populateTable();
           loadBalance();
           saveBalance();
-          
-           timer = new Timer(5000, (e) -> {
-            populateTable();
-        });
-        timer.start();
+//          
+//           timer = new Timer(5000, (e) -> {
+//            populateTable();
+//        });
+//        timer.start();
  
     
         menu = new JPopupMenu();
@@ -158,7 +158,7 @@ private void loadBalance() {
    
 
 
-  private void populateTable() {
+  public void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
     totalBalance = 0.0;  

@@ -65,6 +65,7 @@ public class Main extends javax.swing.JFrame {
                 switch (index) {
                     case 0:
                         showForm(form_1);
+
                          break;
                     case 1:
                         showForm(form2);
@@ -92,7 +93,9 @@ public class Main extends javax.swing.JFrame {
             {
             }
         };
+           form_1.populateTable(); 
             showForm(form_1); 
+
          idtext();
          menu1.initMenu(event);
          
@@ -155,7 +158,16 @@ SwingUtilities.invokeLater(() -> {
        body.add(com);
        repaint();
        revalidate();
-     
+        if (com instanceof Form3) {
+        ((Form3) com).populateTable();
+    }
+        if (com instanceof Form2) {
+        ((Form2) com).populateTable();
+    }
+         if (com instanceof Form_1) {
+        ((Form_1) com).populateTable();
+    }
+        
     }
     private void logout() {
         dispose(); 
@@ -198,17 +210,20 @@ SwingUtilities.invokeLater(() -> {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 1117, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

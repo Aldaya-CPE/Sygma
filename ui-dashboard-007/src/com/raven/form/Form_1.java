@@ -52,10 +52,10 @@ public class Form_1 extends javax.swing.JPanel {
         centerRenderer = new DefaultTableCellRenderer();
 //        tableTextCenter();
         init();
-         timer = new Timer(500, (e) -> {
+//         timer = new Timer(500, (e) -> {
             populateTable();
-        });
-        timer.start();
+//        });
+//        timer.start();
       
     }
 
@@ -77,7 +77,7 @@ public class Form_1 extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    private void populateTable() {
+    public void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
     double totalIncome = 0;
