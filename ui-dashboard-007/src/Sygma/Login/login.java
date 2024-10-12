@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Sygma.Model.UserSession;
+import com.raven.swing.handCursor;
+import java.awt.Component;
+import java.awt.Cursor;
+import javax.swing.JButton;
 
 public class login extends javax.swing.JFrame {
 
@@ -36,7 +40,8 @@ public class login extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    jButton8ActionPerformed(null);
+                      jLabel7MouseClicked(null);
+
                 }
             }
         });
@@ -45,7 +50,8 @@ public class login extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    jButton8ActionPerformed(null);
+                      jLabel7MouseClicked(null);
+
                 }
             }
         });
@@ -76,6 +82,14 @@ public class login extends javax.swing.JFrame {
                 }
             }
         });
+        
+       Component[] componentsToApplyHandCursor = { jButton5, jLabel7 };
+
+       for (Component component : componentsToApplyHandCursor) {
+        component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+}
+        jLabel7.setToolTipText("login");
+        
     }
     
 private static String generateUID(){
@@ -105,7 +119,6 @@ private static String generateUID(){
         panelBar3 = new Sygma.Component.PanelBar();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
         gate = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
@@ -113,6 +126,7 @@ private static String generateUID(){
         jLabel2 = new javax.swing.JLabel();
         imageAvatar5 = new com.raven.swing.ImageAvatar();
         imageAvatar6 = new com.raven.swing.ImageAvatar();
+        jLabel7 = new javax.swing.JLabel();
         signup = new javax.swing.JPanel();
         s = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -222,19 +236,6 @@ private static String generateUID(){
         jLabel3.setText("You don't have an account?");
         login.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 160, 20));
 
-        jButton8.setBackground(new java.awt.Color(253, 253, 253));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jButton8.setText("Login");
-        jButton8.setBorder(null);
-        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton8.setIconTextGap(5);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        login.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
-
         gate.setText("jLabel7");
         login.add(gate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -262,6 +263,15 @@ private static String generateUID(){
 
         imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-lock-30.png"))); // NOI18N
         login.add(imageAvatar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 20, 20));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        jLabel7.setText("Login");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        login.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
         changeform.add(login, "card2");
 
@@ -377,8 +387,24 @@ private static String generateUID(){
     }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-     String adminUsername = "admin";
+    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
+         System.exit(0);
+    }//GEN-LAST:event_imageAvatar2MouseClicked
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void spasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spasswordActionPerformed
+
+    private void susernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_susernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_susernameActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        String adminUsername = "admin";
         String adminPassword = "admin"; 
 
         String enteredUsername = username.getText();
@@ -422,23 +448,7 @@ private static String generateUID(){
                 JOptionPane.showMessageDialog(this, "Username or Password cannot be empty!");
             }
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void imageAvatar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageAvatar2MouseClicked
-         System.exit(0);
-    }//GEN-LAST:event_imageAvatar2MouseClicked
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
-    private void spasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spasswordActionPerformed
-
-    private void susernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_susernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_susernameActionPerformed
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -488,13 +498,13 @@ private static String generateUID(){
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel login;
