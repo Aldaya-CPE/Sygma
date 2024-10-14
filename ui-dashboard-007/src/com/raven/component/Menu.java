@@ -1,29 +1,64 @@
 package com.raven.component;
 
+import Sygma.Database.Database;
+import Sygma.Model.NameManager;
+import Sygma.Model.UserSession;
 import com.raven.event.EventMenu;
 import com.raven.swing.ButtonMenu;
 import com.raven.swing.scrollbar.ScrollBarCustom;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import net.miginfocom.swing.MigLayout;
 
 public class Menu extends javax.swing.JPanel {
-
+    Connection MyCon;
+    PreparedStatement ps;
+    ResultSet rs;
     private EventMenu event;
-
+     private Timer timer;
+//     private String userId = "yourUserId";
     public Menu() {
         initComponents();
+         try {
+            Database.getInstance().ConnectToDatabase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         setOpaque(false);
         ScrollBarCustom sb = new ScrollBarCustom();
         sb.setForeground(new Color(130, 130, 130, 100));
         jScrollPane1.setVerticalScrollBar(sb);
         panelMenu.setLayout(new MigLayout("wrap, fillx, inset 3", "[fill]", "[]0[]"));
+//        usern.setText(UserSession.getCurrentUserId());
+//        username();
+//        
+        user.setText(UserSession.getCurrentUsername());
+        usern.setText(UserSession.getCurrentUserId());
+        
+        roundPanel1.setVisible(false);
+
+//        timer = new Timer(300, (e) -> {
+//           
+//            username();
+//            
+//        });
+
     }
+    
+    
 
     public void initMenu(EventMenu event) {
         this.event = event;
@@ -37,6 +72,8 @@ public class Menu extends javax.swing.JPanel {
 //        addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/8.png")), "Setting", 7);
         addEmpty();
         addMenu(new ImageIcon(getClass().getResource("/com/raven/icon/logout.png")), "Logout", 5);
+    
+        
     }
 
     private void addEmpty() {
@@ -66,6 +103,24 @@ public class Menu extends javax.swing.JPanel {
         }
         menu.setSelected(true);
     }
+//   public void username() {
+//    try {
+//        String sql = "SELECT userName FROM userdata WHERE userId = ?";
+//        ps = Database.getInstance().getConnection().prepareStatement(sql);
+//        ps.setString(1, UserSession.getCurrentUserId());
+//        ResultSet rsUsername = ps.executeQuery();
+//        
+//        if (rsUsername.next()) {
+//            String username = rsUsername.getString("userName");
+//            user.setText(username);
+//        } else {
+//            user.setText("User  not found");
+//        }
+//    } catch (Exception e) {
+//        e.printStackTrace();
+//    }
+//}
+//   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,7 +128,8 @@ public class Menu extends javax.swing.JPanel {
 
         roundPanel1 = new com.raven.swing.RoundPanel();
         imageAvatar1 = new com.raven.swing.ImageAvatar();
-        MainID = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        usern = new javax.swing.JLabel();
         roundPanel2 = new com.raven.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelMenu = new javax.swing.JPanel();
@@ -84,9 +140,11 @@ public class Menu extends javax.swing.JPanel {
         imageAvatar1.setBorderSize(2);
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-user-50.png"))); // NOI18N
 
-        MainID.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        MainID.setForeground(new java.awt.Color(224, 224, 224));
-        MainID.setText("User Name");
+        user.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        user.setForeground(new java.awt.Color(224, 224, 224));
+        user.setText("User Name");
+
+        usern.setText("jLabel1");
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -95,20 +153,28 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(MainID)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(user)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(usern)
+                        .addGap(23, 23, 23))))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainID)
+                .addComponent(user)
                 .addGap(26, 26, 26))
+            .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usern)
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
 
         roundPanel2.setBackground(new java.awt.Color(0, 78, 100));
@@ -162,11 +228,12 @@ public class Menu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel MainID;
     private com.raven.swing.ImageAvatar imageAvatar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelMenu;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
+    public javax.swing.JLabel user;
+    public javax.swing.JLabel usern;
     // End of variables declaration//GEN-END:variables
 }

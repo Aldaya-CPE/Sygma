@@ -14,4 +14,7 @@ public class UserSession {
     public static String getCurrentUserId() {
         return currentUser != null ? currentUser.getUserId() : null;
     }
+    public static String getCurrentUsername() {
+    return currentUser != null ? currentUser.getUserName() : null;
+}
 }

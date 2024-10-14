@@ -47,12 +47,7 @@ public class Form3 extends javax.swing.JPanel {
           
      
           populateTable();
-//            getEntries();
-//            timer = new Timer(500, (e) -> {
-//            populateTable();
-//        });
-//        timer.start();
-//        
+    
     }
     
 
@@ -60,8 +55,9 @@ public class Form3 extends javax.swing.JPanel {
       public  void populateTable() {
         try {
             String sql = "SELECT * FROM category WHERE userId = ?";
-            ps = Database.getInstance().getConnection().prepareStatement(sql); 
-            ps.setString(1,cat.getText());
+          ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, UserSession.getCurrentUserId());
+     
             
             ResultSet rs = ps.executeQuery();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

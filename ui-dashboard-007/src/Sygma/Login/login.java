@@ -14,10 +14,13 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Sygma.Model.UserSession;
+import com.raven.component.Menu;
 import com.raven.swing.handCursor;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JButton;
+import Sygma.Model.NameManager;
+
 
 public class login extends javax.swing.JFrame {
 
@@ -27,6 +30,8 @@ public class login extends javax.swing.JFrame {
     private userController controller;
     private String userId;
     ModelUser userData;
+    private Main main;
+    private NameManager nameManager;
     public login() {
         initComponents();
          userData = new ModelUser();
@@ -35,7 +40,8 @@ public class login extends javax.swing.JFrame {
         gate.setText(userId);
         gate.setVisible(false);
         genId.setVisible(false);
-        
+        nameManager = new NameManager( new Menu());
+
           username.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -83,15 +89,19 @@ public class login extends javax.swing.JFrame {
             }
         });
         
-       Component[] componentsToApplyHandCursor = { jButton5, jLabel7 };
+       Component[] componentsToApplyHandCursor = { jButton5, jLabel7, imageAvatar2, jButton3, jButton4};
 
        for (Component component : componentsToApplyHandCursor) {
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }
         jLabel7.setToolTipText("login");
-        
+        imageAvatar2.setToolTipText("Close");
+        jButton5.setToolTipText("Sign up");
+        jButton4.setToolTipText("Back to login");
+        jButton3.setToolTipText("Go to Sign up");
+
     }
-    
+   
 private static String generateUID(){
         int userId = 6;
         Random random = new Random();
@@ -415,14 +425,22 @@ private static String generateUID(){
             JOptionPane.showMessageDialog(this, "Admin login successful!");
 
             Main m = new Main();
+            
             m.MainID.setText("Admin"); 
             m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            
             m.idtext();
             m.setVisible(true);
             setVisible(false);
         } else {
 
             Main m = new Main();
+            Menu men = new Menu();
+//            m.updateuser();
+//            Menu menu = new Menu();
+//                 menu.username();
+//             nameManager.updateUsername(UserSession.getCurrentUserId());
+//            m.updateUsername();
             userController controller = new userController();
             ModelUser login = new ModelUser();
 
@@ -436,8 +454,11 @@ private static String generateUID(){
                     UserSession.setCurrentUser(result);
                     Preferences prefs = Preferences.userNodeForPackage(login.class);
                     prefs.putBoolean("isLoggedIn", true);
-                    
+                  
                     m.MainID.setText(result.getUserId());
+                     m.name.setText(result.getUserName());
+                     m.men.usern.setText(result.getUserId());
+                m.men.user.setText(result.getUserName());
                     m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                     m.setVisible(true);
                     setVisible(false);
