@@ -49,7 +49,7 @@
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="menu1" max="32767" attributes="0"/>
-                      <Component id="roundPanel2" pref="220" max="32767" attributes="0"/>
+                      <Component id="roundPanel2" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="body" min="-2" pref="1117" max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="roundPanel2" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="roundPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="menu1" max="32767" attributes="0"/>
                       </Group>

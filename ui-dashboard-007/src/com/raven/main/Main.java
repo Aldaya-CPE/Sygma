@@ -71,11 +71,10 @@ public class Main extends javax.swing.JFrame {
          form4 = new Form4();
          form5 = new Form5();
         Adding = new adding(); 
-       men = new Menu();
        
          name.setText(UserSession.getCurrentUsername());
         MainID.setText(UserSession.getCurrentUserId());
-
+        MainID.setVisible(false);
         GlassPanePopup.install(this);
     
            EventMenu event = new EventMenu() {
@@ -164,7 +163,9 @@ SwingUtilities.invokeLater(() -> {
     
 }
    
-
+public void updateForm2() {
+    showForm(form2);
+}
 
 
     private void showForm(Component com) {
@@ -186,12 +187,7 @@ SwingUtilities.invokeLater(() -> {
     
         
     }
-    
-  private void setWhiteBorder(JTextField textField) {
-    Border border = BorderFactory.createLineBorder(Color.WHITE);
-    textField.setBorder(border);
-}
-
+ 
     
     private void logout() {
         dispose(); 

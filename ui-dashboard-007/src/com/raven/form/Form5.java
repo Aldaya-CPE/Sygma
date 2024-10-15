@@ -20,13 +20,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
-import com.raven.swing.DataSearch;
-import com.raven.swing.EventClick;
-import com.raven.swing.PanelSearch;
+//import com.raven.swing.DataSearch;
+//import com.raven.swing.EventClick;
+//import com.raven.swing.PanelSearch;
 
 public class Form5 extends javax.swing.JPanel {
     private JPopupMenu menu;
-    private PanelSearch search;
+    private PanelSearch1 search;
     Connection MyCon;
     PreparedStatement ps;
     ResultSet rs;
@@ -47,13 +47,13 @@ public class Form5 extends javax.swing.JPanel {
         setBackground(new Color(0, 0, 0, 0));
 
          menu = new JPopupMenu();
-        search = new PanelSearch();
+        search = new PanelSearch1();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
         menu.add(search);
         menu.setFocusable(false);
-       search.addEventClick(new EventClick() {
+       search.addEventClick1(new EventClick1() {
             @Override
-            public void itemClick(DataSearch data) {
+            public void itemClick(DataSearch1 data) {
                 menu.setVisible(false);
                 txtSearch.setText(data.getText());
                 addStory(data.getText());
@@ -61,7 +61,7 @@ public class Form5 extends javax.swing.JPanel {
             }
 
             @Override
-            public void itemRemove(Component com, DataSearch data) {
+            public void itemRemove(Component com, DataSearch1 data) {
                 search.remove(com);
                 removeHistory(data.getText());
                 menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35) + 2);
@@ -149,7 +149,6 @@ public class Form5 extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search_1.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setEnabled(false);
         jButton1.setOpaque(true);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,8 +338,8 @@ public class Form5 extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchKeyReleased
       
     
-    private List<DataSearch> search(String search) {
-    List<DataSearch> list = new ArrayList<>();
+    private List<DataSearch1> search(String search) {
+    List<DataSearch1> list = new ArrayList<>();
     try {
        String sql = "SELECT DISTINCT category FROM expenses WHERE userId = ? AND category LIKE ? ORDER BY category LIMIT 7";
         ps = Database.getInstance().getConnection().prepareStatement(sql); 
@@ -351,7 +350,7 @@ public class Form5 extends javax.swing.JPanel {
         while (r.next()) {
             String text = r.getString(1);
             boolean story = false;
-            list.add(new DataSearch(text, story));
+            list.add(new DataSearch1(text, story));
         }
         r.close();
         ps.close();

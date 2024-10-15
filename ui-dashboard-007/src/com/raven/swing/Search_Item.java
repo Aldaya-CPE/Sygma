@@ -67,7 +67,8 @@ public class Search_Item extends javax.swing.JPanel {
         lbRemove = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
 
-        setLayout(new java.awt.BorderLayout());
+        setPreferredSize(new java.awt.Dimension(247, 27));
+        setRequestFocusEnabled(false);
 
         lbText.setText("jLabel1");
         lbText.setMaximumSize(new java.awt.Dimension(200, 16));
@@ -78,21 +79,32 @@ public class Search_Item extends javax.swing.JPanel {
                 lbTextMouseClicked(evt);
             }
         });
-        add(lbText, java.awt.BorderLayout.CENTER);
 
         lbRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbRemoveMouseClicked(evt);
             }
         });
-        add(lbRemove, java.awt.BorderLayout.PAGE_START);
 
-        lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbIconMouseClicked(evt);
-            }
-        });
-        add(lbIcon, java.awt.BorderLayout.PAGE_END);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbText, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lbText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lbRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRemoveMouseClicked
@@ -100,10 +112,6 @@ if (!lbRemove.getText().trim().equals("")) {
             eventRemove.actionPerformed(null);
         }
     }//GEN-LAST:event_lbRemoveMouseClicked
-
-    private void lbIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbIconMouseClicked
-     eventClick.actionPerformed(null);
-    }//GEN-LAST:event_lbIconMouseClicked
 
     private void lbTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTextMouseClicked
       eventClick.actionPerformed(null);

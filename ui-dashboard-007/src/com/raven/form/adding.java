@@ -21,6 +21,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import com.raven.main.Main;
+import javax.swing.SwingUtilities;
 
 
 /**
@@ -111,6 +112,7 @@ public class adding extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(se, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 21, -1, -1));
 
@@ -184,7 +186,7 @@ public class adding extends javax.swing.JFrame {
         der.setText("jLabel5");
         jPanel1.add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, -1, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 9, 370, 450));
 
         pack();
         setLocationRelativeTo(null);
@@ -251,9 +253,7 @@ public class adding extends javax.swing.JFrame {
         amount.setText("");
         date1.setDate(null);
         
-        Form2 form2 = new Form2();
-        form2.updateform();
-        JOptionPane.showMessageDialog(this, "Expense added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+      
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
     } catch (NumberFormatException e) {

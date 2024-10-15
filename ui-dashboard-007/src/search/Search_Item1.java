@@ -92,7 +92,7 @@ public class Search_Item1 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbRemove)
                     .addComponent(lbIcon))
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
             .addComponent(lbText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

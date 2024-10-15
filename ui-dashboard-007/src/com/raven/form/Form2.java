@@ -376,7 +376,6 @@ private void loadBalance() {
             jTable1.setModel(model);
             ids.remove(selectedRow);
             populateTable();
-            JOptionPane.showMessageDialog(this, "Success");
         } else {
             JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
         }

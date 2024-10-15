@@ -228,17 +228,14 @@ private static String generateUID(){
         panelBar3.setLayout(panelBar3Layout);
         panelBar3Layout.setHorizontalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBar3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBar3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelBar3Layout.setVerticalGroup(
             panelBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBar3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         login.add(panelBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 80, 40));
@@ -252,11 +249,6 @@ private static String generateUID(){
 
         username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
         username.setPreferredSize(new java.awt.Dimension(64, 19));
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
         login.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 190, 210, 18));
 
         password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
@@ -326,19 +318,9 @@ private static String generateUID(){
         signup.add(genId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         spassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
-        spassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                spasswordActionPerformed(evt);
-            }
-        });
         signup.add(spassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 210, 200, -1));
 
         susername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
-        susername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                susernameActionPerformed(evt);
-            }
-        });
         signup.add(susername, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 170, 200, -1));
 
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-lock-30.png"))); // NOI18N
@@ -379,12 +361,14 @@ private static String generateUID(){
 
         if (this.controller != null) {
              ModelUser newUser = new ModelUser(gId, userName, passWord);
+             
             boolean registered = controller.registerUser(newUser);
             if (registered) {
-                JOptionPane.showMessageDialog(this, "Thank You!");
                 Main m = new Main();
+                Menu men = new Menu();
                 UserSession.setCurrentUser(newUser); 
                 m.MainID.setText(gId); 
+                m.name.setText(userName);
                 m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                 m.setVisible(true); 
 
@@ -402,18 +386,6 @@ private static String generateUID(){
          System.exit(0);
     }//GEN-LAST:event_imageAvatar2MouseClicked
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
-    private void spasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spasswordActionPerformed
-
-    private void susernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_susernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_susernameActionPerformed
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         String adminUsername = "admin";
         String adminPassword = "admin"; 
@@ -423,11 +395,10 @@ private static String generateUID(){
         if (enteredUsername.equals(adminUsername) && Arrays.equals(enteredPassword, adminPassword.toCharArray())) {
            Preferences prefs = Preferences.userNodeForPackage(login.class);
             prefs.putBoolean("isLoggedIn", true);
-            JOptionPane.showMessageDialog(this, "Admin login successful!");
 
             Main m = new Main();
-            
-            m.MainID.setText("Admin"); 
+            m.MainID.setText("Admin");
+            m.name.setText("Admin");
             m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             
             m.idtext();
@@ -436,12 +407,6 @@ private static String generateUID(){
         } else {
 
             Main m = new Main();
-            Menu men = new Menu();
-//            m.updateuser();
-//            Menu menu = new Menu();
-//                 menu.username();
-//             nameManager.updateUsername(UserSession.getCurrentUserId());
-//            m.updateUsername();
             userController controller = new userController();
             ModelUser login = new ModelUser();
 
@@ -458,8 +423,6 @@ private static String generateUID(){
                   
                     m.MainID.setText(result.getUserId());
                      m.name.setText(result.getUserName());
-                     m.men.usern.setText(result.getUserId());
-                m.men.user.setText(result.getUserName());
                     m.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                     m.setVisible(true);
                     setVisible(false);
