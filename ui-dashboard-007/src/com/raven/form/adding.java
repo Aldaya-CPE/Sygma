@@ -250,7 +250,9 @@ public class adding extends javax.swing.JFrame {
         txtSearch.setText("");
         amount.setText("");
         date1.setDate(null);
-
+        
+        Form2 form2 = new Form2();
+        form2.updateform();
         JOptionPane.showMessageDialog(this, "Expense added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);

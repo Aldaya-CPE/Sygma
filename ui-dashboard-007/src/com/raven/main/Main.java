@@ -10,21 +10,14 @@ import com.raven.form.Form2;
 import com.raven.form.Form4;
 import com.raven.form.Form_1;
 import com.raven.form.adding;
-import com.raven.form.Add;
-import com.raven.swing.DataSearch;
-import com.raven.swing.EventClick;
 import com.raven.swing.PanelSearch;
 import com.sun.jdi.connect.spi.Connection;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.EventListener;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -32,6 +25,11 @@ import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
 import com.raven.component.Menu;
 import javax.swing.Timer;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.border.Border;
+import javax.swing.*;
+
+
 
 public class Main extends javax.swing.JFrame {
     private JPopupMenu menu;
@@ -47,12 +45,17 @@ public class Main extends javax.swing.JFrame {
     private adding Adding;
     public static  Menu men;
     private Timer timer;
-    public Menu getMenuInstance() {
-        return men; // assuming men is the Menu instance
-    }
+   
 
     public Main() {
         initComponents();
+        try {
+        UIManager.setLookAndFeel(new FlatLightLaf());
+    } catch (UnsupportedLookAndFeelException e) {
+        e.printStackTrace();
+    }
+        setBackground(new Color(0, 0, 0, 0));
+
              try {
             Database.getInstance().ConnectToDatabase();
         } catch (SQLException ex) {
@@ -61,8 +64,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
       
-//        String userId = "your_user_id";
-//        MainID.setText(userId);   
+  
          form_1 = new Form_1();
          form2 = new Form2();
          form3 = new Form3();
@@ -73,16 +75,9 @@ public class Main extends javax.swing.JFrame {
        
          name.setText(UserSession.getCurrentUsername());
         MainID.setText(UserSession.getCurrentUserId());
-      
-//                timer = new Timer(300, (e) -> {
-////            updateuser();
-//            username();
-//        });
+
         GlassPanePopup.install(this);
     
-        
-        setBackground(new Color(0, 0, 0, 0));
-        
            EventMenu event = new EventMenu() {
             @Override
             public void selected(int index) {
@@ -135,11 +130,6 @@ SwingUtilities.invokeLater(() -> {
         });
 
 SwingUtilities.invokeLater(() -> {
-         form2.ex.removeAll();
-         form2.ex.repaint();
-         form2.ex.revalidate();
-         form2.ex.setText(MainID.getText());     
-         
          form2.ad.removeAll();
          form2.ad.repaint();
          form2.ad.revalidate();
@@ -171,13 +161,7 @@ SwingUtilities.invokeLater(() -> {
          form5.ec.revalidate();
          form5.ec.setText(MainID.getText());         
         });
-//SwingUtilities.invokeLater(() -> {
-//         men.usern.removeAll();
-//         men.usern.repaint();
-//         men.usern.revalidate();
-//         men.usern.setText(MainID.getText());         
-//        });
-//    
+    
 }
    
 
@@ -203,28 +187,11 @@ SwingUtilities.invokeLater(() -> {
         
     }
     
-//     public void username() {
-//    try {
-//        String sql = "SELECT userName FROM userdata WHERE userId = ?";
-//        ps = Database.getInstance().getConnection().prepareStatement(sql);
-//        ps.setString(1, MainID.getText());
-//         ResultSet rsUsername = ps.executeQuery();
-//
-//        
-//        if (rsUsername.next()) {
-//            String username = rsUsername.getString("userName");
-//            name.setText(username);
-//        } else {
-//            name.setText("User  not found");
-//        }
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//    }
-//}
-    
-//    public static void updateuser(){
-//        men.username();
-//    }
+  private void setWhiteBorder(JTextField textField) {
+    Border border = BorderFactory.createLineBorder(Color.WHITE);
+    textField.setBorder(border);
+}
+
     
     private void logout() {
         dispose(); 
@@ -349,14 +316,14 @@ SwingUtilities.invokeLater(() -> {
      
      
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        FlatLightLaf.setup();
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

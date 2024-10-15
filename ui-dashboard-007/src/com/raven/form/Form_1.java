@@ -5,9 +5,6 @@ import com.raven.chart.ModelChart;
 import com.raven.swing.PanelSearch;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +18,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import java.util.TimerTask;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +37,6 @@ public class Form_1 extends javax.swing.JPanel {
     private double[][] oldBalanceValues;
     public Form_1() {
         initComponents();
-        
          try {
             Database.getInstance().ConnectToDatabase();
         } catch (SQLException ex) {
@@ -46,16 +44,15 @@ public class Form_1 extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        setOpaque(false);
+      setBackground(new Color(0, 0, 0, 0));
          pn.setText(userId);
          pn.setVisible(false); 
         centerRenderer = new DefaultTableCellRenderer();
-//        tableTextCenter();
         init();
-//         timer = new Timer(500, (e) -> {
+         timer = new Timer(500, (e) -> {
             populateTable();
-//        });
-//        timer.start();
+        });
+        timer.start();
       
     }
 
@@ -224,6 +221,7 @@ public class Form_1 extends javax.swing.JPanel {
         jPanel1.setOpaque(false);
 
         progress1.setBackground(new java.awt.Color(150, 215, 180));
+        progress1.setBorder(null);
         progress1.setForeground(new java.awt.Color(150, 215, 180));
         progress1.setValue(60);
 
@@ -259,6 +257,7 @@ public class Form_1 extends javax.swing.JPanel {
         jPanel2.setOpaque(false);
 
         progress2.setBackground(new java.awt.Color(90, 179, 220));
+        progress2.setBorder(null);
         progress2.setForeground(new java.awt.Color(90, 179, 220));
         progress2.setValue(70);
 
@@ -290,6 +289,7 @@ public class Form_1 extends javax.swing.JPanel {
         jPanel3.setOpaque(false);
 
         progress3.setBackground(new java.awt.Color(0, 102, 120));
+        progress3.setBorder(null);
         progress3.setForeground(new java.awt.Color(0, 102, 120));
         progress3.setValue(85);
         progress3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N

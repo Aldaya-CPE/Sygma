@@ -45,7 +45,7 @@ public class Form3 extends javax.swing.JPanel {
           cat.setText(userId);
           cat.setVisible(false);
           
-     
+      setBackground(new Color(0, 0, 0, 0));
           populateTable();
     
     }
@@ -102,6 +102,7 @@ public class Form3 extends javax.swing.JPanel {
                 "id", "category"
             }
         ));
+        jTable1.setPreferredSize(new java.awt.Dimension(300, 120));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-category-100.png"))); // NOI18N
@@ -156,7 +157,7 @@ public class Form3 extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(159, 159, 159)
                         .addComponent(cat)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,15 +174,15 @@ public class Form3 extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton10)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(176, 176, 176))
+                        .addContainerGap(349, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
     }// </editor-fold>//GEN-END:initComponents
 

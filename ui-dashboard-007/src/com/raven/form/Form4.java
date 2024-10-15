@@ -4,7 +4,6 @@ package com.raven.form;
 import Sygma.Database.Database;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import search.DataSearch1;
-//import com.raven.swing.EventClick;
 import search.EventClick1;
 import search.PanelSearch1;
 import com.sun.jdi.connect.spi.Connection;
@@ -43,7 +42,8 @@ public class Form4 extends javax.swing.JPanel {
         }
         ed.setText(userId);
         ed.setVisible(false); 
-        
+        setBackground(new Color(0, 0, 0, 0));
+
         menu = new JPopupMenu();
         search = new PanelSearch1();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -213,7 +213,8 @@ public class Form4 extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(panelBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

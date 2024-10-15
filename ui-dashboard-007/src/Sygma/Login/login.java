@@ -18,7 +18,8 @@ import com.raven.component.Menu;
 import com.raven.swing.handCursor;
 import java.awt.Component;
 import java.awt.Cursor;
-import javax.swing.JButton;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import Sygma.Model.NameManager;
 
 
@@ -475,7 +476,7 @@ private static String generateUID(){
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        FlatLightLaf.setup();
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
