@@ -70,7 +70,7 @@ public class Main extends javax.swing.JFrame {
          form3 = new Form3();
          form4 = new Form4();
          form5 = new Form5();
-        Adding = new adding(); 
+//        Adding = new adding(); 
        
          name.setText(UserSession.getCurrentUsername());
         MainID.setText(UserSession.getCurrentUserId());
@@ -119,8 +119,6 @@ public class Main extends javax.swing.JFrame {
     
    public void idtext() {
        
-//    String userId = MainID.getText(); 
-    
 SwingUtilities.invokeLater(() -> {
          form_1.pn.removeAll();
          form_1.pn.repaint();
@@ -134,14 +132,14 @@ SwingUtilities.invokeLater(() -> {
          form2.ad.revalidate();
          form2.ad.setText(MainID.getText());
         });
-SwingUtilities.invokeLater(() -> {
-         form2.ad.setText(MainID.getText());
-         Adding.userId = MainID.getText();
-         Adding.der.removeAll();
-         Adding.der.repaint();
-         Adding.der.revalidate();
-         Adding.der.setText(MainID.getText());         
-        });
+//SwingUtilities.invokeLater(() -> {
+//         form2.ad.setText(MainID.getText());
+//         Adding.userId = MainID.getText();
+//         Adding.der.removeAll();
+//         Adding.der.repaint();
+//         Adding.der.revalidate();
+//         Adding.der.setText(MainID.getText());         
+//        });
 SwingUtilities.invokeLater(() -> {
          form3.cat.removeAll();
          form3.cat.repaint();
@@ -178,7 +176,6 @@ public void updateForm2() {
     }
         if (com instanceof Form2) {
         ((Form2) com).populateTable();
-        ((Form2) com).username();
     }
          if (com instanceof Form_1) {
         ((Form_1) com).populateTable();

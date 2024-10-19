@@ -150,27 +150,7 @@ private void loadBalance() {
         JOptionPane.showMessageDialog(this, "Error loading balance: " + e.getMessage());
     }
 }
-     public void username() {
-    try {
-        String sql = "SELECT userName FROM userdata WHERE userId = ?";
-        ps = Database.getInstance().getConnection().prepareStatement(sql);
-        ps.setString(1, ad.getText());
-         ResultSet rsUsername = ps.executeQuery();
-
-        
-        if (rsUsername.next()) {
-            String username = rsUsername.getString("userName");
-            name.setText(username);
-        } else {
-            name.setText("User  not found");
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-   
-
-
+  
   public void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); 
@@ -218,7 +198,6 @@ private void loadBalance() {
         jLabel7 = new javax.swing.JLabel();
         balance = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
-        name = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -300,8 +279,6 @@ private void loadBalance() {
             }
         });
 
-        name.setText("jLabel12");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,9 +300,7 @@ private void loadBalance() {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135)
-                        .addComponent(name)
-                        .addGap(73, 73, 73)
+                        .addGap(251, 251, 251)
                         .addComponent(ad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -334,22 +309,17 @@ private void loadBalance() {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel6))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(ad, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(name)
-                        .addGap(97, 97, 97)))
+                                .addComponent(jLabel5)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel6))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(ad, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton13)
@@ -387,7 +357,7 @@ private void loadBalance() {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
 
              if (ding == null) {
-        ding = new adding(); 
+        ding = new adding(this); 
     }
     ding.setVisible(true); 
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -440,7 +410,6 @@ private void loadBalance() {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
-    private javax.swing.JLabel name;
     private Sygma.Component.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
 }

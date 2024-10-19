@@ -36,9 +36,11 @@ public class adding extends javax.swing.JFrame {
      public String userId = "yourUserId";
      private JPopupMenu menu;
         private PanelSearch search;
-
-
-    public adding() {
+         private Form2 form2Instance; // Declare form2Instance
+      
+  
+    public adding(Form2 form2Instance) {
+         this.form2Instance = form2Instance;
         initComponents();
          try {
             Database.getInstance().ConnectToDatabase();
@@ -79,6 +81,8 @@ public class adding extends javax.swing.JFrame {
             }
         });
     }
+
+   
      
          
     
@@ -248,10 +252,20 @@ public class adding extends javax.swing.JFrame {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         ps.setTimestamp(6, timestamp);
         ps.execute();
+         if (form2Instance != null) {
+            form2Instance.populateTable();
+        }
+         if (form2Instance != null) {
+                form2Instance.populateTable();
+            }
 
+//       form2 = new Form2();
+//       form2.populateTable();
         txtSearch.setText("");
         amount.setText("");
         date1.setDate(null);
+        
+      
         
       
     } catch (SQLException e) {
@@ -330,11 +344,9 @@ public class adding extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new adding().setVisible(true);
-            }
-        });
+       Form2 form2 = new Form2();
+        form2.setVisible(true); // Make Form2 visible
+        new adding(form2).setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
