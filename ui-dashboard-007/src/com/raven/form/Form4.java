@@ -19,6 +19,8 @@ import javax.lang.model.util.Types;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -29,6 +31,7 @@ public class Form4 extends javax.swing.JPanel {
     private JPopupMenu menu;
     private PanelSearch1 search;
     private String userId = "yourUserId";
+    private DefaultTableCellRenderer centerRenderer;;
 
     
     public Form4() {
@@ -44,6 +47,9 @@ public class Form4 extends javax.swing.JPanel {
         ed.setVisible(false); 
         setBackground(new Color(0, 0, 0, 0));
 
+         centerRenderer = new DefaultTableCellRenderer();
+         tableTextCenter();
+        
         menu = new JPopupMenu();
         search = new PanelSearch1();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -72,7 +78,15 @@ public class Form4 extends javax.swing.JPanel {
 
     }
     
-   
+         private void tableTextCenter() {
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
+         
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,6 +104,7 @@ public class Form4 extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         panelRound1 = new Sygma.Component.PanelRound();
         jLabel7 = new javax.swing.JLabel();
+        balance = new javax.swing.JLabel();
         ed = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -162,15 +177,19 @@ public class Form4 extends javax.swing.JPanel {
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel7)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         ed.setText("jLabel3");
@@ -265,8 +284,16 @@ public class Form4 extends javax.swing.JPanel {
         ResultSet rs = ps.executeQuery();
 
         jTable1.setModel(buildTableModel(rs));
-        System.out.println(jTable1.getRowCount()); // Add this line
-        jTable1.repaint(); // Add this line
+         tableTextCenter();
+        System.out.println(jTable1.getRowCount()); 
+        jTable1.repaint(); 
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        double totalAmount = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            totalAmount += (double) (int) model.getValueAt(i, 1);
+        }
+        balance.setText(String.format("%.2f", totalAmount));
 
         rs.close();
         ps.close();
@@ -274,7 +301,10 @@ public class Form4 extends javax.swing.JPanel {
         e.printStackTrace();
     }
     }//GEN-LAST:event_jButton1ActionPerformed
-      private DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
+     
+    
+    
+    private DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
     ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData(); 
     int columnCount = metaData.getColumnCount();
     String[] columnNames = new String[columnCount];
@@ -338,6 +368,7 @@ public class Form4 extends javax.swing.JPanel {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel balance;
     public javax.swing.JLabel ed;
     private com.github.lgooddatepicker.components.DatePicker from;
     private javax.swing.JButton jButton1;

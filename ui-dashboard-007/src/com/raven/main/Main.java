@@ -70,7 +70,6 @@ public class Main extends javax.swing.JFrame {
          form3 = new Form3();
          form4 = new Form4();
          form5 = new Form5();
-//        Adding = new adding(); 
        
          name.setText(UserSession.getCurrentUsername());
         MainID.setText(UserSession.getCurrentUserId());
@@ -125,21 +124,12 @@ SwingUtilities.invokeLater(() -> {
          form_1.pn.revalidate();
          form_1.pn.setText(MainID.getText());         
         });
-
 SwingUtilities.invokeLater(() -> {
          form2.ad.removeAll();
          form2.ad.repaint();
          form2.ad.revalidate();
          form2.ad.setText(MainID.getText());
         });
-//SwingUtilities.invokeLater(() -> {
-//         form2.ad.setText(MainID.getText());
-//         Adding.userId = MainID.getText();
-//         Adding.der.removeAll();
-//         Adding.der.repaint();
-//         Adding.der.revalidate();
-//         Adding.der.setText(MainID.getText());         
-//        });
 SwingUtilities.invokeLater(() -> {
          form3.cat.removeAll();
          form3.cat.repaint();

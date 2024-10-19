@@ -19,10 +19,10 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-//import com.raven.swing.DataSearch;
-//import com.raven.swing.EventClick;
-//import com.raven.swing.PanelSearch;
+
 
 public class Form5 extends javax.swing.JPanel {
     private JPopupMenu menu;
@@ -30,7 +30,7 @@ public class Form5 extends javax.swing.JPanel {
     Connection MyCon;
     PreparedStatement ps;
     ResultSet rs;
-    
+    private DefaultTableCellRenderer centerRenderer;;
     private String userId = "yourUserId";
     public Form5() {
         initComponents();
@@ -46,6 +46,9 @@ public class Form5 extends javax.swing.JPanel {
         ec.setVisible(false); 
         setBackground(new Color(0, 0, 0, 0));
 
+          centerRenderer = new DefaultTableCellRenderer();
+         tableTextCenter();
+      
          menu = new JPopupMenu();
         search = new PanelSearch1();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -73,7 +76,13 @@ public class Form5 extends javax.swing.JPanel {
         });
 
     }
-
+    
+      private void tableTextCenter() {
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -291,6 +300,7 @@ public class Form5 extends javax.swing.JPanel {
 
         ResultSet rs = ps.executeQuery();
         jTable1.setModel(buildTableModel(rs));
+         tableTextCenter();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         double totalAmount = 0;
         for (int i = 0; i < model.getRowCount(); i++) {

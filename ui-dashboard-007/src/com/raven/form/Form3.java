@@ -29,7 +29,8 @@ public class Form3 extends javax.swing.JPanel {
     Connection MyCon;
     PreparedStatement ps;
     ResultSet rs;
-    private DefaultTableCellRenderer centerRenderer;;
+    private DefaultTableCellRenderer centerRenderer;
+
 
 
     public Form3() {
@@ -43,13 +44,21 @@ public class Form3 extends javax.swing.JPanel {
         }
         cat.setText(UserSession.getCurrentUserId());
           cat.setVisible(false);
+        centerRenderer = new DefaultTableCellRenderer();
+         tableTextCenter();
+
       setBackground(new Color(0, 0, 0, 0));
           populateTable();
     
     }
     
 
-
+     private void tableTextCenter() {
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < jTable2.getColumnCount(); i++) {
+            jTable2.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
    
     public void populateTable() {
     DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -171,26 +180,25 @@ public class Form3 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-     int selectedRow = jTable2.getSelectedRow();
-        String Category = jTable2.getValueAt(selectedRow, 0).toString();
+    int selectedRow = jTable2.getSelectedRow();
+    String id = jTable2.getValueAt(selectedRow, 0).toString(); 
+    try {
+        String sql = "DELETE FROM expenses WHERE id = ? AND userId = ?"; 
+        ps = Database.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1, id); 
+        ps.setString(2, cat.getText()); 
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.removeRow(selectedRow); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+   
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        try {
-              String sql = "DELETE FROM expenses WHERE category = ?";
-             ps = Database.getInstance().getInstance().getConnection().prepareStatement(sql);
-             ps.setString(1, Category);
-             int rowsAffected = ps.executeUpdate();
-
-            if (rowsAffected > 0) {
-                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-                model.removeRow(selectedRow);
-                jTable2.setModel(model);
-                JOptionPane.showMessageDialog(this, "Success");
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed to delete the row from the database", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
     }//GEN-LAST:event_jButton10ActionPerformed
 
 

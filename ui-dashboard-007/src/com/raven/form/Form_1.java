@@ -48,11 +48,13 @@ public class Form_1 extends javax.swing.JPanel {
          pn.setText(userId);
          pn.setVisible(false); 
         centerRenderer = new DefaultTableCellRenderer();
+        tableTextCenter();
+        populateTable();
         init();
-         timer = new Timer(500, (e) -> {
-            populateTable();
-        });
-        timer.start();
+//         timer = new Timer(500, (e) -> {
+//            populateTable();
+//        });
+//        timer.start();
       
     }
 

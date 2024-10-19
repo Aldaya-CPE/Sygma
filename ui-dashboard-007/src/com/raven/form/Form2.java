@@ -73,17 +73,11 @@ public class Form2 extends javax.swing.JPanel {
        ad.setText(userId);
 
         centerRenderer = new DefaultTableCellRenderer();
-//        tableTextCenter();
+        tableTextCenter();
          populateTable();
           loadBalance();
           saveBalance();
-//          
-//           timer = new Timer(5000, (e) -> {
-//            populateTable();
-//        });
-//        timer.start();
- 
-    
+
         menu = new JPopupMenu();
         search = new PanelSearch();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
