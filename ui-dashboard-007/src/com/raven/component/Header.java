@@ -45,6 +45,7 @@ public class Header extends javax.swing.JPanel {
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/sym2.png"))); // NOI18N
 
         imageAvatar2.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar2.setToolTipText("Close");
         imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-close-28.png"))); // NOI18N
         imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,6 +54,7 @@ public class Header extends javax.swing.JPanel {
         });
 
         imageAvatar3.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar3.setToolTipText("Minimize");
         imageAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/mini.png"))); // NOI18N
         imageAvatar3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -61,6 +63,7 @@ public class Header extends javax.swing.JPanel {
         });
 
         imageAvatar4.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar4.setToolTipText("Restore");
         imageAvatar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/tore.png"))); // NOI18N
         imageAvatar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

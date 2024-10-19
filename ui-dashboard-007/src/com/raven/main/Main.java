@@ -76,6 +76,9 @@ public class Main extends javax.swing.JFrame {
         MainID.setVisible(false);
         GlassPanePopup.install(this);
     
+        form_1.populateTable();  
+        showForm(form_1); 
+        
            EventMenu event = new EventMenu() {
             @Override
             public void selected(int index) {
@@ -109,8 +112,7 @@ public class Main extends javax.swing.JFrame {
             {
             }
         };
-           form_1.populateTable(); 
-            showForm(form_1); 
+         showForm(form_1); 
          idtext();
          menu1.initMenu(event);
          
@@ -150,11 +152,7 @@ SwingUtilities.invokeLater(() -> {
         });
     
 }
-   
-public void updateForm2() {
-    showForm(form2);
-}
-
+ 
 
     private void showForm(Component com) {
        body.removeAll();
@@ -196,6 +194,7 @@ public void updateForm2() {
         MainID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
 
         roundPanel1.setBackground(new java.awt.Color(255, 252, 250));
@@ -262,7 +261,7 @@ public void updateForm2() {
                 .addGap(6, 6, 6)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 1117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -274,7 +273,7 @@ public void updateForm2() {
                 .addGap(9, 9, 9)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
                         .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))

@@ -95,11 +95,7 @@ public class login extends javax.swing.JFrame {
        for (Component component : componentsToApplyHandCursor) {
         component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }
-        jLabel7.setToolTipText("login");
-        imageAvatar2.setToolTipText("Close");
-        jButton5.setToolTipText("Sign up");
-        jButton4.setToolTipText("Back to login");
-        jButton3.setToolTipText("Go to Sign up");
+        
 
     }
    
@@ -149,6 +145,7 @@ private static String generateUID(){
         imageAvatar4 = new com.raven.swing.ImageAvatar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -179,6 +176,7 @@ private static String generateUID(){
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         imageAvatar2.setBackground(new java.awt.Color(0, 78, 100));
+        imageAvatar2.setToolTipText("Close");
         imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/close.png"))); // NOI18N
         imageAvatar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,6 +213,7 @@ private static String generateUID(){
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Sign-up");
+        jButton3.setToolTipText("Go to Sign-up");
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setIconTextGap(5);
@@ -290,6 +289,7 @@ private static String generateUID(){
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(153, 153, 153));
         jButton4.setText("Back");
+        jButton4.setToolTipText("Back to Login");
         jButton4.setBorder(null);
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.setIconTextGap(5);
@@ -304,6 +304,7 @@ private static String generateUID(){
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(153, 153, 153));
         jButton5.setText("sign up");
+        jButton5.setToolTipText("sign-up");
         jButton5.setBorder(null);
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton5.setIconTextGap(5);

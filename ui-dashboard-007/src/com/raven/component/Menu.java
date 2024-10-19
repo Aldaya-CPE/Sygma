@@ -9,6 +9,7 @@ import com.raven.swing.scrollbar.ScrollBarCustom;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -27,7 +28,6 @@ public class Menu extends javax.swing.JPanel {
     ResultSet rs;
     private EventMenu event;
      private Timer timer;
-//     private String userId = "yourUserId";
     public Menu() {
         initComponents();
          try {
@@ -42,19 +42,14 @@ public class Menu extends javax.swing.JPanel {
         sb.setForeground(new Color(130, 130, 130, 100));
         jScrollPane1.setVerticalScrollBar(sb);
         panelMenu.setLayout(new MigLayout("wrap, fillx, inset 3", "[fill]", "[]0[]"));
-//        usern.setText(UserSession.getCurrentUserId());
-//        username();
+
 //        
         user.setText(UserSession.getCurrentUsername());
         usern.setText(UserSession.getCurrentUserId());
         
         roundPanel1.setVisible(false);
 
-//        timer = new Timer(300, (e) -> {
-//           
-//            username();
-//            
-//        });
+
 
     }
     
@@ -92,6 +87,7 @@ public class Menu extends javax.swing.JPanel {
                 setSelected(menu);
             }
         });
+         menu.setToolTipText(text);
     }
 
     private void setSelected(ButtonMenu menu) {
@@ -103,24 +99,6 @@ public class Menu extends javax.swing.JPanel {
         }
         menu.setSelected(true);
     }
-//   public void username() {
-//    try {
-//        String sql = "SELECT userName FROM userdata WHERE userId = ?";
-//        ps = Database.getInstance().getConnection().prepareStatement(sql);
-//        ps.setString(1, UserSession.getCurrentUserId());
-//        ResultSet rsUsername = ps.executeQuery();
-//        
-//        if (rsUsername.next()) {
-//            String username = rsUsername.getString("userName");
-//            user.setText(username);
-//        } else {
-//            user.setText("User  not found");
-//        }
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//    }
-//}
-//   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

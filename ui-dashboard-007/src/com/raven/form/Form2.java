@@ -103,6 +103,9 @@ public class Form2 extends javax.swing.JPanel {
             }
         });
              
+        
+       
+
     }
     
   public void updateform(){
@@ -209,7 +212,6 @@ private void loadBalance() {
                 "Category", "Amount", "Date", "Type"
             }
         ));
-        jTable1.setSelectionForeground(new java.awt.Color(117, 118, 116));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-properties-100.png"))); // NOI18N
@@ -221,6 +223,7 @@ private void loadBalance() {
         jButton10.setBackground(new java.awt.Color(253, 253, 253));
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-delete-30.png"))); // NOI18N
+        jButton10.setToolTipText("Delete");
         jButton10.setBorder(null);
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton10.setIconTextGap(5);
@@ -264,6 +267,7 @@ private void loadBalance() {
         jButton13.setBackground(new java.awt.Color(253, 253, 253));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-40.png"))); // NOI18N
+        jButton13.setToolTipText("Go to Add");
         jButton13.setBorder(null);
         jButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton13.setIconTextGap(5);

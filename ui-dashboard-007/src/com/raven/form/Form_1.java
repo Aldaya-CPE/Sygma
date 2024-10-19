@@ -51,10 +51,10 @@ public class Form_1 extends javax.swing.JPanel {
         tableTextCenter();
         populateTable();
         init();
-//         timer = new Timer(500, (e) -> {
-//            populateTable();
-//        });
-//        timer.start();
+         timer = new Timer(500, (e) -> {
+            populateTable();
+        });
+        timer.start();
       
     }
 
@@ -211,7 +211,7 @@ public class Form_1 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         pn = new javax.swing.JLabel();
         roundPanel2 = new com.raven.swing.RoundPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         roundPanel3 = new com.raven.swing.RoundPanel();
         lineChart = new com.raven.chart.LineChart();
@@ -372,10 +372,10 @@ public class Form_1 extends javax.swing.JPanel {
                 "Category", "Date", "Amount", "Type"
             }
         ));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        jTable1.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
 
-        roundPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 7, 1100, 400));
+        roundPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 10, 1090, 410));
 
         roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -427,7 +427,7 @@ public class Form_1 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private com.raven.chart.LineChart lineChart;
     public javax.swing.JLabel pn;

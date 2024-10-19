@@ -49,6 +49,7 @@ public class Form3 extends javax.swing.JPanel {
 
       setBackground(new Color(0, 0, 0, 0));
           populateTable();
+
     
     }
     
@@ -103,14 +104,16 @@ public class Form3 extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-category-100.png"))); // NOI18N
 
-        jLabel2.setText("Category");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Category");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-delete-30.png"))); // NOI18N
         jButton10.setBackground(new java.awt.Color(253, 253, 253));
-        jButton10.setBorder(null);
         jButton10.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-delete-30.png"))); // NOI18N
+        jButton10.setToolTipText("Delete");
+        jButton10.setBorder(null);
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton10.setIconTextGap(5);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -170,11 +173,11 @@ public class Form3 extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jButton10))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton10)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
