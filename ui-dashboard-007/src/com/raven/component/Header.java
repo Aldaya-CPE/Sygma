@@ -1,6 +1,8 @@
 package com.raven.component;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -17,6 +19,11 @@ public class Header extends javax.swing.JPanel {
         setOpaque(false);
         setBackground(new Color(51, 51, 51));
         
+          Component[] componentsToApplyHandCursor = { imageAvatar2, imageAvatar3, imageAvatar4};
+
+       for (Component component : componentsToApplyHandCursor) {
+        component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+}
         
     }
 

@@ -162,7 +162,8 @@ public class Form_1 extends javax.swing.JPanel {
             double incomeValue = incomeValues2D[i][0] < 0 ? 0 : incomeValues2D[i][0];
             double expenseValue = expenseValues2D[i][0] < 0 ? 0 : expenseValues2D[i][0];
             double balanceValue = balanceValues2D[i][0] < 0 ? 0 : balanceValues2D[i][0];
-            lineChart.addData(new ModelChart(months[i], new double[]{incomeValues2D[i][0], expenseValues2D[i][0], balanceValues2D[i][0]}));
+           lineChart.addData(new ModelChart(months[i], new double[]{incomeValue, expenseValue, balanceValue}));
+
         }
         lineChart.start();
     }
