@@ -185,7 +185,7 @@ public class adding extends javax.swing.JFrame {
                 imageAvatar2MouseClicked(evt);
             }
         });
-        jPanel1.add(imageAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 20));
+        jPanel1.add(imageAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 20, 20));
 
         der.setText("jLabel5");
         jPanel1.add(der, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
