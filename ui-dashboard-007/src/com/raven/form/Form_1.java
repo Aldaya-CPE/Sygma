@@ -373,6 +373,7 @@ public class Form_1 extends javax.swing.JPanel {
                 "Category", "Date", "Amount", "Type"
             }
         ));
+        jTable1.setEnabled(false);
         jTable1.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 

@@ -43,12 +43,15 @@ public class login extends javax.swing.JFrame {
         genId.setVisible(false);
         nameManager = new NameManager( new Menu());
 
-          username.addKeyListener(new KeyAdapter() {
+            username.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                      jLabel7MouseClicked(null);
-
+                    if (username.getText().isEmpty() || password.getPassword().length == 0) {
+                        JOptionPane.showMessageDialog(login.this, "Username and Password cannot be empty!");
+                    } else {
+                        jLabel7MouseClicked(null);
+                    }
                 }
             }
         });
@@ -57,8 +60,11 @@ public class login extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                      jLabel7MouseClicked(null);
-
+                    if (username.getText().isEmpty() || password.getPassword().length == 0) {
+                        JOptionPane.showMessageDialog(login.this, "Username and Password cannot be empty!");
+                    } else {
+                        jLabel7MouseClicked(null);
+                    }
                 }
             }
         });
