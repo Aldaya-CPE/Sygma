@@ -104,9 +104,9 @@ public class Form2 extends javax.swing.JPanel {
         });
              
         
-       
-
     }
+
+    
     
   public void updateform(){
       saveBalance();
@@ -165,7 +165,7 @@ private void loadBalance() {
             Date date = rs.getDate("date");
             String type = rs.getString("type");
             ids.add(id);
-            if (type.equalsIgnoreCase("Badget")) {
+            if (type.equalsIgnoreCase("Budget")) {
                 totalBalance += amount;
             } else if (type.equalsIgnoreCase("expense")) {
                 totalBalance -= amount;
@@ -212,6 +212,7 @@ private void loadBalance() {
                 "Category", "Amount", "Date", "Type"
             }
         ));
+        jTable1.setFocusTraversalPolicyProvider(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-properties-100.png"))); // NOI18N

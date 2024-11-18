@@ -139,7 +139,7 @@ public class adding extends javax.swing.JFrame {
         });
         jPanel1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 136, 247, 22));
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Expense", "Badget" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Expense", "Budget" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -155,10 +155,10 @@ public class adding extends javax.swing.JFrame {
         jLabel3.setText("Category");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 114, -1, -1));
 
-        jButton11.setBackground(new java.awt.Color(253, 253, 253));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/add1 (2).png"))); // NOI18N
+        jButton11.setBackground(new java.awt.Color(253, 253, 253));
         jButton11.setBorder(null);
+        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton11.setIconTextGap(5);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -264,8 +264,6 @@ public class adding extends javax.swing.JFrame {
         txtSearch.setText("");
         amount.setText("");
         date1.setDate(null);
-        
-      
         
       
     } catch (SQLException e) {

@@ -20,6 +20,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import com.formdev.flatlaf.FlatLightLaf;
 
+
 import Sygma.Model.NameManager;
 
 
@@ -43,7 +44,7 @@ public class login extends javax.swing.JFrame {
         genId.setVisible(false);
         nameManager = new NameManager( new Menu());
 
-            username.addKeyListener(new KeyAdapter() {
+           username.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -426,7 +427,7 @@ private static String generateUID(){
 
                 ModelUser result = controller.Login(login);
                 if (result != null) {
-                    UserSession.setCurrentUser(result);
+                     UserSession.setCurrentUser(result);
                     Preferences prefs = Preferences.userNodeForPackage(login.class);
                     prefs.putBoolean("isLoggedIn", true);
                   

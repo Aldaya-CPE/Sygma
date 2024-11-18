@@ -121,7 +121,7 @@ public class Form_1 extends javax.swing.JPanel {
                 }
             }
             if (monthIndex != -1) {
-                if (type.equals("Badget")) {
+                if (type.equals("Budget")) {
                     totalIncome += amount;
                     incomeValues[monthIndex] += amount;
                 } else {
@@ -138,7 +138,7 @@ public class Form_1 extends javax.swing.JPanel {
         progress1.setValue((int) incomePercentage);
         progress2.setValue((int) expensesPercentage);
         progress3.setValue((int) balancePercentage);
-        jLabel1.setText("Total Badget: " + totalIncome);
+        jLabel1.setText("Total Budget: " + totalIncome);
         jLabel3.setText("Total Expenses: " + totalExpenses);
         jLabel4.setText("Total Balance: " + totalBalance);
         
