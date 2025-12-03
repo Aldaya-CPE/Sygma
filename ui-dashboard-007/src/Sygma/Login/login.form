@@ -65,11 +65,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SYGMA"/>
+            <Property name="text" type="java.lang.String" value="SPEENDY"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="120" y="310" width="130" height="40"/>
+              <AbsoluteConstraints x="110" y="310" width="170" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

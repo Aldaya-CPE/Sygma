@@ -213,21 +213,22 @@ private void loadBalance() {
             }
         ));
         jTable1.setFocusTraversalPolicyProvider(true);
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-properties-100.png"))); // NOI18N
 
+        jLabel6.setText("Add Expense");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Add Expense");
 
-        jButton10.setBackground(new java.awt.Color(253, 253, 253));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-delete-30.png"))); // NOI18N
-        jButton10.setToolTipText("Delete");
+        jButton10.setBackground(new java.awt.Color(253, 253, 253));
         jButton10.setBorder(null);
+        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton10.setIconTextGap(5);
+        jButton10.setToolTipText("Delete");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -238,11 +239,11 @@ private void loadBalance() {
 
         panelRound1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Avaible Balance");
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
 
-        balance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         balance.setText("jLabel8");
+        balance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -265,13 +266,13 @@ private void loadBalance() {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jButton13.setBackground(new java.awt.Color(253, 253, 253));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/icons8-add-40.png"))); // NOI18N
-        jButton13.setToolTipText("Go to Add");
+        jButton13.setBackground(new java.awt.Color(253, 253, 253));
         jButton13.setBorder(null);
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton13.setIconTextGap(5);
+        jButton13.setToolTipText("Go to Add");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
